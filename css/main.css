@@ -2663,8 +2663,8 @@ embed {
 
 
 /*自定义样式*/
-.edu-title {
+#edu-title {
   text-align: left;
   display: inline-block;
-  width: 100px
+  width: 65px;
 }
