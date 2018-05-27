@@ -2660,3 +2660,11 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
+
+
+/*自定义样式*/
+.edu-title {
+  text-align: left;
+  display: inline-block;
+  width: 100px
+}
