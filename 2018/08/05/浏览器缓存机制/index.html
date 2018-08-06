@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/images/validate_key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/cache_directive.jpg">
 <meta property="og:image" content="http://yoursite.com/images/pragma.png">
-<meta property="og:updated_time" content="2018-08-05T10:23:57.339Z">
+<meta property="og:updated_time" content="2018-08-06T09:04:26.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器缓存机制">
 <meta name="twitter:description" content="浏览器缓存机制剖析浏览器缓存就是把一个已经请求过的 web 资源拷贝一份存储在浏览器中，当下次请求相同的资源时，浏览器会根据缓存机制决定直接使用副本响应访问请求还是再次向服务器发送请求。 浏览器对于请求资源, 拥有一系列成熟的缓存策略. 按照发生的时间顺序分别为存储策略, 过期策略, 协商策略, 其中存储策略在收到响应后应用, 过期策略, 协商策略在发送请求前应用. 流程图如下所示. 1.http">
@@ -392,6 +392,7 @@
 <p>这样做的好处就是你可以自由控制什么时候加载最新的资源.</p>
 <p>不仅如此, HTML也可以禁用缓存, 即在页面的<head>中加入标签, 代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Cache-Control"</span> <span class="attr">content</span>=<span class="string">"no-cache, no-store, must-revalidate"</span>/&gt;</span></span><br></pre></td></tr></table></figure></head></p>
 <p>上述虽能禁用缓存, 但只有部分浏览器支持, 而且由于代理不解析HTML文档, 故代理服务器也不支持这种方式.</p>
+<p><a href="http://louiszhai.github.io/2017/04/07/http-cache/" target="_blank" rel="noopener">原文地址</a></p>
 
       
     </div>
@@ -433,6 +434,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/http协议的一些基础知识/" rel="prev" title="http协议的一些基础知识">
+                http协议的一些基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -509,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
