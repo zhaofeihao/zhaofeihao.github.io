@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="赵斐昊">
 <meta property="og:description" content="http需要知道的Http与Https的区别1.HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头2.HTTP 是不安全的，而 HTTPS 是安全的3.HTTP 标准端口是80 ，而 HTTPS 的标准端口是4434.在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层5.HTTP 无法加密，而HTTPS 对传输的数据进行加">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-06T11:47:50.661Z">
+<meta property="og:updated_time" content="2018-08-06T12:06:30.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议的一些基础知识">
 <meta name="twitter:description" content="http需要知道的Http与Https的区别1.HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头2.HTTP 是不安全的，而 HTTPS 是安全的3.HTTP 标准端口是80 ，而 HTTPS 的标准端口是4434.在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层5.HTTP 无法加密，而HTTPS 对传输的数据进行加">
@@ -354,7 +354,7 @@
 <h2 id="常用的HTTP方法"><a href="#常用的HTTP方法" class="headerlink" title="常用的HTTP方法"></a>常用的HTTP方法</h2><p>1.GET - 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器<br>2.POST - 用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>3.PUT - 传输文件，报文主体中包含文件内容，保存到对应URI位置，不安全。<br>4.HEAD - 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br>5.DELETE - 删除文件，与PUT方法相反，删除对应URI位置的文件，不安全。<br>6.OPTIONS - 查询相应URI支持的HTTP方法。<br>7.TRACE - 让服务器将之前的请求通信返回给客户端，查明途径的代理服务器通信过程中的操作。<br>8.CONNECT - 要求在于代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。</p>
 <h2 id="GET方法与POST方法的区别"><a href="#GET方法与POST方法的区别" class="headerlink" title="GET方法与POST方法的区别"></a>GET方法与POST方法的区别</h2><ul>
 <li>get重点在从服务器上获取资源，post重点在向服务器发送数据；</li>
-<li>get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如<a href="http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；" target="_blank" rel="noopener">http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</a></li>
+<li>get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如 http ://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</li>
 <li>Get传输的数据量小，因为受URL长度限制，但效率较高；Post可以传输大量数据，所以上传文件时只能用Post方式；</li>
 <li>get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等；post较get安全性较高；</li>
 <li>get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码。post支持标准字符集，可以正确传递中文字符。</li>
@@ -469,6 +469,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/08/07/TCP-UDP区别/" rel="prev" title="TCP/UDP区别">
+                TCP/UDP区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -544,7 +548,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -557,7 +561,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
