@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="前端性能优化的几个知识点如何进行页面重构">
+<meta name="description" content="前端性能优化的几个知识点如何进行页面重构网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。也就是说是在不改变UI的情况下，对网站进行优化，在扩展的同时保持一致的UI。  对于传统的网站来说重构通常是表格(table)布局改为DIV+CSS使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)对于移动平台的优化针对于SEO进行优化 深层次的网站重构">
 <meta name="keywords" content="性能优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
 <meta property="og:url" content="http://yoursite.com/2018/08/07/前端性能优化/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="前端性能优化的几个知识点如何进行页面重构">
+<meta property="og:description" content="前端性能优化的几个知识点如何进行页面重构网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。也就是说是在不改变UI的情况下，对网站进行优化，在扩展的同时保持一致的UI。  对于传统的网站来说重构通常是表格(table)布局改为DIV+CSS使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)对于移动平台的优化针对于SEO进行优化 深层次的网站重构">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-07T02:32:22.159Z">
+<meta property="og:image" content="http://yoursite.com/images/performance_optimaze.png">
+<meta property="og:updated_time" content="2018-08-07T07:40:11.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化">
-<meta name="twitter:description" content="前端性能优化的几个知识点如何进行页面重构">
+<meta name="twitter:description" content="前端性能优化的几个知识点如何进行页面重构网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。也就是说是在不改变UI的情况下，对网站进行优化，在扩展的同时保持一致的UI。  对于传统的网站来说重构通常是表格(table)布局改为DIV+CSS使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)对于移动平台的优化针对于SEO进行优化 深层次的网站重构">
+<meta name="twitter:image" content="http://yoursite.com/images/performance_optimaze.png">
 
 
 
@@ -330,7 +332,102 @@
       
 
       
-        <h1 id="前端性能优化的几个知识点"><a href="#前端性能优化的几个知识点" class="headerlink" title="前端性能优化的几个知识点"></a>前端性能优化的几个知识点</h1><h2 id="如何进行页面重构"><a href="#如何进行页面重构" class="headerlink" title="如何进行页面重构"></a>如何进行页面重构</h2>
+        <h1 id="前端性能优化的几个知识点"><a href="#前端性能优化的几个知识点" class="headerlink" title="前端性能优化的几个知识点"></a>前端性能优化的几个知识点</h1><h2 id="如何进行页面重构"><a href="#如何进行页面重构" class="headerlink" title="如何进行页面重构"></a>如何进行页面重构</h2><p>网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。也就是说是在不改变UI的情况下，对网站进行优化，在扩展的同时保持一致的UI。</p>
+<blockquote>
+<p><strong>对于传统的网站来说重构通常是</strong><br>表格(table)布局改为DIV+CSS<br>使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)<br>对于移动平台的优化<br>针对于SEO进行优化</p>
+<p><strong>深层次的网站重构应该考虑的方面</strong><br>减少代码间的耦合<br>让代码保持弹性<br>严格按规范编写代码<br>设计可扩展的API<br>代替旧有的框架、语言(如VB)<br>增强用户体验</p>
+<p><strong>通常来说对于速度的优化也包含在重构中</strong><br>压缩JS、CSS、image等前端资源(通常是由服务器来解决)<br>程序的性能优化(如数据读写)<br>采用CDN来加速资源加载<br>对于JS DOM的优化<br>HTTP服务器的文件缓存</p>
+</blockquote>
+<h2 id="优雅降级和渐进增强"><a href="#优雅降级和渐进增强" class="headerlink" title="优雅降级和渐进增强"></a>优雅降级和渐进增强</h2><blockquote>
+<p><strong>优雅降级</strong><br>Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会针对旧版本的IE进行降级处理,使之在旧式浏览器上以某种形式降级体验却不至于完全不能用。如：border-shadow</p>
+<p><strong>渐进增强</strong><br>从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能,向页面增加不影响基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。如：默认使用flash上传，但如果浏览器支持 HTML5 的文件上传功能，则使用HTML5实现更好的体验；</p>
+</blockquote>
+<h2 id="前端性能优化的方法"><a href="#前端性能优化的方法" class="headerlink" title="前端性能优化的方法"></a>前端性能优化的方法</h2><p><strong>简洁明了版说法</strong></p>
+<ol>
+<li>减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。</li>
+<li>前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数</li>
+<li>用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。</li>
+<li>当需要设置的样式很多时设置className而不是直接操作style。</li>
+<li>少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。</li>
+<li>避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。</li>
+<li>图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。</li>
+<li>避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</li>
+</ol>
+<p>对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如join查询），减少磁盘IO指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法“优化”的。</p>
+<p><strong>较真版说法</strong></p>
+<p>浏览器请求处理流程图<br><img src="/images/performance_optimaze.png" alt="浏览器请求处理流程图"></p>
+<ol>
+<li><p>减少HTTP请求<br> http协议是 <strong>无状态</strong>的应用层协议，意味着 <strong>每次http请求都需要建立通信链路、进行数据传输</strong>，而 <strong>在服务器端每个http都需要启动独立的线程去处理</strong>。这些通信和服务的开销都很昂贵，减少http请求的数目可有效提高访问性能。</p>
+<ul>
+<li><strong>合并CSS、合并javascript、合并图片。</strong>将浏览器一次访问需要的javascript和CSS合并成一个文件，这样浏览器就只需要一次请求。图片也可以合并，多张图片合并成一张，如果每张图片都有不同的超链接，可通过CSS偏移响应鼠标点击操作，构造不同的URL。</li>
+<li><strong>合理设置缓存。</strong>很少变化的图片资源可以直接通过 HTTP Header中的Expires设置一个很长的过期头 ;变化不频繁而又可能会变的资源可以使用 Last-Modifed来做请求验证。尽可能的让资源能够在缓存中待得更久。</li>
+</ul>
+</li>
+<li><p>使用浏览器缓存</p>
+<ul>
+<li><strong>将更新频率比较低的CSS、javascript、logo、图标等静态资源文件缓存在浏览器中</strong>，避免频繁的http请求。通过设置http头中的cache-control和expires的属性，可设定浏览器缓存，缓存时间可以是数天，甚至是几个月。</li>
+<li>当静态资源文件发生变化时，通过 <strong>生成一个新的JS文件并更新HTML文件中的引用来更新js文件</strong>，避免直接更新js文件中的内容。</li>
+<li>使用浏览器缓存策略的网站在更新静态资源时，应采用 <strong>逐量更新</strong>的方法，比如需要更新10个图标文件，不宜把10个文件一次全部更新，而是应该一个文件一个文件逐步更新，并有一定的间隔时间，避免用户浏览器忽然大量缓存失效，集中更新缓存，造成服务器负载骤增、网络堵塞的情况。</li>
+</ul>
+</li>
+<li><p>启用压缩<br><strong>在服务器端对文件进行压缩，在浏览器端对文件解压缩</strong>可有效减少通信传输的数据量。如果可以的话，尽可能的将外部的脚本、样式进行合并，多个合为一个。文本文件的压缩效率可达到80%以上，因此HTML、CSS、javascript文件启用GZip压缩可达到较好的效果。但是压缩对服务器和浏览器产生一定的压力，在通信带宽良好，而服务器资源不足的情况下要权衡考虑。</p>
+</li>
+<li><p>CSS Sprites<br>合并CSS图片，减少HTTP请求数。</p>
+</li>
+<li><p>LazyLoad Images<br>这条策略实际上并不一定能减少 HTTP请求数，但是却能在某些条件下或者页面刚加载时减少 HTTP请求数。对于图片而言，在页面刚加载的时候可以只加载第一屏，当用户继续往后滚屏的时候才加载后续的图片。这样一来，假如用户只对第一屏的内容感兴趣时，那剩余的图片请求就都节省了。</p>
+</li>
+<li><p>CSS放在页面最上部，javascript放在页面最下面<br>浏览器会在下载完成全部CSS之后才对整个页面进行渲染，因此最好的做法是将CSS放在页面最上面，让浏览器尽快下载CSS。如果将 CSS放在其他地方比如 BODY中，则浏览器有可能还未下载和解析到 CSS就已经开始渲染页面了，这就导致页面由无 CSS状态跳转到 CSS状态，用户体验比较糟糕，所以可以考虑将CSS放在HEAD中。<br>Javascript则相反，浏览器在加载javascript后立即执行，有可能会阻塞整个页面，造成页面显示缓慢，因此javascript最好放在页面最下面。但如果页面解析时就需要用到javascript，这时放到底部就不合适了。</p>
+</li>
+<li><p>Lazy Load Javascript（只有在需要加载的时候加载，在一般情况下并不加载信息内容。）<br>随着 Javascript框架的流行，越来越多的站点也使用起了框架。不过，一个框架往往包括了很多的功能实现，这些功能并不是每一个页面都需要的，如果下载了不需要的脚本则算得上是一种资源浪费-既浪费了带宽又浪费了执行花费的时间。目前的做法大概有两种，一种是为那些流量特别大的页面专门定制一个专用的 mini版框架，另一种则是 Lazy Load。</p>
+</li>
+<li><p>异步请求Callback（就是将一些行为样式提取出来，慢慢的加载信息的内容）<br>在某些页面中可能存在这样一种需求，需要使用 script标签来异步的请求数据,直接在页面上写 &lt;script&gt; .<br>这样对页面的性能也是有影响的，即增加了页面首次加载的负担，推迟了 DOMLoaded和window.onload 事件的触发时机。如果时效性允许的话，可以考虑在 DOMLoaded事件触发的时候加载，或者使用 setTimeout方式来灵活的控制加载的时机。</p>
+</li>
+<li><p>减少cookie传输<br>一方面，cookie包含在每次请求和响应中，太大的cookie会严重影响数据传输，因此哪些数据需要写入cookie需要慎重考虑，尽量减少cookie中传输的数据量。另一方面，对于某些静态资源的访问，如CSS、script等，发送cookie没有意义，可以考虑静态资源使用独立域名访问，避免请求静态资源时发送cookie，减少cookie传输次数。</p>
+</li>
+<li><p>Javascript代码优化</p>
+<ul>
+<li>DOM<br><strong>HTML Collection（HTML收集器，返回的是一个数组内容信息）</strong><br>在脚本中 document.images、document.forms、getElementsByTagName()返回的都是HTMLCollection类型的集合，在平时使用的时候大多将它作为数组来使用，因为它有 length属性，也可以使用索引访问每一个元素。不过在访问性能上则比数组要差很多，原因是这个集合并不是一个静态的结果，它表示的仅仅是一个特定的查询，每次访问该集合时都会重新执行这个查询从而更新查询结果。所谓的“访问集合” 包括读取集合的 length属性、访问集合中的元素。</li>
+</ul>
+<p>因此，当你需要遍历 HTML Collection的时候，尽量将它转为数组后再访问(Array.prototype.slice.call(HTMLCollection))，以提高性能。即使不转换为数组，也请尽可能少的访问它，例如在遍历的时候可以将 length属性、成员保存到局部变量后再使用局部变量。</p>
+<p><strong>Reflow &amp; Repaint</strong><br>DOM操作还需要考虑浏览器的Reflow和Repaint ，因为这些都是需要消耗资源的。</p>
+<ul>
+<li>慎用 with　<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span>(obj)&#123; p = <span class="number">1</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>代码块的行为实际上是修改了代码块中的执行环境 ，将obj放在了其作用域链的最前端，在 with代码块中访问非局部变量是都是先从 obj上开始查找，如果没有再依次按作用域链向上查找，因此使用 with相当于增加了作用域链长度。而每次查找作用域链都是要消耗时间的，过长的作用域链会导致查找性能下降。</p>
+<p>因此，<strong>除非你能肯定在 with代码中只访问 obj中的属性</strong>，否则慎用 with，替代的可以使用局部变量缓存需要访问的属性。</p>
+<ul>
+<li>避免使用 eval和 Function</li>
+</ul>
+<p>每次 eval或Function 构造函数作用于字符串表示的源代码时，脚本引擎都需要将源代码转换成可执行代码。这是很消耗资源的操作 —— 通常比简单的函数调用慢 100倍以上。</p>
+<p>eval 函数效率特别低，由于事先无法知晓传给 eval 的字符串中的内容，eval在其上下文中解释要处理的代码，也就是说编译器无法优化上下文，因此只能有浏览器在运行时解释代码。这对性能影响很大。</p>
+<p>Function 构造函数比 eval略好，因为使用此代码不会影响周围代码 ;但其速度仍很慢。</p>
+<p>此外，使用 eval和 Function也不利于Javascript 压缩工具执行压缩。</p>
+<ul>
+<li>减少作用域链查找</li>
+</ul>
+<p>前文谈到了作用域链查找问题，这一点在循环中是尤其需要注意的问题。如果在循环中需要访问非本作用域下的变量时请在遍历之前用局部变量缓存该变量，并在遍历结束后再重写那个变量，这一点对全局变量尤其重要，因为全局变量处于作用域链的最顶端，访问时的查找次数是最多的。此外，要减少作用域链查找还应该减少闭包的使用。</p>
+<ul>
+<li>数据访问<br>　　Javascript中的数据访问包括直接量 (字符串、正则表达式 )、变量、对象属性以及数组，其中对直接量和局部变量的访问是最快的，对对象属性以及数组的访问需要更大的开销。当出现以下情况时，建议将数据放入局部变量：<br>a. 对任何对象属性的访问超过 1次<br>b. 对任何数组成员的访问次数超过 1次</li>
+</ul>
+<p>另外，还应当尽可能的减少对对象以及数组深度查找。</p>
+<ul>
+<li><p>字符串拼接<br>在 Javascript中使用”+”号来拼接字符串效率是比较低的，因为每次运行都会开辟新的内存并生成新的字符串变量，然后将拼接结果赋值给新变量。与之相比更为高效的做法是使用数组的 join方法，即将需要拼接的字符串放在数组中最后调用其 join方法得到结果。不过由于使用数组也有一定的开销，因此当需要拼接的字符串较多的时候可以考虑用此方法。</p>
+</li>
+<li><p>CSS选择符优化<br>在大多数人的观念中，都觉得浏览器对 CSS选择符的解析式从左往右进行的，例如</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#toc</span> <span class="selector-tag">A</span> &#123; <span class="attribute">color</span>: <span class="number">#444</span>; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样一个选择符，如果是从左往右解析则效率会很高，因为第一个 ID选择基本上就把查找的范围限定了，但实际上浏览器对选择符的解析是从右往左进行的。如上面的选择符，浏览器必须遍历查找每一个 A标签的祖先节点，效率并不像之前想象的那样高。根据浏览器的这一行为特点，在写选择符的时候需要注意很多事项。</p>
+<ul>
+<li>CDN加速<br>CDN（contentdistribute network，内容分发网络）的本质仍然是一个缓存，而且将数据缓存在离用户最近的地方，使用户以最快速度获取数据，即所谓网络访问第一跳。<br>由于CDN部署在网络运营商的机房，这些运营商又是终端用户的网络服务提供商，因此用户请求路由的第一跳就到达了CDN服务器，当CDN中存在浏览器请求的资源时，从CDN直接返回给浏览器，最短路径返回响应，加快用户访问速度，减少数据中心负载压力。<br>CDN缓存的一般是静态资源，如图片、文件、CSS、script脚本、静态网页等，但是这些文件访问频度很高，将其缓存在CDN可极大改善网页的打开速度。</li>
+</ul>
+</li>
+<li><p>反向代理<br>传统代理服务器位于浏览器一侧，代理浏览器将http请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站web服务器接收http请求。<br>论坛网站，把热门词条、帖子、博客缓存在反向代理服务器上加速用户访问速度，当这些动态内容有变化时，通过内部通知机制通知反向代理缓存失效，反向代理会重新加载最新的动态内容再次缓存起来。<br>此外，反向代理也可以实现负载均衡的功能，而通过负载均衡构建的应用集群可以提高系统总体处理能力，进而改善网站高并发情况下的性能。</p>
+</li>
+</ol>
+<p><a href="https://www.jianshu.com/p/833a5fad8b08" target="_blank" rel="noopener">参考1</a><br><a href="https://blog.csdn.net/qq_42375089/article/details/80863723" target="_blank" rel="noopener">参考2</a></p>
+
       
     </div>
     
@@ -491,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端性能优化的几个知识点"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化的几个知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行页面重构"><span class="nav-number">1.1.</span> <span class="nav-text">如何进行页面重构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端性能优化的几个知识点"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化的几个知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行页面重构"><span class="nav-number">1.1.</span> <span class="nav-text">如何进行页面重构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优雅降级和渐进增强"><span class="nav-number">1.2.</span> <span class="nav-text">优雅降级和渐进增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端性能优化的方法"><span class="nav-number">1.3.</span> <span class="nav-text">前端性能优化的方法</span></a></li></ol></li></ol></div>
             
 
           </div>
