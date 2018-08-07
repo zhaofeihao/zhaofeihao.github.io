@@ -260,6 +260,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/重绘和重排/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/重绘和重排/" itemprop="url">重绘和重排</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T16:56:12+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="影响浏览器重绘和重排"><a href="#影响浏览器重绘和重排" class="headerlink" title="影响浏览器重绘和重排"></a>影响浏览器重绘和重排</h1><h2 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h2><p>重绘是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性值，比同等元素要多花两倍时间，这就是我们尽量避免使用table布局页面的原因之一。</p>
+<h2 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h2><p>浏览器下载完页面中的所有资源（HTML、JavaScript、CSS、图片）之后会解析生成两个内部数据结构（DOM树和渲染树），DOM树表示页面结构，渲染树表示DOM节点如何显示。重排是DOM元素的几何属性变化，DOM树的结构变化，渲染树需要重新计算。</p>
+<h2 id="重绘和重排的关系"><a href="#重绘和重排的关系" class="headerlink" title="重绘和重排的关系"></a>重绘和重排的关系</h2><p>重绘不会引起重排，但重排一定会引起重绘，一个元素的重排通常会带来一系列的反应，甚至触发整个文档的重排和重绘，性能代价是高昂的。</p>
+<h2 id="什么情况下会触发重排？"><a href="#什么情况下会触发重排？" class="headerlink" title="什么情况下会触发重排？"></a>什么情况下会触发重排？</h2><ol>
+<li>页面渲染初始化时；（这个无法避免）</li>
+<li>浏览器窗口改变尺寸；</li>
+<li>元素尺寸改变时；</li>
+<li>元素位置改变时；</li>
+<li>元素内容改变时；</li>
+<li>添加或删除可见的DOM 元素时。</li>
+</ol>
+<h2 id="重排优化有如下五种方法"><a href="#重排优化有如下五种方法" class="headerlink" title="重排优化有如下五种方法"></a>重排优化有如下五种方法</h2><ol>
+<li>将多次改变样式属性的操作合并成一次操作，减少DOM访问。</li>
+<li>如果要批量添加DOM，可以先让元素脱离文档流，操作完后再带入文档流，这样只会触发一次重排。（fragment元素的应用）</li>
+<li>将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。</li>
+<li>由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发两次重排。</li>
+<li>在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行。</li>
+</ol>
+<p><a href="http://www.cnblogs.com/yuri2016/p/6542625.html" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/从输入URL到页面显示经历了什么/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/从输入URL到页面显示经历了什么/" itemprop="url">从输入URL到页面显示经历了什么</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T15:41:57+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="从输入网址到页面呈现都发生了什么？"><a href="#从输入网址到页面呈现都发生了什么？" class="headerlink" title="从输入网址到页面呈现都发生了什么？"></a>从输入网址到页面呈现都发生了什么？</h1><h2 id="简洁版"><a href="#简洁版" class="headerlink" title="简洁版"></a>简洁版</h2><p>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；<br>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；<br>浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；<br>载入解析到的资源文件，渲染页面，完成。</p>
+<h2 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h2><p>浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;<br>调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;<br>通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;<br>进行HTTP协议会话，客户端发送报头(请求报头);<br>进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;<br>进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;<br>处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;<br>浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;<br>文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;<br>页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成。</p>
+<h2 id="超详细版"><a href="#超详细版" class="headerlink" title="超详细版"></a>超详细版</h2><p><a href="https://www.cnblogs.com/jesse131/p/6215961.html" target="_blank" rel="noopener">超详细解析可直接跳转到这篇博文</a></p>
+<h2 id="超详细版的精简说法"><a href="#超详细版的精简说法" class="headerlink" title="超详细版的精简说法"></a>超详细版的精简说法</h2><p><strong>从输入网址到页面呈现这个过程大致可分为<code>网络通信</code>和<code>页面渲染</code>两个部分</strong></p>
+<p><strong>网络通信</strong></p>
+<ol>
+<li>应用层中的DNS服务负责对输入的网址进行域名查询与解析。</li>
+<li>应用层中客户端发送HTTP请求报文。</li>
+<li>经过传输层，TCP协议确保传输报文可靠性。将大块的数据分割成以报文段，进行三次握手。</li>
+<li>经过网络层。IP协议的作用是把TCP分割好的各种数据包传送给接收方。而要保证确实能传到接收方还需要接收方的MAC地址。</li>
+<li>经过链路层，硬件部分负责传输数据。在网络层找到对方的MAC地址后，就将数据发送到数据链路层传输。至此请求报文已发出。</li>
+<li>服务器接收报文。接收端服务器在链路层接收到数据后，逐层向上将数据传递到应用层，逐层去掉首部信息，至此数据传输到应用层才能算真正接收到由客户端发送过来的HTTP请求。</li>
+<li>服务器在应用层发送HTTP响应报文。响应原路返回。</li>
+</ol>
+<blockquote>
+<p>在网络通信阶段对前端优化建议：<br>减少HTTP请求数、避免重定向、cookie优化、启用GZIP压缩、使用CDN加速、合理利用HTTP缓存(通过设置Expires)</p>
+</blockquote>
+<p><strong>页面渲染</strong><br>客户端在接收到html代码之后，接下来的流程如下：</p>
+<ol>
+<li>解析html以构建DOM树。</li>
+<li>浏览器会在构建DOM树的同时构建render树,呈现树的每一个节点即为与其相对应的DOM节点的CSS框。</li>
+<li>布局render树。在创建render树时，并不包含位置和大小信息。计算这些值的过程称为布局或重排。</li>
+<li>绘制render树。在绘制阶段，系统会遍历render树，并调用呈现器的“paint”方法，将呈现器的内容显示在屏幕上。</li>
+<li>页面变化造成的影响。在发生变化时，浏览器会尽可能做出最小的响应。因此，元素的颜色改变后，只会对该元素进行重绘。元素的位置改变后，只会对该元素及其子元素（可能还有同级元素）进行布局和重绘。添加 DOM 节点后，会对该节点进行布局和重绘。一些重大变化（例如增大“html”元素的字体）会导致缓存无效，使得整个呈现树都会进行重新布局和绘制。</li>
+</ol>
+<blockquote>
+<p>在页面渲染阶段对前端优化建议：<br>建议将 CSS 文件放在页首，以便构建 DOM 树；而将 JavaScript 文件尽量放在页面下方，防止阻塞构建 DOM 树；而 JavaScript 的 onload 事件里，不要写太多影响首屏渲染的、操作 DOM 树的 JavaScript 代码。<br>精简 JavaScript 和 CSS 代码，并进行代码压缩，使得css和js资源更快的下载<br>编写高效的CSS代码<br>重要的图片或者想让用户优先看到的图片使用img标签，次要的图片使用background引入</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/前端性能优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1547,496 +1832,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/(逆)波兰表达式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/(逆)波兰表达式/" itemprop="url">(逆)波兰表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T09:59:09+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前缀、中缀、后缀表达式及其转换"><a href="#前缀、中缀、后缀表达式及其转换" class="headerlink" title="前缀、中缀、后缀表达式及其转换"></a>前缀、中缀、后缀表达式及其转换</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>前缀表达式(波兰式)<br>前缀表达式的运算符位于操作数之前<br>例：- × + 3 4 5 6</p>
-</li>
-<li><p>中缀表达式<br>中缀表达式是一种通用的算术或逻辑公式表示方法，操作符以中缀形式处于操作数的中间。中缀表达式是人们常用的算术表示方法。<br>虽然人的大脑很容易理解与分析中缀表达式，但对计算机来说中缀表达式却是很复杂的，因此计算表达式的值时，通常需要先将中缀表达式转换为前缀或后缀表达式，然后再进行求值。<br>例：(3 + 4) × 5 - 6</p>
-</li>
-<li><p>后缀表达式(逆波兰式)<br>后缀表达式，指的是不包含括号，运算符放在两个运算对象的后面，所有的计算按运算符出现的顺序，严格从左向右进行。<br>例：3 4 + 5 × 6 -</p>
-</li>
-</ul>
-<h2 id="前缀表达式的计算机求值"><a href="#前缀表达式的计算机求值" class="headerlink" title="前缀表达式的计算机求值"></a>前缀表达式的计算机求值</h2><p>从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 operator 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果。<br>例如前缀表达式“- × + 3 4 5 6”：<br>(1) 从右至左扫描，将6、5、4、3压入堆栈；<br>(2) 遇到+运算符，因此弹出3和4（3为栈顶元素，4为次顶元素，注意与后缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 接下来是×运算符，因此弹出7和5，计算出7×5=35，将35入栈；<br>(4) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
-<h2 id="将中缀表达式转换为前缀表达式"><a href="#将中缀表达式转换为前缀表达式" class="headerlink" title="将中缀表达式转换为前缀表达式"></a>将中缀表达式转换为前缀表达式</h2><p>将中缀表达式转换为前缀表达式：<br>遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从右至左扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为右括号“)”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的较高或相等，也将运算符压入S1；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是右括号“)”，则直接压入S1；<br>(5-2) 如果是左括号“(”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到右括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最左边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果即为中缀表达式对应的前缀表达式。</p>
-<p>将中缀表达式“1+((2+3)×4)-5”转换为前缀表达式的过程如下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">扫描到的元素</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">S1为空，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">-)</td>
-<td style="text-align:left">右括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">×</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)×</td>
-<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)×)</td>
-<td style="text-align:left">右括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">543</td>
-<td style="text-align:left">-)×)</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">543</td>
-<td style="text-align:left">-)×)+</td>
-<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">5432</td>
-<td style="text-align:left">-)×)+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">5432+</td>
-<td style="text-align:left">-)×</td>
-<td style="text-align:left">左括号，弹出运算符直至遇到右括号</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">5432+×</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">同上</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">5432+×</td>
-<td style="text-align:left">-+</td>
-<td style="text-align:left">优先级与-相同，入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">5432+×1</td>
-<td style="text-align:left">-+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">到达最左端</td>
-<td style="text-align:left">5432+×1+-</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">S1中剩余的运算符</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>因此结果为“- + 1 × + 2 3 4 5”。</p>
-<h2 id="后缀表达式的计算机求值："><a href="#后缀表达式的计算机求值：" class="headerlink" title="后缀表达式的计算机求值："></a>后缀表达式的计算机求值：</h2><p>与前缀表达式类似，只是顺序是从左至右：<br>从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（次顶元素 op 栈顶元素），并将结果入栈；重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果。<br>例如后缀表达式“3 4 + 5 × 6 -”：<br>(1) 从左至右扫描，将3和4压入堆栈；<br>(2) 遇到+运算符，因此弹出4和3（4为栈顶元素，3为次顶元素，注意与前缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 将5入栈；<br>(4) 接下来是×运算符，因此弹出5和7，计算出7×5=35，将35入栈；<br>(5) 将6入栈；<br>(6) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
-<h2 id="将中缀表达式转换为后缀表达式"><a href="#将中缀表达式转换为后缀表达式" class="headerlink" title="将中缀表达式转换为后缀表达式"></a>将中缀表达式转换为后缀表达式</h2><p>与转换为前缀表达式相似，遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从左至右扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为左括号“(”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的高，也将运算符压入S1（注意转换为前缀表达式时是优先级较高或相同，而这里则不包括相同的情况）；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是左括号“(”，则直接压入S1；<br>(5-2) 如果是右括号“)”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到左括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最右边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果的逆序即为中缀表达式对应的后缀表达式（转换为前缀表达式时不用逆序）。</p>
-<p>例如，将中缀表达式“1+((2+3)×4)-5”转换为后缀表达式的过程如下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">扫描到的元素</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+</td>
-<td style="text-align:left">S1为空，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+(</td>
-<td style="text-align:left">左括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+((</td>
-<td style="text-align:left">同上</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">+((</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">+((+</td>
-<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">123</td>
-<td style="text-align:left">+((+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">123+</td>
-<td style="text-align:left">+(</td>
-<td style="text-align:left">右括号，弹出运算符直至遇到左括号</td>
-</tr>
-<tr>
-<td style="text-align:left">×</td>
-<td style="text-align:left">123+</td>
-<td style="text-align:left">+(×</td>
-<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">123+4</td>
-<td style="text-align:left">+(×</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">123+4×</td>
-<td style="text-align:left">+</td>
-<td style="text-align:left">右括号，弹出运算符直至遇到左括号栈</td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">123+4×+</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-与+优先级相同，因此弹出+，再压入-</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">123+4×+5</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">到达最右端</td>
-<td style="text-align:left">123+4×+5-</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">S1中剩余的运算符</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>因此结果为“1 2 3 + 4 × + 5 -”（注意需要逆序输出）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/flex基础知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/20/flex基础知识/" itemprop="url">flex基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T22:04:29+08:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Flex布局-语法"><a href="#Flex布局-语法" class="headerlink" title="Flex布局 - 语法"></a>Flex布局 - 语法</h1><h2 id="Flex布局咋用？"><a href="#Flex布局咋用？" class="headerlink" title="Flex布局咋用？"></a>Flex布局咋用？</h2><ul>
-<li><p>任何一个容器都可以指定为Flex布局</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>行内元素也可以使用Flex布局</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Webkit内核的浏览器，必须加上-webkit前缀</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex; </span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>注意</strong> ，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</p>
-<p><img src="/images/flex-element.png" alt="flex-element"><br>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。<br>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
-<h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><p><code>flex-direction</code> <code>flex-wrap</code> <code>flex-flow</code> <code>justify-content</code> <code>align-items</code> <code>align-content</code></p>
-<h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><p>flex-direction属性决定主轴的方向（即项目的排列方向）。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column-reverse | column | row | row-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>分别对应：<br><img src="/images/flex-direction.png" alt="flex-direction"></p>
-<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>no-wrap</code> (默认) 不换行<br><img src="/images/flex-wrap-nowrap.png" alt="flex-wrap-nowrap"><br><code>wrap</code> 换行，第一行在上方<br><img src="/images/flex-wrap-wrap.png" alt="wrap"><br><code>wrap-reverse</code> 换行，第一行在下方。<br><img src="/images/flex-wrap-wrapreverse.png" alt="wrap-reverse"></p>
-<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p>justify-content属性定义了项目在主轴上的对齐方式。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: <span class="built_in">flex-start</span>(默认，左对齐) | <span class="built_in">flex-end</span>(右对齐) | <span class="built_in">center</span>(居中) | <span class="built_in">space-between</span>(两端对齐，项目之间的间隔都相等) | <span class="built_in">space-around</span>(每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/justify-content.png" alt="justify-content"></p>
-<h3 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h3><p>align-items属性定义项目在交叉轴上如何对齐。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/align-items.png" alt="align-items"></p>
-<h3 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h3><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/align-content.png" alt="align-content"></p>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><p><code>order</code> <code>align-self</code> <code>flex-grow</code> <code>flex-shrink</code> <code>flex-basis</code> <code>flex</code></p>
-<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/flexitem-order.png" alt="item-order"></p>
-<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* 默认 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/flex-grow.png" alt="flex-grow"><br>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* 默认 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/flex-shrink.png" alt="flex-shrink"><br>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。<br><em>负值对该属性无效。</em></p>
-<h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">      <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* 默认 auto */</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
-<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">      <span class="attribute">flex</span>: none | [ &lt;<span class="string">'flex-grow'</span>&gt; &lt;<span class="string">'flex-shrink'</span>&gt;? || &lt;<span class="string">'flex-basis'</span>&gt; ]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
-<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/flex-alignself.png" alt="align-self"><br>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2087,7 +1882,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2100,7 +1895,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
