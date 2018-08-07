@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="性能优化," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="冒泡排序js实现冒泡排序(Bubble Sort) 是一种简单的排序算法，它重复的遍历要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来，直到排序完成。可见冒泡排序效率较低。每进行一遍这个过程，在最后一个位置上，正确的数会自己冒出来. 冒泡排序对于n个元素最坏需要 O(n2) 的比较次数，最优时间复杂度O(n)，平均时间复杂度O(n2)，且可以原地排序1。空间复杂度O(n)，需要辅">
-<meta name="keywords" content="算法">
+<meta name="description" content="前端性能优化的几个知识点如何进行页面重构">
+<meta name="keywords" content="性能优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冒泡排序">
-<meta property="og:url" content="http://yoursite.com/2018/07/03/冒泡排序/index.html">
+<meta property="og:title" content="前端性能优化">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/前端性能优化/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="冒泡排序js实现冒泡排序(Bubble Sort) 是一种简单的排序算法，它重复的遍历要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来，直到排序完成。可见冒泡排序效率较低。每进行一遍这个过程，在最后一个位置上，正确的数会自己冒出来. 冒泡排序对于n个元素最坏需要 O(n2) 的比较次数，最优时间复杂度O(n)，平均时间复杂度O(n2)，且可以原地排序1。空间复杂度O(n)，需要辅">
+<meta property="og:description" content="前端性能优化的几个知识点如何进行页面重构">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-29T06:40:12.794Z">
+<meta property="og:updated_time" content="2018-08-07T02:32:22.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冒泡排序">
-<meta name="twitter:description" content="冒泡排序js实现冒泡排序(Bubble Sort) 是一种简单的排序算法，它重复的遍历要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来，直到排序完成。可见冒泡排序效率较低。每进行一遍这个过程，在最后一个位置上，正确的数会自己冒出来. 冒泡排序对于n个元素最坏需要 O(n2) 的比较次数，最优时间复杂度O(n)，平均时间复杂度O(n2)，且可以原地排序1。空间复杂度O(n)，需要辅">
+<meta name="twitter:title" content="前端性能优化">
+<meta name="twitter:description" content="前端性能优化的几个知识点如何进行页面重构">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/03/冒泡排序/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/07/前端性能优化/"/>
 
 
 
 
 
-  <title>冒泡排序 | 赵斐昊</title>
+  <title>前端性能优化 | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/冒泡排序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/前端性能优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">冒泡排序</h1>
+          <h1 class="post-title" itemprop="name headline">前端性能优化</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T11:33:58+08:00">
-                2018-07-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T10:30:33+08:00">
+                2018-08-07
               </time>
             
 
@@ -330,15 +330,7 @@
       
 
       
-        <h1 id="冒泡排序js实现"><a href="#冒泡排序js实现" class="headerlink" title="冒泡排序js实现"></a>冒泡排序js实现</h1><p><strong>冒泡排序(Bubble Sort)</strong> 是一种简单的排序算法，它重复的遍历要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来，直到排序完成。可见冒泡排序效率较低。每进行一遍这个过程，在最后一个位置上，正确的数会自己冒出来.</p>
-<p>冒泡排序对于n个元素最坏需要 O(n<sup>2</sup>) 的比较次数，最优时间复杂度O(n)，平均时间复杂度O(n<sup>2</sup>)，且可以原地排序<sup><a href="#fn_1" id="reffn_1">1</a></sup>。空间复杂度O(n)，需要辅助空间O(1)</p>
-<p>冒泡排序(从小到大)算法流程如下：<br>    (i)  比较相邻的元素。如果第一个比第二个大，就交换他们两个。<br>    (ii) 对每一对儿相邻元素作同样的工作，从开始第一对儿到结尾的最后一对儿。这步做完后，最后的元素会是最大的数。<br>    (iii)针对所有的元素重复以上的步骤，除了当前循环的最后一个。<br>    (iv) 持续每次对越来越少的元素重复上面步骤，直到没有任何一对儿数字需要比较。</p>
-<p>以对数组[3, 2, 4, 5, 1] 进行从小到大排序为例，步骤如下：<br>    1.第一位的“3”与第二位的“2”进行比较，3大于2，所以互换位置，数组变成[2, 3, 4, 5, 1] 。<br>    2.第二位的“3”与第三位的“4”进行比较，3小于4，数组不变。<br>    3.第三位的“4”与第四位的“5”进行比较，4小于5，数组不变。<br>    4.第四位的“5”与第五位的“1”进行比较，5大于1,所以互换位置，数组变成[2, 3, 4, 1, 5] 。<br>第一轮排序完成，可以看到最后一位上的5，已经是正确的数了。然后，再对剩下的数[2, 3, 4, 1] 重复这个过程，每一轮都会在本轮最后一位上出现正确的数。直至剩下最后一个位置，所有排序结束。</p>
-<p>下面是冒泡排序的JavaScript实现:</p>
-<p>先定义一个交换函数，作用是交换数组中两个指定位置的值:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swap = <span class="function">(<span class="params">arr,p1,p2</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> tmp = arr[p1];</span><br><span class="line">    arr[p1] = arr[p2];</span><br><span class="line">    arr[p2] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>冒泡排序主函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bubbleSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.length - i; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                swap(arr, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><sup><a href="#fn_1" id="reffn_1">1</a></sup> 原地排序就是指在排序过程中不申请多余的存储空间，只利用原来存储待排数据的存储空间进行比较和交换的数据排序。</p>
-
+        <h1 id="前端性能优化的几个知识点"><a href="#前端性能优化的几个知识点" class="headerlink" title="前端性能优化的几个知识点"></a>前端性能优化的几个知识点</h1><h2 id="如何进行页面重构"><a href="#如何进行页面重构" class="headerlink" title="如何进行页面重构"></a>如何进行页面重构</h2>
       
     </div>
     
@@ -355,7 +347,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
           
         </div>
       
@@ -368,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/26/hello-world/" rel="next" title="斐昊">
-                <i class="fa fa-chevron-left"></i> 斐昊
+              <a href="/2018/08/07/TCP-UDP区别/" rel="next" title="TCP/UDP区别">
+                <i class="fa fa-chevron-left"></i> TCP/UDP区别
               </a>
             
           </div>
@@ -377,10 +369,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/20/flex圣杯布局/" rel="prev" title="flex圣杯布局">
-                flex圣杯布局 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,7 +491,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#冒泡排序js实现"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序js实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端性能优化的几个知识点"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化的几个知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行页面重构"><span class="nav-number">1.1.</span> <span class="nav-text">如何进行页面重构</span></a></li></ol></li></ol></div>
             
 
           </div>
