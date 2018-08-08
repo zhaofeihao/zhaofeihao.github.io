@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TCP-UDP," />
+  <meta name="keywords" content="javascript,ES6," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="TCP和UDP的区别  1.基于连接与无连接   2.TCP要求系统资源较多，UDP较少；   3.UDP程序结构较简单   4.流模式（TCP）与数据报模式(UDP);    5.TCP保证数据正确性，UDP可能丢包    6.TCP保证数据顺序，UDP不保证 TCPTCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和">
-<meta name="keywords" content="TCP-UDP">
+<meta name="description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
+<meta name="keywords" content="javascript,ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TCP&#x2F;UDP区别">
-<meta property="og:url" content="http://yoursite.com/2018/08/07/TCP-UDP区别/index.html">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/Promise/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="TCP和UDP的区别  1.基于连接与无连接   2.TCP要求系统资源较多，UDP较少；   3.UDP程序结构较简单   4.流模式（TCP）与数据报模式(UDP);    5.TCP保证数据正确性，UDP可能丢包    6.TCP保证数据顺序，UDP不保证 TCPTCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和">
+<meta property="og:description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-07T00:32:21.047Z">
+<meta property="og:updated_time" content="2018-08-07T13:16:38.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TCP&#x2F;UDP区别">
-<meta name="twitter:description" content="TCP和UDP的区别  1.基于连接与无连接   2.TCP要求系统资源较多，UDP较少；   3.UDP程序结构较简单   4.流模式（TCP）与数据报模式(UDP);    5.TCP保证数据正确性，UDP可能丢包    6.TCP保证数据顺序，UDP不保证 TCPTCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和">
+<meta name="twitter:title" content="Promise">
+<meta name="twitter:description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/07/TCP-UDP区别/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/07/Promise/"/>
 
 
 
 
 
-  <title>TCP/UDP区别 | 赵斐昊</title>
+  <title>Promise | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/TCP-UDP区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TCP/UDP区别</h1>
+          <h1 class="post-title" itemprop="name headline">Promise</h1>
         
 
         <div class="post-meta">
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T08:23:50+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T21:02:36+08:00">
                 2018-08-07
               </time>
             
@@ -330,30 +330,50 @@
       
 
       
-        <h1 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h1><p>  <strong>1.基于连接与无连接</strong></p>
-<p>  <strong>2.TCP要求系统资源较多，UDP较少；</strong></p>
-<p>  <strong>3.UDP程序结构较简单</strong></p>
-<p>  <strong>4.流模式（TCP）与数据报模式(UDP);</strong> </p>
-<p>  <strong>5.TCP保证数据正确性，UDP可能丢包</strong> </p>
-<p>  <strong>6.TCP保证数据顺序，UDP不保证</strong></p>
-<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和对方建立可靠的连接。</p>
-<p><strong>TCP三次握手过程</strong><br>第一次握手：主机A通过向主机B 发送一个含有同步序列号的标志位的数据段给主机B，向主机B 请求建立连接，通过这个数据段， 主机A告诉主机B 两件事：我想要和你通信；你可以用哪个序列号作为起始数据段来回应我。</p>
-<p>第二次握手：主机B 收到主机A的请求后，用一个带有确认应答（ACK）和同步序列号（SYN）标志位的数据段响应主机A，也告诉主机A两件事：我已经收到你的请求了，你可以传输数据了；你要用那个序列号作为起始数据段来回应我</p>
-<p>第三次握手：主机A收到这个数据段后，再发送一个确认应答，确认已收到主机B 的数据段：”我已收到回复，我现在要开始传输实际数据了，这样3次握手就完成了，主机A和主机B 就可以传输数据了。</p>
-<p><strong>TCP建立连接要进行3次握手，而断开连接要进行4次</strong><br>第一次： 当主机A完成数据传输后,将控制位FIN置1，提出停止TCP连接的请求 ；</p>
-<p>第二次： 主机B收到FIN后对其作出响应，确认这一方向上的TCP连接将关闭,将ACK置1；</p>
-<p>第三次： 由B 端再提出反方向的关闭请求,将FIN置1 ；</p>
-<p>第四次： 主机A对主机B的请求进行确认，将ACK置1，双方向的关闭结束。</p>
-<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>1、UDP(User Data Protocol，用户数据报协议)是一个非连接的协议，传输数据之前源端和终端不建立连接， 当它想传送时就简单地去抓取来自应用程序的数据，并尽可能快地把它扔到网络上。 在发送端，UDP传送数据的速度仅仅是受应用程序生成数据的速度、 计算机的能力和传输带宽的限制； 在接收端，UDP把每个消息段放在队列中，应用程序每次从队列中读一个消息段。</p>
-<p>2、 由于传输数据不建立连接，因此也就不需要维护连接状态，包括收发状态等， 因此一台服务机可同时向多个客户机传输相同的消息。</p>
-<p>3、UDP信息包的标题很短，只有8个字节，相对于TCP的20个字节信息包的额外开销很小。</p>
-<p>4、吞吐量不受拥挤控制算法的调节，只受应用软件生成数据的速率、传输带宽、 源端和终端主机性能的限制。</p>
-<p>5、UDP使用尽最大努力交付，即不保证可靠交付， 因此主机不需要维持复杂的链接状态表（这里面有许多参数）。</p>
-<p>6、UDP是面向报文的。发送方的UDP对应用程序交下来的报文， 在添加首部后就向下交付给IP层。既不拆分，也不合并，而是保留这些报文的边界， 因此，应用程序需要选择合适的报文大小。</p>
-<p>我们经常使用“ping”命令来测试两台主机之间TCP/IP通信是否正常， 其实“ping”命令的原理就是向对方主机发送UDP数据包，然后对方主机确认收到数据包， 如果数据包是否到达的消息及时反馈回来，那么网络就是通的。</p>
-<p>ping命令是用来探测主机到主机之间是否可通信，如果不能ping到某台主机，表明不能和这台主机建立连接。ping命令是使用 IP 和网络控制信息协议 (ICMP)，因而没有涉及到任何传输协议(UDP/TCP) 和应用程序。它发送icmp回送请求消息给目的主机。</p>
-<p>ICMP协议规定：目的主机必须返回ICMP回送应答消息给源主机。如果源主机在一定时间内收到应答，则认为主机可达。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/24860273" target="_blank" rel="noopener">参考</a></p>
+        <h1 id="关于Promise需要知道的"><a href="#关于Promise需要知道的" class="headerlink" title="关于Promise需要知道的"></a>关于Promise需要知道的</h1><h2 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h2><blockquote>
+<p>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。</p>
+</blockquote>
+<h2 id="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><a href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）" class="headerlink" title="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"></a>传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</h2><ol>
+<li>调用回调过早</li>
+<li>调用回调过晚（或没有被调用）</li>
+<li>调用回调次数过少或过多</li>
+<li>未能传递所需的环境和参数</li>
+<li>吞掉可能出现的错误和异常</li>
+</ol>
+<p>Promise的解决办法：</p>
+<ol>
+<li>调用回调过早</li>
+</ol>
+<p>对于Promise来说，即使是立即完成的Promise也无法被同步观察到，也就是说一个Promise调用then()的时候，即使这个Promise已经决议了，提供给then的回调也总会被异步调用。</p>
+<ol>
+<li>调用回调过晚（或没有被调用）</li>
+</ol>
+<p>对于一个Promise对象注册的每一个观察回调都是相对独立、互不干预的。而Promise对象调用resolve()和reject()时，每个注册的观察回调也都会被自动调度。所以这些观察回调的任意一个都无法影响或延误对其他回调的调用。</p>
+<ol>
+<li>调用回调次数过少或过多</li>
+</ol>
+<p>Promise的定义方式使得它只能被决议一次。即使代码中出现多次决议，这个Promise也会接受第一次决议，并会忽略掉其他任何后续调用。所以任何通过then()注册的回调只会被调用一次。</p>
+<ol>
+<li>未能传递所需的环境和参数</li>
+</ol>
+<p>凡是被决议的值都会传递到观察回调中，如果没有显示的决议值也会传递一个undefined给观察回调。需要注意的是，Promise只允许传一个决议值，其他值将会被默默忽略掉。</p>
+<ol>
+<li>吞掉可能出现的错误和异常</li>
+</ol>
+<p>如果在创建Promise时，存在JavaScript代码错误，会直接导致该Promise的拒绝决议，那么你可以通过reject()来捕获异常，代码中的任何异常都不会吞掉。</p>
+<h2 id="Promise中的异步模式有哪些？有什么区别？"><a href="#Promise中的异步模式有哪些？有什么区别？" class="headerlink" title="Promise中的异步模式有哪些？有什么区别？"></a>Promise中的异步模式有哪些？有什么区别？</h2><p>也就是在问，Promise.all()和Promise.race()的区别</p>
+<blockquote>
+<p>all会将传入的数组中的所有promise全部决议以后，将决议值以数组的形式传入到观察回调中，任何一个promise决议为拒绝，那么就会调用拒绝回调。</p>
+<p>race会将传入的数组中的所有promise中第一个决议的决议值传递给观察回调，即使决议结果是拒绝。</p>
+</blockquote>
+<h2 id="如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><a href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？" class="headerlink" title="如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？"></a>如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</h2><p>all会立即决议，决议结果是fullfilled，值是undefined</p>
+<p>race会永远都不决议，程序卡死……</p>
+<h2 id="如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><a href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）" class="headerlink" title="如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）"></a>如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</h2><p>可以通过Promise.resolve()方法对不确定的值进行Promise化，返回一个Promise对象。</p>
+<p>如果是一个立即值，如一个普通变量，那么该Promise会立即决议为成功。</p>
+<p>如果是一个Promise值，那么会将该Promise直接返回赋值给这个Promise，不会有额外开销。</p>
+<p>如果是一个类Promise值， 比如其中含有名称为then的成员变量，那么会将then展开形成一个新的Promise对象。</p>
+<h2 id="Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><a href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？" class="headerlink" title="Promise是如何捕获异常的？与传统的try/catch相比有什么优势？"></a>Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</h2><p>传统的try/catch捕获异常方式是无法捕获异步的异常的.<br>而对于Promise对象来说，构造Promise实例时的代码如果出错，则会被认为是一个拒绝的决议，并会向观察回调中传递异常信息。所以即使是一个异步的请求，Promise也是可以捕获异常的。此外，Promise还可以通过catch回调来捕获回调中的异常。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/29235579" target="_blank" rel="noopener">参考</a></p>
 
       
     </div>
@@ -371,7 +391,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TCP-UDP/" rel="tag"># TCP-UDP</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -384,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/06/http协议的一些基础知识/" rel="next" title="http协议的一些基础知识">
-                <i class="fa fa-chevron-left"></i> http协议的一些基础知识
+              <a href="/2018/08/07/css3实现垂直居中/" rel="next" title="css3实现垂直居中">
+                <i class="fa fa-chevron-left"></i> css3实现垂直居中
               </a>
             
           </div>
@@ -394,8 +416,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/07/前端性能优化/" rel="prev" title="前端性能优化">
-                前端性能优化 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/07/箭头函数/" rel="prev" title="箭头函数">
+                箭头函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-number">1.</span> <span class="nav-text">TCP和UDP的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP"><span class="nav-number">1.1.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP"><span class="nav-number">1.2.</span> <span class="nav-text">UDP</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Promise需要知道的"><span class="nav-number">1.</span> <span class="nav-text">关于Promise需要知道的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Promise"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><span class="nav-number">1.2.</span> <span class="nav-text">传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise中的异步模式有哪些？有什么区别？"><span class="nav-number">1.3.</span> <span class="nav-text">Promise中的异步模式有哪些？有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><span class="nav-number">1.4.</span> <span class="nav-text">如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><span class="nav-number">1.5.</span> <span class="nav-text">如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><span class="nav-number">1.6.</span> <span class="nav-text">Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</span></a></li></ol></li></ol></div>
             
 
           </div>
