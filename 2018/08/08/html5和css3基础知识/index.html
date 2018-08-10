@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="html5,css3," />
 
 
 
@@ -79,15 +79,18 @@
 
 
 
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="HTML5html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？新特性：  拖拽释放(Drag and drop) API  语义化更好的内容标签（header,nav,footer,aside,article,section）  音频、视频API(audio,video)  画布(Canvas) API  地理(Geolocatio">
+<meta name="keywords" content="html5,css3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="html5和css3基础知识">
 <meta property="og:url" content="http://yoursite.com/2018/08/08/html5和css3基础知识/index.html">
 <meta property="og:site_name" content="赵斐昊">
+<meta property="og:description" content="HTML5html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？新特性：  拖拽释放(Drag and drop) API  语义化更好的内容标签（header,nav,footer,aside,article,section）  音频、视频API(audio,video)  画布(Canvas) API  地理(Geolocatio">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-08T09:01:13.499Z">
+<meta property="og:updated_time" content="2018-08-10T09:30:16.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html5和css3基础知识">
+<meta name="twitter:description" content="HTML5html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？新特性：  拖拽释放(Drag and drop) API  语义化更好的内容标签（header,nav,footer,aside,article,section）  音频、视频API(audio,video)  画布(Canvas) API  地理(Geolocatio">
 
 
 
@@ -327,7 +330,134 @@
       
 
       
-        
+        <h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h2 id="html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><a href="#html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？" class="headerlink" title="html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？"></a>html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h2><p><strong>新特性：</strong></p>
+<ol>
+<li><p>拖拽释放(Drag and drop) API</p>
+</li>
+<li><p>语义化更好的内容标签（header,nav,footer,aside,article,section）</p>
+</li>
+<li><p>音频、视频API(audio,video)</p>
+</li>
+<li><p>画布(Canvas) API</p>
+</li>
+<li><p>地理(Geolocation) API</p>
+</li>
+<li><p>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<a href="https://blog.csdn.net/u013628152/article/details/50269323" target="_blank" rel="noopener">参考博文</a> <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/LocalStorage" target="_blank" rel="noopener">MDN</a></p>
+</li>
+<li><p>sessionStorage 的数据在浏览器关闭后自动删除</p>
+</li>
+<li><p>表单控件，calendar、date、time、email、url、search  </p>
+</li>
+<li><p>新的技术webworker, websocket, Geolocation</p>
+</li>
+</ol>
+<p><strong>移除的元素：</strong></p>
+<ol>
+<li><p>纯表现的元素：basefont，big，center，font, s，strike，tt，u；</p>
+</li>
+<li><p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
+</li>
+</ol>
+<p><strong>支持HTML5新标签：</strong></p>
+<ol>
+<li>IE8/IE7/IE6支持通过 document.createElement 方法产生的标签，可以利用这一特性让这些浏览器支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式（当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架）：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;script&gt; src="http://html5shim.googlecode.com/svn/trunk/html5.js"&lt;/script&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>本地存储（Local Storage ）和cookies（储存在用户本地终端上的数据）之间的区别是什么？</strong><br>Cookies:服务器和客户端都可以访问；大小只有4KB左右；有有效期，过期后将会删除；<br>本地存储：只有本地浏览器端可访问数据，服务器不能访问本地存储直到故意通过POST或者GET的通道发送到服务器；每个域5MB；没有过期数据，它将保留知道用户从浏览器清除或者使用Javascript代码移除</p>
+<p><strong>如何实现浏览器内多个标签页之间的通信?</strong><br>调用 localstorge、cookies 等本地存储方式</p>
+<p><strong>新的 HTML5 文档类型和字符集是？</strong><br>HTML5文档类型：&lt;!doctype html&gt;</p>
+<p>HTML5使用的编码<meta charset="”UTF-8”"></p>
+<p><strong>HTML5 Canvas 元素有什么用</strong><br>Canvas 元素用于在网页上绘制图形，该元素标签强大之处在于可以直接在 HTML 上进行图形操作。</p>
+<hr>
+<h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><p><strong>CSS3新特性</strong></p>
+<ol>
+<li><p>CSS3实现圆角（border-radius），阴影（box-shadow）</p>
+</li>
+<li><p>对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）</p>
+</li>
+<li><p>transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);// 旋转,缩放,定位,倾斜<br><a href="https://c.runoob.com/codedemo/3391" target="_blank" rel="noopener">示例</a></p>
+</li>
+<li><p>增加了更多的CSS选择器  多背景 rgba</p>
+</li>
+<li><p>在CSS3中唯一引入的伪元素是 ::selection.(::selection选择器匹配元素中被用户选中或处于高亮状态的部分。)</p>
+</li>
+<li><p>媒体查询，多栏布局</p>
+</li>
+<li><p>border-image</p>
+</li>
+</ol>
+<p><strong>使用transform实现一个div旋转</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#myDiv</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#2f69b3</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">transform</span><span class="selector-pseudo">:rotate(10deg)</span>; </span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:skew(20deg);  倾斜*/</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:scale(1.5); 放大 */</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:translate(120px,0); X轴右移，Y轴不动 */</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform: rotateZ(30deg); */</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'myDiv'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        var myDiv = document.getElementById('myDiv');</span></span><br><span class="line"><span class="undefined">        var t = 10;</span></span><br><span class="line"><span class="undefined">        setInterval(function()&#123;</span></span><br><span class="line"><span class="undefined">            myDiv.style.transform = `rotate($&#123;t++&#125;deg)`</span></span><br><span class="line"><span class="undefined">        &#125;,100)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>CSS3新增伪类</strong><br>p:first-of-type 选择属于其父元素的首个p元素的每个p元素。</p>
+<p>p:last-of-type  选择属于其父元素的最后p元素的每个p元素。</p>
+<p>p:only-of-type  选择属于其父元素唯一的p元素的每个p元素。</p>
+<p>p:only-child    选择属于其父元素的唯一子元素的每个p元素。</p>
+<p>p:nth-child(2)  选择属于其父元素的第二个子元素的每个p元素。</p>
+<p>:enabled、:disabled 控制表单控件的禁用状态。</p>
+<p>:checked，单选框或复选框被选中。</p>
+<p><strong>40个重要的H5面试题</strong><br><a href="http://blog.jobbole.com/78346/" target="_blank" rel="noopener">参考</a></p>
+<h1 id="其他一些HTML、css知识点"><a href="#其他一些HTML、css知识点" class="headerlink" title="其他一些HTML、css知识点"></a>其他一些HTML、css知识点</h1><p><strong>xhtml和html的区别</strong></p>
+<blockquote>
+<p>HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言<br>最主要的不同：<br>XHTML 元素必须被正确地嵌套。<br>XHTML 元素必须被关闭。<br>标签名必须用小写字母。<br>XHTML 文档必须拥有根元素。</p>
+</blockquote>
+<p><strong>盒子模型</strong></p>
+<blockquote>
+<p>在网页中，一个元素占有空间的大小由几个部分构成，其中包括元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）四个部分。这四个部分占有的空间中，有的部分可以显示相应的内容，而有的部分只用来分隔相邻的区域。4个部分一起构成了css中元素的盒模型。</p>
+</blockquote>
+<p><strong>对WEB标准以及W3C的理解与认识</strong></p>
+<blockquote>
+<p>标签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外 链css和js脚本、结构行为表现的分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维 护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；</p>
+</blockquote>
+<p><strong>行内元素\块级元素\ 空(void)元素</strong></p>
+<blockquote>
+<p>行内元素：a、b、span、img、input、strong、select、label、em、button、textarea<br>块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote<br>空元素：即系没有内容的HTML元素，例如：br、meta、hr、link、input、img</p>
+</blockquote>
+<p><strong>CSS引入的方式有哪些? link和@import的区别</strong></p>
+<blockquote>
+<p>内联方式：指的是直接在 HTML 标签中的 style 属性中添加 CSS。<br>嵌入方式：指的是在 HTML 头部中的 &lt;style&gt; 标签下书写 CSS 代码。<br>链接方式：指的是使用 HTML 头部的 &lt;head&gt; 标签通过&lt;link href=‘xx.css’&gt;引入外部的 CSS 文件。<br>导入方式：指的是使用 CSS 规则引入外部 CSS 文件。@import url(style.css);</p>
+<p>区别：<br>link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。<br>link支持使用Javascript控制DOM去改变样式；而@import不支持。</p>
+</blockquote>
+<p><strong>src与href的区别</strong></p>
+<blockquote>
+<p>href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。</p>
+<p>src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。</p>
+</blockquote>
+<p><strong>css属性的继承</strong><br>可以继承的属性很少，只有颜色，文字，字体间距、行高、对齐方式，和列表的样式可以继承。</p>
+<blockquote>
+<p>所有元素可继承：visibility和cursor。<br>内联元素可继承：letter-spacing、word-spacing、white-space、line-height、color、font、font-family、font-size、font-style、font-variant、font-weight、text-decoration、text-transform、direction。<br>终端块状元素可继承：text-indent和text-align。<br>列表元素可继承：list-style、list-style-type、list-style-position、list-style-image。</p>
+</blockquote>
+<p><strong>同步和异步的区别</strong></p>
+<blockquote>
+<p>同步是阻塞模式，异步是非阻塞模式。<br>同步就是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个进程将会一直等待下去，直到收到返回信息才继续执行下去；<br>异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。</p>
+</blockquote>
+<p><strong>px和em的区别</strong></p>
+<blockquote>
+<p>px和em都是长度单位，区别是，px的值是固定的，指定是多少就是多少，计算比较容易。em得值不是固定的，并且em会继承父级元素的字体大小。浏览器的默认字体高都是16px。所以未经调整的浏览器都符合: 1em=16px。那么12px=0.75em, 10px=0.625em</p>
+</blockquote>
+<p><strong>优雅降级和渐进增强</strong></p>
+<blockquote>
+<p>渐进增强 progressive enhancement：<br>针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
+<p>优雅降级 graceful degradation：<br>一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
+<p>区别：<br>a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给<br>b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要<br>c. 降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带</p>
+</blockquote>
+<p><strong>display:none和visibility:hidden的区别</strong></p>
+<blockquote>
+<p>display:none  隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，就当他从来不存在。</p>
+<p>visibility:hidden  隐藏对应的元素，但是在文档布局中仍保留原来的空间。</p>
+</blockquote>
+<p><strong>解释下浮动和它的工作原理？清除浮动的技巧</strong><br><a href="https://segmentfault.com/a/1190000004553339" target="_blank" rel="noopener">清除浮动方式总结</a></p>
+<blockquote>
+<p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</p>
+<p>1.使用空标签清除浮动。<br> 这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。(浮动的元素，高度会塌陷,添加一个空div，利用CSS提供的clear:both清楚浮动，让父级div自动获取高度)<br>2.使用overflow。<br> 给包含浮动元素的父标签添加css属性 overflow:hidden; zoom:1; zoom:1用于兼容IE6。<br>3.使用after伪对象清除浮动。<br> 该方法只适用于非IE浏览器。使用中需注意以下几点。一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；</p>
+</blockquote>
+<p><strong>定位position详解:relative与absolute</strong></p>
+<blockquote>
+<p>position:relative; 如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）</p>
+<p>相对定位：relative 没有脱离正常的文档流，被设置元素相对于其原始位置而进行定位，其原始占位信息仍存在</p>
+<p>position:absolute; 表示绝对定位，位置将依据浏览器左上角开始计算。 绝对定位使元素脱离文档流，因此不占据空间。普通文档流中元素的布局就像绝对定位的元素不存在时一样。（因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其他元素并可以通过z-index来控制它层级次序。z-index的值越高，它显示的越在上层。）</p>
+<p>绝对定位：ablution 脱离了文档流与浮动模型，独立于其他对象而存在，没有占位。</p>
+</blockquote>
+
       
     </div>
     
@@ -341,6 +471,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html5/" rel="tag"># html5</a>
+          
+            <a href="/tags/css3/" rel="tag"># css3</a>
+          
+        </div>
       
 
       
@@ -360,6 +498,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/10/BFC-块级格式化上下文/" rel="prev" title="BFC-块级格式化上下文">
+                BFC-块级格式化上下文 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -411,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -440,7 +591,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -463,6 +614,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML5"><span class="nav-number">1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><span class="nav-number">1.1.</span> <span class="nav-text">html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3"><span class="nav-number">2.</span> <span class="nav-text">CSS3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他一些HTML、css知识点"><span class="nav-number">3.</span> <span class="nav-text">其他一些HTML、css知识点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
