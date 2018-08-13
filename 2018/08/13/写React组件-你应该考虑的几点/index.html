@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,ES6," />
+  <meta name="keywords" content="React," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
-<meta name="keywords" content="javascript,ES6">
+<meta name="description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
+<meta name="keywords" content="React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise">
-<meta property="og:url" content="http://yoursite.com/2018/08/07/Promise/index.html">
+<meta property="og:title" content="写React组件-你应该考虑的几点">
+<meta property="og:url" content="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
+<meta property="og:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-07T13:16:38.640Z">
+<meta property="og:updated_time" content="2018-08-13T08:40:46.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise">
-<meta name="twitter:description" content="关于Promise需要知道的什么是Promise 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。  传统的回调式异步操作有什么缺点">
+<meta name="twitter:title" content="写React组件-你应该考虑的几点">
+<meta name="twitter:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/07/Promise/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/"/>
 
 
 
 
 
-  <title>Promise | 赵斐昊</title>
+  <title>写React组件-你应该考虑的几点 | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/Promise/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Promise</h1>
+          <h1 class="post-title" itemprop="name headline">写React组件-你应该考虑的几点</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T21:02:36+08:00">
-                2018-08-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:35:12+08:00">
+                2018-08-13
               </time>
             
 
@@ -330,50 +330,17 @@
       
 
       
-        <h1 id="关于Promise需要知道的"><a href="#关于Promise需要知道的" class="headerlink" title="关于Promise需要知道的"></a>关于Promise需要知道的</h1><h2 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h2><blockquote>
-<p>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。</p>
+        <h1 id="React组件的开发原则"><a href="#React组件的开发原则" class="headerlink" title="React组件的开发原则"></a>React组件的开发原则</h1><p>面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 <strong>单一职责原则(SRP - single responsibility principle)</strong></p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><blockquote>
+<p>当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的</p>
 </blockquote>
-<h2 id="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><a href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）" class="headerlink" title="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"></a>传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</h2><ol>
-<li>调用回调过早</li>
-<li>调用回调过晚（或没有被调用）</li>
-<li>调用回调次数过少或过多</li>
-<li>未能传递所需的环境和参数</li>
-<li>吞掉可能出现的错误和异常</li>
-</ol>
-<p>Promise的解决办法：</p>
-<ol>
-<li>调用回调过早</li>
-</ol>
-<p>对于Promise来说，即使是立即完成的Promise也无法被同步观察到，也就是说一个Promise调用then()的时候，即使这个Promise已经决议了，提供给then的回调也总会被异步调用。</p>
-<ol>
-<li>调用回调过晚（或没有被调用）</li>
-</ol>
-<p>对于一个Promise对象注册的每一个观察回调都是相对独立、互不干预的。而Promise对象调用resolve()和reject()时，每个注册的观察回调也都会被自动调度。所以这些观察回调的任意一个都无法影响或延误对其他回调的调用。</p>
-<ol>
-<li>调用回调次数过少或过多</li>
-</ol>
-<p>Promise的定义方式使得它只能被决议一次。即使代码中出现多次决议，这个Promise也会接受第一次决议，并会忽略掉其他任何后续调用。所以任何通过then()注册的回调只会被调用一次。</p>
-<ol>
-<li>未能传递所需的环境和参数</li>
-</ol>
-<p>凡是被决议的值都会传递到观察回调中，如果没有显示的决议值也会传递一个undefined给观察回调。需要注意的是，Promise只允许传一个决议值，其他值将会被默默忽略掉。</p>
-<ol>
-<li>吞掉可能出现的错误和异常</li>
-</ol>
-<p>如果在创建Promise时，存在JavaScript代码错误，会直接导致该Promise的拒绝决议，那么你可以通过reject()来捕获异常，代码中的任何异常都不会吞掉。</p>
-<h2 id="Promise中的异步模式有哪些？有什么区别？"><a href="#Promise中的异步模式有哪些？有什么区别？" class="headerlink" title="Promise中的异步模式有哪些？有什么区别？"></a>Promise中的异步模式有哪些？有什么区别？</h2><p>也就是在问，Promise.all()和Promise.race()的区别</p>
-<blockquote>
-<p>all会将传入的数组中的所有promise全部决议以后，将决议值以数组的形式传入到观察回调中，任何一个promise决议为拒绝，那么就会调用拒绝回调。</p>
-<p>race会将传入的数组中的所有promise中第一个决议的决议值传递给观察回调，即使决议结果是拒绝。</p>
+<p>单一职责原则（SRP - single responsibility principle）是编写 React 组件时的基础原则。</p>
+<p>所谓职责可能指的是渲染一个列表、显示一个时间选择器、发起一次 HTTP 请求、描绘一幅图表，或是懒加载一个图片等等。组件应该只选择一个职责去实现。</p>
+<h2 id="DRY原则"><a href="#DRY原则" class="headerlink" title="DRY原则"></a>DRY原则</h2><blockquote>
+<p>如果发现多个地方在做同样的事情，那么这时候就应该合并重复代码。如果在代码中看到了模式，那么表明需要实行 DRY。</p>
 </blockquote>
-<h2 id="如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><a href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？" class="headerlink" title="如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？"></a>如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</h2><p>all会立即决议，决议结果是fullfilled，值是undefined</p>
-<p>race会永远都不决议，程序卡死……</p>
-<h2 id="如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><a href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）" class="headerlink" title="如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）"></a>如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</h2><p>可以通过Promise.resolve()方法对不确定的值进行Promise化，返回一个Promise对象。</p>
-<p>如果是一个立即值，如一个普通变量，那么该Promise会立即决议为成功。</p>
-<p>如果是一个Promise值，那么会将该Promise直接返回赋值给这个Promise，不会有额外开销。</p>
-<p>如果是一个类Promise值， 比如其中含有名称为then的成员变量，那么会将then展开形成一个新的Promise对象。</p>
-<h2 id="Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><a href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？" class="headerlink" title="Promise是如何捕获异常的？与传统的try/catch相比有什么优势？"></a>Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</h2><p>传统的try/catch捕获异常方式是无法捕获异步的异常的.<br>而对于Promise对象来说，构造Promise实例时的代码如果出错，则会被认为是一个拒绝的决议，并会向观察回调中传递异常信息。所以即使是一个异步的请求，Promise也是可以捕获异常的。此外，Promise还可以通过catch回调来捕获回调中的异常。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/29235579" target="_blank" rel="noopener">参考</a></p>
+<p>组件中的state的设计，尽量简化数据，也要遵循DRY(Don’t Repeat Yourself)原则。</p>
+<p><a href="https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/#6testableandtested" target="_blank" rel="noopener">7 architectural attributes of a reliable React component</a><br><a href="https://juejin.im/post/5b207f3c5188257d47354a19" target="_blank" rel="noopener">可靠的 React 组件：单一职责原则</a></p>
 
       
     </div>
@@ -391,9 +358,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-            <a href="/tags/ES6/" rel="tag"># ES6</a>
+            <a href="/tags/React/" rel="tag"># React</a>
           
         </div>
       
@@ -406,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/07/css3实现垂直居中/" rel="next" title="css3实现垂直居中">
-                <i class="fa fa-chevron-left"></i> css3实现垂直居中
+              <a href="/2018/08/13/js合并数组并排序去重/" rel="next" title="js合并数组并排序去重">
+                <i class="fa fa-chevron-left"></i> js合并数组并排序去重
               </a>
             
           </div>
@@ -415,10 +380,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/07/箭头函数/" rel="prev" title="箭头函数">
-                箭头函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Promise需要知道的"><span class="nav-number">1.</span> <span class="nav-text">关于Promise需要知道的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Promise"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><span class="nav-number">1.2.</span> <span class="nav-text">传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise中的异步模式有哪些？有什么区别？"><span class="nav-number">1.3.</span> <span class="nav-text">Promise中的异步模式有哪些？有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><span class="nav-number">1.4.</span> <span class="nav-text">如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><span class="nav-number">1.5.</span> <span class="nav-text">如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><span class="nav-number">1.6.</span> <span class="nav-text">Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React组件的开发原则"><span class="nav-number">1.</span> <span class="nav-text">React组件的开发原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">1.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRY原则"><span class="nav-number">1.2.</span> <span class="nav-text">DRY原则</span></a></li></ol></li></ol></div>
             
 
           </div>
