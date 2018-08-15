@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="css," />
+  <meta name="keywords" content="javascript,interview," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="对BFC的理解块级格式化上下文(BFC)，是CSS中的一个渲染机制，BFC就相当于一个盒子，内部的元素与外界的元素互不干扰。它不会影响外部的布局，外部的布局也不会影响到它. 创建BFC float的值不是none position 的值不是static或者relative display的值是inline-block,table-cell,flex,table-caption或者inline-fl">
-<meta name="keywords" content="css">
+<meta name="description" content="整理一些基础知识js基本数据类型Boolean Number String Null Undefined Symbol参考MDN Javascript数据类型和数据结构 这里主要对Symbol不是很熟悉。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值. 在某些语言当中也有类似的原子类型(Atoms). 你也可以认为为它们是C里面的枚举类型. 参考 Symbol 如何">
+<meta name="keywords" content="javascript,interview">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BFC-块级格式化上下文">
-<meta property="og:url" content="http://yoursite.com/2018/08/10/BFC-块级格式化上下文/index.html">
+<meta property="og:title" content="一些js基础知识">
+<meta property="og:url" content="http://yoursite.com/2018/07/29/一些js基础知识/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="对BFC的理解块级格式化上下文(BFC)，是CSS中的一个渲染机制，BFC就相当于一个盒子，内部的元素与外界的元素互不干扰。它不会影响外部的布局，外部的布局也不会影响到它. 创建BFC float的值不是none position 的值不是static或者relative display的值是inline-block,table-cell,flex,table-caption或者inline-fl">
+<meta property="og:description" content="整理一些基础知识js基本数据类型Boolean Number String Null Undefined Symbol参考MDN Javascript数据类型和数据结构 这里主要对Symbol不是很熟悉。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值. 在某些语言当中也有类似的原子类型(Atoms). 你也可以认为为它们是C里面的枚举类型. 参考 Symbol 如何">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-10T12:20:08.924Z">
+<meta property="og:updated_time" content="2018-08-14T00:11:14.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BFC-块级格式化上下文">
-<meta name="twitter:description" content="对BFC的理解块级格式化上下文(BFC)，是CSS中的一个渲染机制，BFC就相当于一个盒子，内部的元素与外界的元素互不干扰。它不会影响外部的布局，外部的布局也不会影响到它. 创建BFC float的值不是none position 的值不是static或者relative display的值是inline-block,table-cell,flex,table-caption或者inline-fl">
+<meta name="twitter:title" content="一些js基础知识">
+<meta name="twitter:description" content="整理一些基础知识js基本数据类型Boolean Number String Null Undefined Symbol参考MDN Javascript数据类型和数据结构 这里主要对Symbol不是很熟悉。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值. 在某些语言当中也有类似的原子类型(Atoms). 你也可以认为为它们是C里面的枚举类型. 参考 Symbol 如何">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/10/BFC-块级格式化上下文/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/29/一些js基础知识/"/>
 
 
 
 
 
-  <title>BFC-块级格式化上下文 | 赵斐昊</title>
+  <title>一些js基础知识 | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/BFC-块级格式化上下文/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/一些js基础知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BFC-块级格式化上下文</h1>
+          <h1 class="post-title" itemprop="name headline">一些js基础知识</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T17:19:19+08:00">
-                2018-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T10:46:11+08:00">
+                2018-07-29
               </time>
             
 
@@ -330,30 +330,24 @@
       
 
       
-        <h1 id="对BFC的理解"><a href="#对BFC的理解" class="headerlink" title="对BFC的理解"></a>对BFC的理解</h1><p>块级格式化上下文(BFC)，是CSS中的一个渲染机制，BFC就相当于一个盒子，内部的元素与外界的元素互不干扰。它不会影响外部的布局，外部的布局也不会影响到它.</p>
-<h2 id="创建BFC"><a href="#创建BFC" class="headerlink" title="创建BFC"></a>创建BFC</h2><ul>
-<li>float的值不是none</li>
-<li>position 的值不是static或者relative</li>
-<li>display的值是inline-block,table-cell,flex,table-caption或者inline-flex</li>
-<li>overflow的值不是visible</li>
+        <h1 id="整理一些基础知识"><a href="#整理一些基础知识" class="headerlink" title="整理一些基础知识"></a>整理一些基础知识</h1><h2 id="js基本数据类型"><a href="#js基本数据类型" class="headerlink" title="js基本数据类型"></a>js基本数据类型</h2><p><code>Boolean</code> <code>Number</code> <code>String</code> <code>Null</code> <code>Undefined</code> <code>Symbol</code><br>参考MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="noopener">Javascript数据类型和数据结构</a></p>
+<p>这里主要对Symbol不是很熟悉。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值. 在某些语言当中也有类似的原子类型(Atoms). 你也可以认为为它们是C里面的枚举类型. 参考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol" target="_blank" rel="noopener">Symbol</a></p>
+<h2 id="如何判断js数据类型"><a href="#如何判断js数据类型" class="headerlink" title="如何判断js数据类型"></a>如何判断js数据类型</h2><p><code>typeof x</code>  |  <code>typeof(x)</code></p>
+<p>但是上面的方法无法区分对象、数组和null，这就用到了对象的一个原生原型扩展函数,用来更精确的区分数据类型 <code>Object.prototype.toString.call(x)</code></p>
+<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p><code>执行环境</code>定义了变量或者函数有权访问的其他数据，决定了他们各自的行为。<br>每个执行环境都有一个与之关联的<code>变量对象</code>,环境中定义的所有变量和函数都保存在这个对象中。</p>
+<p>在浏览器中，全局执行环境是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出时才被销毁）。</p>
+<p>每个函数都有自己的执行环境，当执行流进入到一个函数时，函数的环境就会被推入一个环境栈中。在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
+<p>当代码在一个环境中执行时，会创建变量对象的一个<code>作用域链</code>。用途是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
+<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，逐级向后回溯，直至找到标识符为止。</p>
+<p>内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系是线性的，有次序的。每个环境都可以向上搜索作用域链，以查询变量和函数名。但任何环境都不能向下搜索作用域链进入另一个执行环境。</p>
+<h2 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h2><p>当执行流进入下列任何一个语句时，作用域链就会得到加长。</p>
+<ul>
+<li>try-catch语句的catch块</li>
+<li>with语句</li>
 </ul>
-<h2 id="BFC的特性"><a href="#BFC的特性" class="headerlink" title="BFC的特性"></a>BFC的特性</h2><ul>
-<li>内部的BOX会在垂直方向上一个接一个的放置</li>
-<li>于同一个BFC的两个相邻的BOX的margin会发生重叠，与方向无关。</li>
-<li>每个元素的左外边距与包含块的左边界相接触（从左到右），即使浮动元素也是如此</li>
-<li>BFC的区域不会与float的元素区域重叠</li>
-<li>计算BFC的高度时，浮动子元素也参与计算</li>
-<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然</li>
-</ul>
-<h2 id="BFC在布局中的应用"><a href="#BFC在布局中的应用" class="headerlink" title="BFC在布局中的应用"></a>BFC在布局中的应用</h2><ul>
-<li><p>防止margin重叠：<br>要阻止margin重叠，只要将两个元素别放在一个BFC中即可</p>
-</li>
-<li><p>浮动相关问题<br>使得父元素包含子元素，常见的方式是为父元素设置overflow：hidden或者浮动父元素。根本原因在于创建BFC的元素，子浮动元素也会参与其高度计算，即不会产生高度塌陷问题</p>
-</li>
-<li><p>多栏布局的一种方式<br>与浮动元素相邻的已生成BFC的元素不能与浮动元素互相覆盖。利用该特性可以作为多栏布局的一种实现方式.<br>特点在于左右两栏的宽度固定，中间栏可以根据浏览器宽度自适应</p>
-</li>
-</ul>
-<p><a href="https://segmentfault.com/a/1190000013115595#articleHeader17" target="_blank" rel="noopener">参考：常用前端知识积累</a></p>
+<p>对with语句来说，会将指定的对象添加到作用域链中。对catch语句来说，会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> qs = <span class="string">'?debug=true'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span>(location)&#123;</span><br><span class="line">    <span class="keyword">var</span> url = href + qs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>with语句接收location对象，因此其变量对象中就包含了location对象中所有属性和方法。这里使用href相当于location.href。</p>
 
       
     </div>
@@ -371,7 +365,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag"># css</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
           
         </div>
       
@@ -384,8 +380,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/08/html5和css3基础知识/" rel="next" title="html5和css3基础知识">
-                <i class="fa fa-chevron-left"></i> html5和css3基础知识
+              <a href="/2018/07/23/使用express后台的react应用/" rel="next" title="使用Express后台的React App">
+                <i class="fa fa-chevron-left"></i> 使用Express后台的React App
               </a>
             
           </div>
@@ -394,8 +390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/13/js合并数组并排序去重/" rel="prev" title="js合并数组并排序去重">
-                js合并数组并排序去重 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/29/原型链和继承/" rel="prev" title="原型链和继承">
+                原型链和继承 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -519,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对BFC的理解"><span class="nav-number">1.</span> <span class="nav-text">对BFC的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建BFC"><span class="nav-number">1.1.</span> <span class="nav-text">创建BFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC的特性"><span class="nav-number">1.2.</span> <span class="nav-text">BFC的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC在布局中的应用"><span class="nav-number">1.3.</span> <span class="nav-text">BFC在布局中的应用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#整理一些基础知识"><span class="nav-number">1.</span> <span class="nav-text">整理一些基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js基本数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">js基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断js数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">如何判断js数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行环境及作用域"><span class="nav-number">1.3.</span> <span class="nav-text">执行环境及作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延长作用域链"><span class="nav-number">1.4.</span> <span class="nav-text">延长作用域链</span></a></li></ol></li></ol></div>
             
 
           </div>

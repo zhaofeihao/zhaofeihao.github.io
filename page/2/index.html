@@ -260,6 +260,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/重绘和重排/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/重绘和重排/" itemprop="url">重绘和重排</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T16:56:12+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="影响浏览器重绘和重排"><a href="#影响浏览器重绘和重排" class="headerlink" title="影响浏览器重绘和重排"></a>影响浏览器重绘和重排</h1><h2 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h2><p>重绘是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性值，比同等元素要多花两倍时间，这就是我们尽量避免使用table布局页面的原因之一。</p>
+<h2 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h2><p>浏览器下载完页面中的所有资源（HTML、JavaScript、CSS、图片）之后会解析生成两个内部数据结构（DOM树和渲染树），DOM树表示页面结构，渲染树表示DOM节点如何显示。重排是DOM元素的几何属性变化，DOM树的结构变化，渲染树需要重新计算。</p>
+<h2 id="重绘和重排的关系"><a href="#重绘和重排的关系" class="headerlink" title="重绘和重排的关系"></a>重绘和重排的关系</h2><p>重绘不会引起重排，但重排一定会引起重绘，一个元素的重排通常会带来一系列的反应，甚至触发整个文档的重排和重绘，性能代价是高昂的。</p>
+<h2 id="什么情况下会触发重排？"><a href="#什么情况下会触发重排？" class="headerlink" title="什么情况下会触发重排？"></a>什么情况下会触发重排？</h2><ol>
+<li>页面渲染初始化时；（这个无法避免）</li>
+<li>浏览器窗口改变尺寸；</li>
+<li>元素尺寸改变时；</li>
+<li>元素位置改变时；</li>
+<li>元素内容改变时；</li>
+<li>添加或删除可见的DOM 元素时。</li>
+</ol>
+<h2 id="重排优化有如下五种方法"><a href="#重排优化有如下五种方法" class="headerlink" title="重排优化有如下五种方法"></a>重排优化有如下五种方法</h2><ol>
+<li>将多次改变样式属性的操作合并成一次操作，减少DOM访问。</li>
+<li>如果要批量添加DOM，可以先让元素脱离文档流，操作完后再带入文档流，这样只会触发一次重排。（fragment元素的应用）</li>
+<li>将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。</li>
+<li>由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发两次重排。</li>
+<li>在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行。</li>
+</ol>
+<p><a href="http://www.cnblogs.com/yuri2016/p/6542625.html" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/从输入URL到页面显示经历了什么/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,6 +1066,48 @@
 <li>管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应</li>
 <li>断点续传</li>
 </ul>
+<h2 id="HTTP2-0新特性"><a href="#HTTP2-0新特性" class="headerlink" title="HTTP2.0新特性"></a>HTTP2.0新特性</h2><h3 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h3><p>改进传输性能，实现低延迟高吞吐量的呢？关键之一就是在应用层（HTTP）和传输层（TCP）之间增加一个二进制分帧层。</p>
+<p>在整理二进制分帧及其作用的时候我们先来铺垫一点关于帧的知识：</p>
+<ul>
+<li>帧：HTTP2.0通信的最小单位，所有帧都共享一个8字节的首部，其中包含帧的长度、类型、标志、还有一个保留位，并且至少有标识出当前帧所属的流的标识符，帧承载着特定类型的数据，如HTTP首部、负荷、等等。</li>
+<li>消息：比帧大的通讯单位，是指逻辑上的HTTP消息，比如请求、响应等。由一个或多个帧组成</li>
+<li>流：比消息大的通讯单位。是TCP连接中的一个虚拟通道，可以承载双向的消息。每个流都有一个唯一的整数标识符</li>
+</ul>
+<p><strong>什么是二进制分帧</strong><br>在二进制分帧层上，HTTP2.0会将所有传输信息分割为更小的消息和帧，并对它们采用二进制格式的编码将其封装。其中，HTTP1.X中的首部信息header封装到Headers帧中，而request body将被封装到Data帧中。<br><strong>二进制分帧如何工作</strong><br>HTTP2.0通信都在一个TCP连接上完成，这个连接可以承载任意数量的双向数据流，相应的每个数据流以消息的形式发送。而消息由一或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。<br><strong>二进制分帧对性能优化工作的贡献</strong><br>二进制分帧主要是为下文中的各种特性提供了基础。它能把一个数据划分封装为更小更便捷的数据。首先是在单链接多资源方式中，减少了服务端的链接压力，内存占用更少，链接吞吐量更大。这一点可以结合下文中的多路复用来体会。另一方面，由于TCP链接的减少而使网络拥塞状态得以改善，同时慢启动时间的减少。使拥塞和丢包恢复的速度更快。</p>
+<h3 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a>首部压缩</h3><p>HTTP1.1并不支持HTTP首部压缩，为此SPDY和HTTP2.0出现了。SPDY是用的是DEFLATE算法，而HTTP2.0则使用了专门为首部压缩设计的HPACK算法。<br><strong>什么是首部压缩</strong><br>HTTP1.x每次通讯（请求或响应）都会携带首部信息用于描述资源属性。而HTTP2.0在客户端和服务端之间使用首部表来跟踪和存储之前发送的键值对。请求与响应首部的定义在HTTP2.0中基本没有变，只是所有首部键必须全部小写，而且要求行要独立为:method:、:scheme:、:host:、:path:这些键值对</p>
+<p><strong>首部压缩如何工作</strong><br>对于相同的数据，不再重新通过每次请求和响应发送。每个新的首部键值对要么追加到当前表的末尾，要么替换表中之前的值。首部表在HTTP2.0的链接存续期内始终存在，由客户端和服务端共同渐进的更新。</p>
+<p><strong>首部压缩性能优化工作的贡献</strong><br>首部表在HTTP2.0使用了首部压缩的技术。使报头更紧凑，更快速传输，有利于移动网络环境。减少每次通讯的数据量，使网络拥塞状态得以改善。</p>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>HTTP2.0为数据流和连接的流量提供了一个简单的机制：</p>
+<ul>
+<li>流量基于HTTP链接的每一跳进行，而非端到端的控制</li>
+<li>流量控制基于窗口更新帧进行，即接收方广播自己准备接收某个数据流的多少字节，以及对整个链接要接收多少个字节。</li>
+<li>流量控制有方向性，即接收方可能根据自己的情况为没个流乃至整个链接设置任意窗口大小</li>
+<li>流量控制可以由接收方禁用，包括针对个别的流和针对整个链接。</li>
+<li>帧的类型决定了流量控制是否适用于帧，目前只有DATA帧服从流量控制，所有其他类型的帧并不会消耗流量控制窗口的空间。这保证了重要的控制帧不会被流量控制阻塞</li>
+</ul>
+<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>在HTTP1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量的限制。超过限制数目的请求会被阻塞。而HTTP2.0中的多路复用优化了这一性能。</p>
+<p><strong>什么是多路复用</strong><br>基于二进制分帧层，HTTP2.0可以在共享TCP链接的基础上同时发送请求和响应。HTTP消息被分解为独立的帧，而不破坏消息本身的语义，交错发出去，在另一端根据流标识符和首部将他们重新组装起来。</p>
+<p><strong>多路复用对性能优化工作的贡献</strong></p>
+<ul>
+<li>可以并行交错的发送请求和响应，这些请求和响应之间互不影响</li>
+<li>只使用一个链接即可并行发送多个请求和响应</li>
+<li>消除不必要的延迟，从而减少页面加载的时间</li>
+<li>不必再为绕过HTTP1.x限制而多做很多工作</li>
+</ul>
+<h3 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a>请求优先级</h3><p>把HTTP消息分为很多独立帧之后，就可以通过优化这些帧的交错和传输顺序进一步优化性能。</p>
+<p><strong>什么是请求优先级</strong><br>每个流都可以带有一个31bit的优先值：0表示最高优先级；2的31次方-1表示最低优先级。<br><strong>请求优先级如何工作</strong><br>客户端明确指定优先级，服务端可以根据这个优先级作为交互数据的依据，比如客户端优先设置为.css&gt;.js&gt;.jpg。服务端按此顺序返回结果更加有利于高效利用底层连接，提高用户体验。然而，在使用请求优先级时应注意服务端是否支持请求优先级，是否会引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。<br><strong>请求优先级对性能优化工作的贡献</strong><br>服务器可以根据流的优先级控制资源分配（CPU、内存、宽带），而在响应数据准备好之后，优先将最高优先级的帧发送给客户端。浏览器可以在发现资源时立即分派请求，指定每个流的优先级，让服务器决定最优的响应次序。这样请求就不用排队了，既节省了时间，又最大限度的利用了每个连接。</p>
+<h3 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h3><p>HTTP2.0新增的一个强大的新功能，就是服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确的请求。</p>
+<p><strong>什么是服务器推送（HTTP2.0中）</strong><br>服务端根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。如下图，客户端请求stream 1(/page.html)。服务端在返回stream 1的消息的同时推送了stream 2(/script.js)和stream 4(/style.css)</p>
+<p><strong>服务器推送如何工作</strong></p>
+<ul>
+<li>PUSH_PROMISE帧是服务端向客户端有意推送资源的信号。</li>
+<li>PUSH_PROMISE帧中只包含预推送资源的首部。如果客户端对PUSH_PROMISE帧没有意见，服务端在PUSH_PROMISE帧后发送响应的DATA帧。如果客户端已经缓存了该资源，不需要推送，可以拒绝PUSH_PROMISE帧。</li>
+<li>PUSH-PROMISE必须遵循请求-响应原则，只能借着对请求的响应推送资源。</li>
+<li>PUSH_PROMISE帧必须在返回响应之前发送，以免客户端出现竞态条件（竞态条件是指在多线程的情况下不同的执行顺序会导致计算机执行出不同的结果正确性不同）</li>
+<li>HTTP2.0连接后，客户端与服务端交换SETTINGS帧，借此限定双向并发的最大数量。因此，客户端可以限定推送流的数量，或者通过把这个只设置为0来完全禁止服务器推送。</li>
+<li>所有推送的资源都必须遵守同源策略。换句话说，服务器不能随便将第三方资源推送给客户端，而必须是经过双方的确认才行。</li>
+</ul>
+<p><strong>服务器推送对性能优化工作的贡献</strong><br>服务端推送是一种在客户端请求之前发送数据的机制。在HTTP2.0中，服务器可以对一个客户端的请求发送多个响应。如果一个请求是由你的主页发送的，服务器可能会响应主页内容、logo以及样式表，因为他知道客户端会用到这些东西。这样不但减轻了数据传送冗余步骤，也加快了页面响应的速度，提高了用户体验。</p>
 <h2 id="HTTP优化方案"><a href="#HTTP优化方案" class="headerlink" title="HTTP优化方案"></a>HTTP优化方案</h2><p>1.<code>TCP复用</code>：TCP连接复用是将多个客户端的HTTP请求复用到一个服务器端TCP连接上，而HTTP复用则是一个客户端的多个HTTP请求通过一个TCP连接进行处理。前者是负载均衡设备的独特功能；而后者是HTTP 1.1协议所支持的新功能，目前被大多数浏览器所支持。</p>
 <p>2.<code>内容缓存</code>：将经常用到的内容进行缓存起来，那么客户端就可以直接在内存中获取相应的数据了。</p>
 <p>3.<code>压缩</code>：将文本数据进行压缩，减少带宽</p>
@@ -982,7 +1162,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/浏览器缓存机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/浏览器缓存机制关键字段/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -1001,7 +1181,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/05/浏览器缓存机制/" itemprop="url">浏览器缓存机制</a></h1>
+                <a class="post-title-link" href="/2018/08/05/浏览器缓存机制关键字段/" itemprop="url">浏览器缓存机制关键字段</a></h1>
         
 
         <div class="post-meta">
@@ -1109,7 +1289,7 @@
 <p>这样做的好处就是你可以自由控制什么时候加载最新的资源.</p>
 <p>不仅如此, HTML也可以禁用缓存, 即在页面的<head>中加入标签, 代码如下:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Cache-Control"</span> <span class="attr">content</span>=<span class="string">"no-cache, no-store, must-revalidate"</span>/&gt;</span></span><br></pre></td></tr></table></figure></head></p>
 <p>上述虽能禁用缓存, 但只有部分浏览器支持, 而且由于代理不解析HTML文档, 故代理服务器也不支持这种方式.</p>
-<p><a href="http://louiszhai.github.io/2017/04/07/http-cache/" target="_blank" rel="noopener">原文地址</a></p>
+<p><a href="http://louiszhai.github.io/2017/04/07/http-cache/" target="_blank" rel="noopener">原文地址</a><br><a href="https://juejin.im/post/5a1d4e546fb9a0450f21af23" target="_blank" rel="noopener">HTTP缓存机制(这篇文章讲得更清晰一点)</a></p>
 
           
         
@@ -1295,7 +1475,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/一些基础知识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/一些js基础知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -1314,7 +1494,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/29/一些基础知识/" itemprop="url">一些基础知识</a></h1>
+                <a class="post-title-link" href="/2018/07/29/一些js基础知识/" itemprop="url">一些js基础知识</a></h1>
         
 
         <div class="post-meta">
@@ -1694,337 +1874,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/(逆)波兰表达式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/(逆)波兰表达式/" itemprop="url">(逆)波兰表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T09:59:09+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前缀、中缀、后缀表达式及其转换"><a href="#前缀、中缀、后缀表达式及其转换" class="headerlink" title="前缀、中缀、后缀表达式及其转换"></a>前缀、中缀、后缀表达式及其转换</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>前缀表达式(波兰式)<br>前缀表达式的运算符位于操作数之前<br>例：- × + 3 4 5 6</p>
-</li>
-<li><p>中缀表达式<br>中缀表达式是一种通用的算术或逻辑公式表示方法，操作符以中缀形式处于操作数的中间。中缀表达式是人们常用的算术表示方法。<br>虽然人的大脑很容易理解与分析中缀表达式，但对计算机来说中缀表达式却是很复杂的，因此计算表达式的值时，通常需要先将中缀表达式转换为前缀或后缀表达式，然后再进行求值。<br>例：(3 + 4) × 5 - 6</p>
-</li>
-<li><p>后缀表达式(逆波兰式)<br>后缀表达式，指的是不包含括号，运算符放在两个运算对象的后面，所有的计算按运算符出现的顺序，严格从左向右进行。<br>例：3 4 + 5 × 6 -</p>
-</li>
-</ul>
-<h2 id="前缀表达式的计算机求值"><a href="#前缀表达式的计算机求值" class="headerlink" title="前缀表达式的计算机求值"></a>前缀表达式的计算机求值</h2><p>从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 operator 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果。<br>例如前缀表达式“- × + 3 4 5 6”：<br>(1) 从右至左扫描，将6、5、4、3压入堆栈；<br>(2) 遇到+运算符，因此弹出3和4（3为栈顶元素，4为次顶元素，注意与后缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 接下来是×运算符，因此弹出7和5，计算出7×5=35，将35入栈；<br>(4) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
-<h2 id="将中缀表达式转换为前缀表达式"><a href="#将中缀表达式转换为前缀表达式" class="headerlink" title="将中缀表达式转换为前缀表达式"></a>将中缀表达式转换为前缀表达式</h2><p>将中缀表达式转换为前缀表达式：<br>遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从右至左扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为右括号“)”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的较高或相等，也将运算符压入S1；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是右括号“)”，则直接压入S1；<br>(5-2) 如果是左括号“(”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到右括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最左边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果即为中缀表达式对应的前缀表达式。</p>
-<p>将中缀表达式“1+((2+3)×4)-5”转换为前缀表达式的过程如下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">扫描到的元素</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">S1为空，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">5</td>
-<td style="text-align:left">-)</td>
-<td style="text-align:left">右括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">×</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)×</td>
-<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">54</td>
-<td style="text-align:left">-)×)</td>
-<td style="text-align:left">右括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">543</td>
-<td style="text-align:left">-)×)</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">543</td>
-<td style="text-align:left">-)×)+</td>
-<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">5432</td>
-<td style="text-align:left">-)×)+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">5432+</td>
-<td style="text-align:left">-)×</td>
-<td style="text-align:left">左括号，弹出运算符直至遇到右括号</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">5432+×</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">同上</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">5432+×</td>
-<td style="text-align:left">-+</td>
-<td style="text-align:left">优先级与-相同，入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">5432+×1</td>
-<td style="text-align:left">-+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">到达最左端</td>
-<td style="text-align:left">5432+×1+-</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">S1中剩余的运算符</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>因此结果为“- + 1 × + 2 3 4 5”。</p>
-<h2 id="后缀表达式的计算机求值："><a href="#后缀表达式的计算机求值：" class="headerlink" title="后缀表达式的计算机求值："></a>后缀表达式的计算机求值：</h2><p>与前缀表达式类似，只是顺序是从左至右：<br>从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（次顶元素 op 栈顶元素），并将结果入栈；重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果。<br>例如后缀表达式“3 4 + 5 × 6 -”：<br>(1) 从左至右扫描，将3和4压入堆栈；<br>(2) 遇到+运算符，因此弹出4和3（4为栈顶元素，3为次顶元素，注意与前缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 将5入栈；<br>(4) 接下来是×运算符，因此弹出5和7，计算出7×5=35，将35入栈；<br>(5) 将6入栈；<br>(6) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
-<h2 id="将中缀表达式转换为后缀表达式"><a href="#将中缀表达式转换为后缀表达式" class="headerlink" title="将中缀表达式转换为后缀表达式"></a>将中缀表达式转换为后缀表达式</h2><p>与转换为前缀表达式相似，遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从左至右扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为左括号“(”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的高，也将运算符压入S1（注意转换为前缀表达式时是优先级较高或相同，而这里则不包括相同的情况）；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是左括号“(”，则直接压入S1；<br>(5-2) 如果是右括号“)”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到左括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最右边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果的逆序即为中缀表达式对应的后缀表达式（转换为前缀表达式时不用逆序）。</p>
-<p>例如，将中缀表达式“1+((2+3)×4)-5”转换为后缀表达式的过程如下：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">扫描到的元素</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">数字直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+</td>
-<td style="text-align:left">S1为空，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+(</td>
-<td style="text-align:left">左括号直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">(</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">+((</td>
-<td style="text-align:left">同上</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">+((</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">+</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">+((+</td>
-<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">123</td>
-<td style="text-align:left">+((+</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">123+</td>
-<td style="text-align:left">+(</td>
-<td style="text-align:left">右括号，弹出运算符直至遇到左括号</td>
-</tr>
-<tr>
-<td style="text-align:left">×</td>
-<td style="text-align:left">123+</td>
-<td style="text-align:left">+(×</td>
-<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">123+4</td>
-<td style="text-align:left">+(×</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">)</td>
-<td style="text-align:left">123+4×</td>
-<td style="text-align:left">+</td>
-<td style="text-align:left">右括号，弹出运算符直至遇到左括号栈</td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">123+4×+</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-与+优先级相同，因此弹出+，再压入-</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">123+4×+5</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">数字</td>
-</tr>
-<tr>
-<td style="text-align:left">到达最右端</td>
-<td style="text-align:left">123+4×+5-</td>
-<td style="text-align:left">空</td>
-<td style="text-align:left">S1中剩余的运算符</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>因此结果为“1 2 3 + 4 × + 5 -”（注意需要逆序输出）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2075,7 +1924,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

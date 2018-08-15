@@ -260,6 +260,337 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/(逆)波兰表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/21/(逆)波兰表达式/" itemprop="url">(逆)波兰表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T09:59:09+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前缀、中缀、后缀表达式及其转换"><a href="#前缀、中缀、后缀表达式及其转换" class="headerlink" title="前缀、中缀、后缀表达式及其转换"></a>前缀、中缀、后缀表达式及其转换</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><p>前缀表达式(波兰式)<br>前缀表达式的运算符位于操作数之前<br>例：- × + 3 4 5 6</p>
+</li>
+<li><p>中缀表达式<br>中缀表达式是一种通用的算术或逻辑公式表示方法，操作符以中缀形式处于操作数的中间。中缀表达式是人们常用的算术表示方法。<br>虽然人的大脑很容易理解与分析中缀表达式，但对计算机来说中缀表达式却是很复杂的，因此计算表达式的值时，通常需要先将中缀表达式转换为前缀或后缀表达式，然后再进行求值。<br>例：(3 + 4) × 5 - 6</p>
+</li>
+<li><p>后缀表达式(逆波兰式)<br>后缀表达式，指的是不包含括号，运算符放在两个运算对象的后面，所有的计算按运算符出现的顺序，严格从左向右进行。<br>例：3 4 + 5 × 6 -</p>
+</li>
+</ul>
+<h2 id="前缀表达式的计算机求值"><a href="#前缀表达式的计算机求值" class="headerlink" title="前缀表达式的计算机求值"></a>前缀表达式的计算机求值</h2><p>从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 operator 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果。<br>例如前缀表达式“- × + 3 4 5 6”：<br>(1) 从右至左扫描，将6、5、4、3压入堆栈；<br>(2) 遇到+运算符，因此弹出3和4（3为栈顶元素，4为次顶元素，注意与后缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 接下来是×运算符，因此弹出7和5，计算出7×5=35，将35入栈；<br>(4) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
+<h2 id="将中缀表达式转换为前缀表达式"><a href="#将中缀表达式转换为前缀表达式" class="headerlink" title="将中缀表达式转换为前缀表达式"></a>将中缀表达式转换为前缀表达式</h2><p>将中缀表达式转换为前缀表达式：<br>遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从右至左扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为右括号“)”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的较高或相等，也将运算符压入S1；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是右括号“)”，则直接压入S1；<br>(5-2) 如果是左括号“(”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到右括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最左边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果即为中缀表达式对应的前缀表达式。</p>
+<p>将中缀表达式“1+((2+3)×4)-5”转换为前缀表达式的过程如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">扫描到的元素</th>
+<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
+<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">空</td>
+<td style="text-align:left">数字直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">S1为空，运算符直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">-)</td>
+<td style="text-align:left">右括号直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">54</td>
+<td style="text-align:left">-)</td>
+<td style="text-align:left">数字直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">×</td>
+<td style="text-align:left">54</td>
+<td style="text-align:left">-)×</td>
+<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">54</td>
+<td style="text-align:left">-)×)</td>
+<td style="text-align:left">右括号直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">543</td>
+<td style="text-align:left">-)×)</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">543</td>
+<td style="text-align:left">-)×)+</td>
+<td style="text-align:left">S1栈顶是右括号，直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">5432</td>
+<td style="text-align:left">-)×)+</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">5432+</td>
+<td style="text-align:left">-)×</td>
+<td style="text-align:left">左括号，弹出运算符直至遇到右括号</td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">5432+×</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">5432+×</td>
+<td style="text-align:left">-+</td>
+<td style="text-align:left">优先级与-相同，入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">5432+×1</td>
+<td style="text-align:left">-+</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">到达最左端</td>
+<td style="text-align:left">5432+×1+-</td>
+<td style="text-align:left">空</td>
+<td style="text-align:left">S1中剩余的运算符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此结果为“- + 1 × + 2 3 4 5”。</p>
+<h2 id="后缀表达式的计算机求值："><a href="#后缀表达式的计算机求值：" class="headerlink" title="后缀表达式的计算机求值："></a>后缀表达式的计算机求值：</h2><p>与前缀表达式类似，只是顺序是从左至右：<br>从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（次顶元素 op 栈顶元素），并将结果入栈；重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果。<br>例如后缀表达式“3 4 + 5 × 6 -”：<br>(1) 从左至右扫描，将3和4压入堆栈；<br>(2) 遇到+运算符，因此弹出4和3（4为栈顶元素，3为次顶元素，注意与前缀表达式做比较），计算出3+4的值，得7，再将7入栈；<br>(3) 将5入栈；<br>(4) 接下来是×运算符，因此弹出5和7，计算出7×5=35，将35入栈；<br>(5) 将6入栈；<br>(6) 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。</p>
+<h2 id="将中缀表达式转换为后缀表达式"><a href="#将中缀表达式转换为后缀表达式" class="headerlink" title="将中缀表达式转换为后缀表达式"></a>将中缀表达式转换为后缀表达式</h2><p>与转换为前缀表达式相似，遵循以下步骤：<br>(1) 初始化两个栈：运算符栈S1和储存中间结果的栈S2；<br>(2) 从左至右扫描中缀表达式；<br>(3) 遇到操作数时，将其压入S2；<br>(4) 遇到运算符时，比较其与S1栈顶运算符的优先级：<br>(4-1) 如果S1为空，或栈顶运算符为左括号“(”，则直接将此运算符入栈；<br>(4-2) 否则，若优先级比栈顶运算符的高，也将运算符压入S1（注意转换为前缀表达式时是优先级较高或相同，而这里则不包括相同的情况）；<br>(4-3) 否则，将S1栈顶的运算符弹出并压入到S2中，再次转到(4-1)与S1中新的栈顶运算符相比较；<br>(5) 遇到括号时：<br>(5-1) 如果是左括号“(”，则直接压入S1；<br>(5-2) 如果是右括号“)”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到左括号为止，此时将这一对括号丢弃；<br>(6) 重复步骤(2)至(5)，直到表达式的最右边；<br>(7) 将S1中剩余的运算符依次弹出并压入S2；<br>(8) 依次弹出S2中的元素并输出，结果的逆序即为中缀表达式对应的后缀表达式（转换为前缀表达式时不用逆序）。</p>
+<p>例如，将中缀表达式“1+((2+3)×4)-5”转换为后缀表达式的过程如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">扫描到的元素</th>
+<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
+<th style="text-align:left">S2(栈底-&gt;栈顶)</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">空</td>
+<td style="text-align:left">数字直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">S1为空，运算符直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">+(</td>
+<td style="text-align:left">左括号直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">+((</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">+((</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">+((+</td>
+<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">123</td>
+<td style="text-align:left">+((+</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">123+</td>
+<td style="text-align:left">+(</td>
+<td style="text-align:left">右括号，弹出运算符直至遇到左括号</td>
+</tr>
+<tr>
+<td style="text-align:left">×</td>
+<td style="text-align:left">123+</td>
+<td style="text-align:left">+(×</td>
+<td style="text-align:left">S1栈顶为左括号，运算符直接入栈</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">123+4</td>
+<td style="text-align:left">+(×</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">123+4×</td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">右括号，弹出运算符直至遇到左括号栈</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">123+4×+</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-与+优先级相同，因此弹出+，再压入-</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">123+4×+5</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td style="text-align:left">到达最右端</td>
+<td style="text-align:left">123+4×+5-</td>
+<td style="text-align:left">空</td>
+<td style="text-align:left">S1中剩余的运算符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此结果为“1 2 3 + 4 × + 5 -”（注意需要逆序输出）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/flex基础知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -620,17 +951,17 @@
 <p>先定义一个交换函数，作用是交换数组中两个指定位置的值:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swap = <span class="function">(<span class="params">arr,p1,p2</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> tmp = arr[p1];</span><br><span class="line">    arr[p1] = arr[p2];</span><br><span class="line">    arr[p2] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>冒泡排序（升序）JavaScript实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bubbleSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.length - i; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                swap(arr, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>选择排序（Selection sort）</strong>是一种简单直观的排序算法。它的工作原理是每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，直到全部待排序的数据元素排完。</p>
-<p>时间复杂度O(n^2),平均复杂度O(n^2)，空间复杂度O(1),稳定。</p>
+<p>时间复杂度O(n<sup>2</sup>),平均复杂度O(n<sup>2</sup>)，空间复杂度O(1),稳定。</p>
 <p>选择排序（升序）JavaScript实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">selectionSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> min;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &lt; arr[min])&#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i != min)&#123;</span><br><span class="line">            swap(arr, i, min);<span class="comment">//最上面定义过swap函数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p><strong>插入排序</strong>就是在一个已经有序的数据序列中插入一个数，但要求插入后此数据序列仍然有序。</p>
-<p>时间复杂度O(n^2),平均复杂度O(n^2)，空间复杂度O(1),稳定</p>
+<p>时间复杂度O(n<sup>2</sup>),平均复杂度O(n<sup>2</sup>)，空间复杂度O(1),稳定</p>
 <p>插入排序（升序）JavaScript实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">insertionSort = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> currVal,i,j;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">        currVal = arr[i];<span class="comment">//存储当前位置的值</span></span><br><span class="line">        <span class="keyword">for</span>(j = i<span class="number">-1</span>; j &gt; <span class="number">-1</span> &amp;&amp; arr[j] &gt; currVal; j--)&#123;</span><br><span class="line">            arr[j+<span class="number">1</span>] = arr[j]</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+<span class="number">1</span>] = currVal;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><strong>归并排序</strong>就是将两个的有序数列合并成一个有序数列。</p>
 <p>时间复杂度O(nlogn),平均复杂度O(nlogn)，空间复杂度O(n),稳定</p>
 <p>归并排序（升序）JavaScript实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于合并两个已排序数组</span></span><br><span class="line">merge = <span class="function">(<span class="params">left,right</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">let</span> il=<span class="number">0</span>,ir=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(il &lt; left.length &amp;&amp; ir &lt; right.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(left[il]&lt;right[ir])&#123;</span><br><span class="line">            result.push(left[il++]);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            result.push(right[ir++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.concat(left.slice(il)).concat(right.slice(ir))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//归并排序主函数</span></span><br><span class="line">mergeSort = <span class="function">(<span class="params">arr</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">Math</span>.floor(arr.length/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">let</span> left = arr.slice(<span class="number">0</span>,middle);</span><br><span class="line">    <span class="keyword">let</span> right = arr.slice(middle);</span><br><span class="line">    <span class="keyword">return</span> merge(mergeSort(left),mergeSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上面的代码会返回一个新数组，下面进行优化:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mergeSort = <span class="function">(<span class="params">arr</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> middle = <span class="built_in">Math</span>.floor(arr.length/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">let</span> left = arr.slice(<span class="number">0</span>,middle);</span><br><span class="line">    <span class="keyword">let</span> right = arr.slice(middle);</span><br><span class="line">    <span class="keyword">let</span> params = merge(mergeSort(left),mergeSort(right));<span class="comment">//merge函数在上面</span></span><br><span class="line">    <span class="comment">//在返回的数组头部，添加两个元素，第一个是0，第二个是返回的数组长度</span></span><br><span class="line">    params.unshift(<span class="number">0</span>,arr.length);</span><br><span class="line">    <span class="comment">// splice用来替换数组元素，它接受多个参数，</span></span><br><span class="line">    <span class="comment">// 第一个是开始替换的位置，第二个是需要替换的个数，后面就是所有新加入的元素。</span></span><br><span class="line">    <span class="comment">// 因为splice不接受数组作为参数，所以采用apply的写法。</span></span><br><span class="line">    <span class="comment">// 这一句的意思就是原来的myArray数组替换成排序后的myArray</span></span><br><span class="line">    arr.splice.apply(arr,params);</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><strong>快速排序（Quicksort）</strong>是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
-<p>时间复杂度O(n^2),平均复杂度O(n*log2n)，空间复杂度O(log2n)~O(n),不稳定</p>
+<p>时间复杂度O(n<sup>2</sup>),平均复杂度O(n*log2n)，空间复杂度O(log2n)~O(n),不稳定</p>
 <p>快速排序（升序）JavaScript实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//partition函数用于一轮排序</span></span><br><span class="line">partition = <span class="function">(<span class="params">arr, left, right</span>)=&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> pivot = arr[<span class="built_in">Math</span>.floor((right + left) / <span class="number">2</span>)],</span><br><span class="line">        i = left,</span><br><span class="line">        j = right;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] &lt; pivot) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (arr[j] &gt; pivot) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">            swap(arr, i, j);</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//快速排序主函数</span></span><br><span class="line">quickSort = <span class="function">(<span class="params">arr, left, right</span>)=&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">    left = (<span class="keyword">typeof</span> left !== <span class="string">"number"</span> ? <span class="number">0</span> : left);</span><br><span class="line"></span><br><span class="line">    right = (<span class="keyword">typeof</span> right !== <span class="string">"number"</span> ? arr.length - <span class="number">1</span> : right);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> index  = partition(arr, left, right);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (left &lt; index - <span class="number">1</span>) &#123;</span><br><span class="line">            quickSort(arr, left, index - <span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (index &lt; right) &#123;</span><br><span class="line">            quickSort(arr, index, right);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>算法复杂度汇总<br><img src="/images/complexity.jpg" alt="算法复杂度"></p>
 <p><sup><a href="#fn_1" id="reffn_1">1</a></sup> 原地排序就是指在排序过程中不申请多余的存储空间，只利用原来存储待排数据的存储空间进行比较和交换的数据排序。</p>
@@ -841,7 +1172,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="赵斐昊">
 <meta property="og:description" content="http需要知道的Http与Https的区别1.HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头2.HTTP 是不安全的，而 HTTPS 是安全的3.HTTP 标准端口是80 ，而 HTTPS 的标准端口是4434.在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层5.HTTP 无法加密，而HTTPS 对传输的数据进行加">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-06T12:06:30.089Z">
+<meta property="og:updated_time" content="2018-08-13T14:08:35.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议的一些基础知识">
 <meta name="twitter:description" content="http需要知道的Http与Https的区别1.HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头2.HTTP 是不安全的，而 HTTPS 是安全的3.HTTP 标准端口是80 ，而 HTTPS 的标准端口是4434.在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层5.HTTP 无法加密，而HTTPS 对传输的数据进行加">
@@ -423,6 +423,48 @@
 <li>管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应</li>
 <li>断点续传</li>
 </ul>
+<h2 id="HTTP2-0新特性"><a href="#HTTP2-0新特性" class="headerlink" title="HTTP2.0新特性"></a>HTTP2.0新特性</h2><h3 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h3><p>改进传输性能，实现低延迟高吞吐量的呢？关键之一就是在应用层（HTTP）和传输层（TCP）之间增加一个二进制分帧层。</p>
+<p>在整理二进制分帧及其作用的时候我们先来铺垫一点关于帧的知识：</p>
+<ul>
+<li>帧：HTTP2.0通信的最小单位，所有帧都共享一个8字节的首部，其中包含帧的长度、类型、标志、还有一个保留位，并且至少有标识出当前帧所属的流的标识符，帧承载着特定类型的数据，如HTTP首部、负荷、等等。</li>
+<li>消息：比帧大的通讯单位，是指逻辑上的HTTP消息，比如请求、响应等。由一个或多个帧组成</li>
+<li>流：比消息大的通讯单位。是TCP连接中的一个虚拟通道，可以承载双向的消息。每个流都有一个唯一的整数标识符</li>
+</ul>
+<p><strong>什么是二进制分帧</strong><br>在二进制分帧层上，HTTP2.0会将所有传输信息分割为更小的消息和帧，并对它们采用二进制格式的编码将其封装。其中，HTTP1.X中的首部信息header封装到Headers帧中，而request body将被封装到Data帧中。<br><strong>二进制分帧如何工作</strong><br>HTTP2.0通信都在一个TCP连接上完成，这个连接可以承载任意数量的双向数据流，相应的每个数据流以消息的形式发送。而消息由一或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。<br><strong>二进制分帧对性能优化工作的贡献</strong><br>二进制分帧主要是为下文中的各种特性提供了基础。它能把一个数据划分封装为更小更便捷的数据。首先是在单链接多资源方式中，减少了服务端的链接压力，内存占用更少，链接吞吐量更大。这一点可以结合下文中的多路复用来体会。另一方面，由于TCP链接的减少而使网络拥塞状态得以改善，同时慢启动时间的减少。使拥塞和丢包恢复的速度更快。</p>
+<h3 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a>首部压缩</h3><p>HTTP1.1并不支持HTTP首部压缩，为此SPDY和HTTP2.0出现了。SPDY是用的是DEFLATE算法，而HTTP2.0则使用了专门为首部压缩设计的HPACK算法。<br><strong>什么是首部压缩</strong><br>HTTP1.x每次通讯（请求或响应）都会携带首部信息用于描述资源属性。而HTTP2.0在客户端和服务端之间使用首部表来跟踪和存储之前发送的键值对。请求与响应首部的定义在HTTP2.0中基本没有变，只是所有首部键必须全部小写，而且要求行要独立为:method:、:scheme:、:host:、:path:这些键值对</p>
+<p><strong>首部压缩如何工作</strong><br>对于相同的数据，不再重新通过每次请求和响应发送。每个新的首部键值对要么追加到当前表的末尾，要么替换表中之前的值。首部表在HTTP2.0的链接存续期内始终存在，由客户端和服务端共同渐进的更新。</p>
+<p><strong>首部压缩性能优化工作的贡献</strong><br>首部表在HTTP2.0使用了首部压缩的技术。使报头更紧凑，更快速传输，有利于移动网络环境。减少每次通讯的数据量，使网络拥塞状态得以改善。</p>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>HTTP2.0为数据流和连接的流量提供了一个简单的机制：</p>
+<ul>
+<li>流量基于HTTP链接的每一跳进行，而非端到端的控制</li>
+<li>流量控制基于窗口更新帧进行，即接收方广播自己准备接收某个数据流的多少字节，以及对整个链接要接收多少个字节。</li>
+<li>流量控制有方向性，即接收方可能根据自己的情况为没个流乃至整个链接设置任意窗口大小</li>
+<li>流量控制可以由接收方禁用，包括针对个别的流和针对整个链接。</li>
+<li>帧的类型决定了流量控制是否适用于帧，目前只有DATA帧服从流量控制，所有其他类型的帧并不会消耗流量控制窗口的空间。这保证了重要的控制帧不会被流量控制阻塞</li>
+</ul>
+<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>在HTTP1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量的限制。超过限制数目的请求会被阻塞。而HTTP2.0中的多路复用优化了这一性能。</p>
+<p><strong>什么是多路复用</strong><br>基于二进制分帧层，HTTP2.0可以在共享TCP链接的基础上同时发送请求和响应。HTTP消息被分解为独立的帧，而不破坏消息本身的语义，交错发出去，在另一端根据流标识符和首部将他们重新组装起来。</p>
+<p><strong>多路复用对性能优化工作的贡献</strong></p>
+<ul>
+<li>可以并行交错的发送请求和响应，这些请求和响应之间互不影响</li>
+<li>只使用一个链接即可并行发送多个请求和响应</li>
+<li>消除不必要的延迟，从而减少页面加载的时间</li>
+<li>不必再为绕过HTTP1.x限制而多做很多工作</li>
+</ul>
+<h3 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a>请求优先级</h3><p>把HTTP消息分为很多独立帧之后，就可以通过优化这些帧的交错和传输顺序进一步优化性能。</p>
+<p><strong>什么是请求优先级</strong><br>每个流都可以带有一个31bit的优先值：0表示最高优先级；2的31次方-1表示最低优先级。<br><strong>请求优先级如何工作</strong><br>客户端明确指定优先级，服务端可以根据这个优先级作为交互数据的依据，比如客户端优先设置为.css&gt;.js&gt;.jpg。服务端按此顺序返回结果更加有利于高效利用底层连接，提高用户体验。然而，在使用请求优先级时应注意服务端是否支持请求优先级，是否会引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。<br><strong>请求优先级对性能优化工作的贡献</strong><br>服务器可以根据流的优先级控制资源分配（CPU、内存、宽带），而在响应数据准备好之后，优先将最高优先级的帧发送给客户端。浏览器可以在发现资源时立即分派请求，指定每个流的优先级，让服务器决定最优的响应次序。这样请求就不用排队了，既节省了时间，又最大限度的利用了每个连接。</p>
+<h3 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h3><p>HTTP2.0新增的一个强大的新功能，就是服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确的请求。</p>
+<p><strong>什么是服务器推送（HTTP2.0中）</strong><br>服务端根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。如下图，客户端请求stream 1(/page.html)。服务端在返回stream 1的消息的同时推送了stream 2(/script.js)和stream 4(/style.css)</p>
+<p><strong>服务器推送如何工作</strong></p>
+<ul>
+<li>PUSH_PROMISE帧是服务端向客户端有意推送资源的信号。</li>
+<li>PUSH_PROMISE帧中只包含预推送资源的首部。如果客户端对PUSH_PROMISE帧没有意见，服务端在PUSH_PROMISE帧后发送响应的DATA帧。如果客户端已经缓存了该资源，不需要推送，可以拒绝PUSH_PROMISE帧。</li>
+<li>PUSH-PROMISE必须遵循请求-响应原则，只能借着对请求的响应推送资源。</li>
+<li>PUSH_PROMISE帧必须在返回响应之前发送，以免客户端出现竞态条件（竞态条件是指在多线程的情况下不同的执行顺序会导致计算机执行出不同的结果正确性不同）</li>
+<li>HTTP2.0连接后，客户端与服务端交换SETTINGS帧，借此限定双向并发的最大数量。因此，客户端可以限定推送流的数量，或者通过把这个只设置为0来完全禁止服务器推送。</li>
+<li>所有推送的资源都必须遵守同源策略。换句话说，服务器不能随便将第三方资源推送给客户端，而必须是经过双方的确认才行。</li>
+</ul>
+<p><strong>服务器推送对性能优化工作的贡献</strong><br>服务端推送是一种在客户端请求之前发送数据的机制。在HTTP2.0中，服务器可以对一个客户端的请求发送多个响应。如果一个请求是由你的主页发送的，服务器可能会响应主页内容、logo以及样式表，因为他知道客户端会用到这些东西。这样不但减轻了数据传送冗余步骤，也加快了页面响应的速度，提高了用户体验。</p>
 <h2 id="HTTP优化方案"><a href="#HTTP优化方案" class="headerlink" title="HTTP优化方案"></a>HTTP优化方案</h2><p>1.<code>TCP复用</code>：TCP连接复用是将多个客户端的HTTP请求复用到一个服务器端TCP连接上，而HTTP复用则是一个客户端的多个HTTP请求通过一个TCP连接进行处理。前者是负载均衡设备的独特功能；而后者是HTTP 1.1协议所支持的新功能，目前被大多数浏览器所支持。</p>
 <p>2.<code>内容缓存</code>：将经常用到的内容进行缓存起来，那么客户端就可以直接在内存中获取相应的数据了。</p>
 <p>3.<code>压缩</code>：将文本数据进行压缩，减少带宽</p>
@@ -459,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/05/浏览器缓存机制/" rel="next" title="浏览器缓存机制">
-                <i class="fa fa-chevron-left"></i> 浏览器缓存机制
+              <a href="/2018/08/05/浏览器缓存机制关键字段/" rel="next" title="浏览器缓存机制关键字段">
+                <i class="fa fa-chevron-left"></i> 浏览器缓存机制关键字段
               </a>
             
           </div>
@@ -548,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -594,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http需要知道的"><span class="nav-number">1.</span> <span class="nav-text">http需要知道的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http与Https的区别"><span class="nav-number">1.1.</span> <span class="nav-text">Http与Https的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">HTTPS工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http协议是无状态协议"><span class="nav-number">1.3.</span> <span class="nav-text">Http协议是无状态协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI和URL的区别"><span class="nav-number">1.4.</span> <span class="nav-text">URI和URL的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的HTTP方法"><span class="nav-number">1.5.</span> <span class="nav-text">常用的HTTP方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET方法与POST方法的区别"><span class="nav-number">1.6.</span> <span class="nav-text">GET方法与POST方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求报文与响应报文格式"><span class="nav-number">1.7.</span> <span class="nav-text">HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次完整的HTTP请求所经历的7个步骤"><span class="nav-number">1.8.</span> <span class="nav-text">一次完整的HTTP请求所经历的7个步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的HTTP响应状态码"><span class="nav-number">1.9.</span> <span class="nav-text">常见的HTTP响应状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-1版本新特性"><span class="nav-number">1.10.</span> <span class="nav-text">HTTP1.1版本新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP优化方案"><span class="nav-number">1.11.</span> <span class="nav-text">HTTP优化方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http需要知道的"><span class="nav-number">1.</span> <span class="nav-text">http需要知道的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http与Https的区别"><span class="nav-number">1.1.</span> <span class="nav-text">Http与Https的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">HTTPS工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http协议是无状态协议"><span class="nav-number">1.3.</span> <span class="nav-text">Http协议是无状态协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI和URL的区别"><span class="nav-number">1.4.</span> <span class="nav-text">URI和URL的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的HTTP方法"><span class="nav-number">1.5.</span> <span class="nav-text">常用的HTTP方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET方法与POST方法的区别"><span class="nav-number">1.6.</span> <span class="nav-text">GET方法与POST方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求报文与响应报文格式"><span class="nav-number">1.7.</span> <span class="nav-text">HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次完整的HTTP请求所经历的7个步骤"><span class="nav-number">1.8.</span> <span class="nav-text">一次完整的HTTP请求所经历的7个步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的HTTP响应状态码"><span class="nav-number">1.9.</span> <span class="nav-text">常见的HTTP响应状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-1版本新特性"><span class="nav-number">1.10.</span> <span class="nav-text">HTTP1.1版本新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP2-0新特性"><span class="nav-number">1.11.</span> <span class="nav-text">HTTP2.0新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制分帧"><span class="nav-number">1.11.1.</span> <span class="nav-text">二进制分帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部压缩"><span class="nav-number">1.11.2.</span> <span class="nav-text">首部压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制"><span class="nav-number">1.11.3.</span> <span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用"><span class="nav-number">1.11.4.</span> <span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求优先级"><span class="nav-number">1.11.5.</span> <span class="nav-text">请求优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器推送"><span class="nav-number">1.11.6.</span> <span class="nav-text">服务器推送</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP优化方案"><span class="nav-number">1.12.</span> <span class="nav-text">HTTP优化方案</span></a></li></ol></li></ol></div>
             
 
           </div>
