@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,15 @@
 
 
 
-<meta name="description" content="JavaScript合并多个数组并排序去重12345678910111213141516171819202122232425262728293031323334353637let arr1 = [2,7,3,0];let arr2 = [8,19,9,5.5];let arr3 = [7,2,9,30,10];let mergeAndSort = function()&amp;#123;    //校验参">
-<meta name="keywords" content="算法">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js合并数组并排序去重">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/js合并数组并排序去重/index.html">
+<meta property="og:title" content="前端攻击技术-XSS和CSRF">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/前端攻击技术-XSS和CSRF/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="JavaScript合并多个数组并排序去重12345678910111213141516171819202122232425262728293031323334353637let arr1 = [2,7,3,0];let arr2 = [8,19,9,5.5];let arr3 = [7,2,9,30,10];let mergeAndSort = function()&amp;#123;    //校验参">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-13T07:26:21.300Z">
+<meta property="og:updated_time" content="2018-08-16T07:49:16.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js合并数组并排序去重">
-<meta name="twitter:description" content="JavaScript合并多个数组并排序去重12345678910111213141516171819202122232425262728293031323334353637let arr1 = [2,7,3,0];let arr2 = [8,19,9,5.5];let arr3 = [7,2,9,30,10];let mergeAndSort = function()&amp;#123;    //校验参">
+<meta name="twitter:title" content="前端攻击技术-XSS和CSRF">
 
 
 
@@ -120,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/js合并数组并排序去重/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/16/前端攻击技术-XSS和CSRF/"/>
 
 
 
 
 
-  <title>js合并数组并排序去重 | 赵斐昊</title>
+  <title>前端攻击技术-XSS和CSRF | 赵斐昊</title>
   
 
 
@@ -263,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/js合并数组并排序去重/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/16/前端攻击技术-XSS和CSRF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js合并数组并排序去重</h1>
+          <h1 class="post-title" itemprop="name headline">前端攻击技术-XSS和CSRF</h1>
         
 
         <div class="post-meta">
@@ -292,8 +289,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:00:59+08:00">
-                2018-08-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-16T15:49:16+08:00">
+                2018-08-16
               </time>
             
 
@@ -330,7 +327,7 @@
       
 
       
-        <h1 id="JavaScript合并多个数组并排序去重"><a href="#JavaScript合并多个数组并排序去重" class="headerlink" title="JavaScript合并多个数组并排序去重"></a>JavaScript合并多个数组并排序去重</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">2</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">8</span>,<span class="number">19</span>,<span class="number">9</span>,<span class="number">5.5</span>];</span><br><span class="line"><span class="keyword">let</span> arr3 = [<span class="number">7</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">30</span>,<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mergeAndSort = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//校验参数个数，传入的数组少于两个直接退出</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">arguments</span>.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义函数用于合并两个数组并去重</span></span><br><span class="line">    <span class="keyword">let</span> merge = <span class="function"><span class="keyword">function</span>(<span class="params">arr1,arr2</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> arr = arr1.concat();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr2.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr.indexOf(arr2[i])===<span class="number">-1</span>)&#123;</span><br><span class="line">                arr.push(arr2[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//默认按照传入两个数组先合并</span></span><br><span class="line">    <span class="keyword">let</span> arr1 = <span class="built_in">arguments</span>[<span class="number">0</span>],arr2 = <span class="built_in">arguments</span>[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">let</span> result = merge(arr1,arr2);</span><br><span class="line">    <span class="comment">//若传入大于两个数组，则继续合并</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; <span class="built_in">arguments</span>.length; i++)&#123;</span><br><span class="line">        result = merge(result,<span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按升序排序</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ascendOrder</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.sort(ascendOrder);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//test</span></span><br><span class="line">mergeAndSort(arr1,arr2);<span class="comment">//[0, 2, 3, 5.5, 7, 8, 9, 19]</span></span><br><span class="line">mergeAndSort(arr1,arr2);<span class="comment">//[0, 2, 3, 5.5, 7, 8, 9, 10, 19, 30]</span></span><br></pre></td></tr></table></figure>
+        
       
     </div>
     
@@ -345,12 +342,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-        </div>
-      
 
       
       
@@ -360,8 +351,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/10/BFC-块级格式化上下文/" rel="next" title="BFC-块级格式化上下文">
-                <i class="fa fa-chevron-left"></i> BFC-块级格式化上下文
+              <a href="/2018/08/16/ajax跨域解决方案/" rel="next" title="ajax跨域解决方案">
+                <i class="fa fa-chevron-left"></i> ajax跨域解决方案
               </a>
             
           </div>
@@ -369,10 +360,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/13/写React组件-你应该考虑的几点/" rel="prev" title="写React组件-你应该考虑的几点">
-                写React组件-你应该考虑的几点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,17 +411,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -485,22 +463,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript合并多个数组并排序去重"><span class="nav-number">1.</span> <span class="nav-text">JavaScript合并多个数组并排序去重</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
