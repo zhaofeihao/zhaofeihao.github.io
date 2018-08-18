@@ -260,6 +260,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/对栅格布局的一些理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/对栅格布局的一些理解/" itemprop="url">对栅格布局的一些理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T15:42:47+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="栅格系统知多少"><a href="#栅格系统知多少" class="headerlink" title="栅格系统知多少"></a>栅格系统知多少</h1><h2 id="栅格系统的优点"><a href="#栅格系统的优点" class="headerlink" title="栅格系统的优点"></a>栅格系统的优点</h2><ul>
+<li>提高生产力，通过在网格的划分，元素更容易堆放而且在跨浏览器上面具有一致性，使我们可以专心的注意布局而不是兼容上。</li>
+<li>具有灵活性，无论是什么样的布局，都可以拆分到粒度为一个网格的大小。</li>
+<li>支持响应式设计，栅格系统本身能很好的和响应式设计结合在一起，或者说，我们的栅格系统是基于响应式设计的。</li>
+</ul>
+<h2 id="栅格系统的组成"><a href="#栅格系统的组成" class="headerlink" title="栅格系统的组成"></a>栅格系统的组成</h2><p><img src="/images/grid-component.png" alt="grid-component-img"></p>
+<h3 id="容器-The-Container"><a href="#容器-The-Container" class="headerlink" title="容器 (The Container)"></a>容器 (The Container)</h3><p>为了给整个栅格系统设置宽度，我们需要一个容器。容器的宽度通常为100%，但你可能希望为更大的显示器设置最大宽度max-width。</p>
+<p>bootstrap的栅格系统要放在布局容器中，bootstrap提供了两种布局容器：<code>.container</code> 类用于固定宽度并支持响应式布局的容器.<br><code>.container</code>类的宽度由 <strong>媒体查询</strong> 设定为在不同浏览器宽度范围内有几个固定值，且浏览器宽度768px以上的时候会有随浏览器宽度变化的左右margin。</p>
+<p><code>.container-fluid</code>类用于 100% 宽度，占据全部视口（viewport）的容器.</p>
+<p><code>.container-fluid</code>类的宽度为100%浏览器窗口大小，且没有margin。两类容器都有左右各15px的内边距.</p>
+<h3 id="行-The-Row"><a href="#行-The-Row" class="headerlink" title="行 (The Row)"></a>行 (The Row)</h3><p>行元素用于防止里面的列（ column ）溢出到其他的行。通常会使用clearfix来清除浮动，因为我们是通过浮动来制作栅格系统的。</p>
+<h3 id="列-The-Column"><a href="#列-The-Column" class="headerlink" title="列 (The Column)"></a>列 (The Column)</h3><p>栅格系统的核心是类似.col-xs-1这样的div，也就是列，列放在行中.一行最多会分为12列。预定义的列类名中，xs、sm、md和lg表明列的宽度设置分别在超小屏幕、小屏幕、中等屏幕和大屏幕上生效；1~12表示列宽度占行宽度的1/12~12/12。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col-xs-1</span>, <span class="selector-class">.col-sm-1</span>, <span class="selector-class">.col-md-1</span>, <span class="selector-class">.col-lg-1</span>, <span class="selector-class">.col-xs-2</span>, <span class="selector-class">.col-sm-2</span>, <span class="selector-class">.col-md-2</span>, <span class="selector-class">.col-lg-2</span>, <span class="selector-class">.col-xs-3</span>, <span class="selector-class">.col-sm-3</span>, <span class="selector-class">.col-md-3</span>, <span class="selector-class">.col-lg-3</span>, <span class="selector-class">.col-xs-4</span>, <span class="selector-class">.col-sm-4</span>, <span class="selector-class">.col-md-4</span>, <span class="selector-class">.col-lg-4</span>, <span class="selector-class">.col-xs-5</span>, <span class="selector-class">.col-sm-5</span>, <span class="selector-class">.col-md-5</span>, <span class="selector-class">.col-lg-5</span>, <span class="selector-class">.col-xs-6</span>, <span class="selector-class">.col-sm-6</span>, <span class="selector-class">.col-md-6</span>, <span class="selector-class">.col-lg-6</span>, <span class="selector-class">.col-xs-7</span>, <span class="selector-class">.col-sm-7</span>, <span class="selector-class">.col-md-7</span>, <span class="selector-class">.col-lg-7</span>, <span class="selector-class">.col-xs-8</span>, <span class="selector-class">.col-sm-8</span>, <span class="selector-class">.col-md-8</span>, <span class="selector-class">.col-lg-8</span>, <span class="selector-class">.col-xs-9</span>, <span class="selector-class">.col-sm-9</span>, <span class="selector-class">.col-md-9</span>, <span class="selector-class">.col-lg-9</span>, <span class="selector-class">.col-xs-10</span>, <span class="selector-class">.col-sm-10</span>, <span class="selector-class">.col-md-10</span>, <span class="selector-class">.col-lg-10</span>, <span class="selector-class">.col-xs-11</span>, <span class="selector-class">.col-sm-11</span>, <span class="selector-class">.col-md-11</span>, <span class="selector-class">.col-lg-11</span>, <span class="selector-class">.col-xs-12</span>, <span class="selector-class">.col-sm-12</span>, <span class="selector-class">.col-md-12</span>, <span class="selector-class">.col-lg-12</span></span><br><span class="line">&#123; <span class="attribute">position</span>: relative; </span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">1px</span>; </span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">15px</span>; <span class="comment">/*设置gutter，下面会说到*/</span></span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">15px</span>; <span class="comment">/*设置gutter，下面会说到*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里所有预定义列类都没有设置width属性，也就是默认行宽度的100%.<br>接着可以看到：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col-xs-1</span>, <span class="selector-class">.col-xs-2</span>, <span class="selector-class">.col-xs-3</span>, <span class="selector-class">.col-xs-4</span>, <span class="selector-class">.col-xs-5</span>, <span class="selector-class">.col-xs-6</span>, <span class="selector-class">.col-xs-7</span>, <span class="selector-class">.col-xs-8</span>, <span class="selector-class">.col-xs-9</span>, <span class="selector-class">.col-xs-10</span>, <span class="selector-class">.col-xs-11</span>, <span class="selector-class">.col-xs-12</span> &#123; <span class="attribute">float</span>: left; &#125; <span class="selector-class">.col-xs-12</span> &#123; <span class="attribute">width</span>: <span class="number">100%</span>; &#125; <span class="selector-class">.col-xs-11</span> &#123; <span class="attribute">width</span>: <span class="number">91.66666667%</span>; &#125; <span class="selector-class">.col-xs-10</span> &#123; <span class="attribute">width</span>: <span class="number">83.33333333%</span>; &#125; <span class="selector-class">.col-xs-9</span> &#123; <span class="attribute">width</span>: <span class="number">75%</span>; &#125; <span class="selector-class">.col-xs-8</span> &#123; <span class="attribute">width</span>: <span class="number">66.66666667%</span>; &#125; <span class="selector-class">.col-xs-7</span> &#123; <span class="attribute">width</span>: <span class="number">58.33333333%</span>; &#125; <span class="selector-class">.col-xs-6</span> &#123; <span class="attribute">width</span>: <span class="number">50%</span>; &#125; <span class="selector-class">.col-xs-5</span> &#123; <span class="attribute">width</span>: <span class="number">41.66666667%</span>; &#125; <span class="selector-class">.col-xs-4</span> &#123; <span class="attribute">width</span>: <span class="number">33.33333333%</span>; &#125; <span class="selector-class">.col-xs-3</span> &#123; <span class="attribute">width</span>: <span class="number">25%</span>; &#125; <span class="selector-class">.col-xs-2</span> &#123; <span class="attribute">width</span>: <span class="number">16.66666667%</span>; &#125; <span class="selector-class">.col-xs-1</span> &#123; <span class="attribute">width</span>: <span class="number">8.33333333%</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="列的间隙-Column-Gutters"><a href="#列的间隙-Column-Gutters" class="headerlink" title="列的间隙 (Column Gutters)"></a>列的间隙 (Column Gutters)</h3><p>由于列的宽度单位是响应式的%，我们给列元素的间距是固定单位的padding（px），为了避免复杂的计算，我们规定所有的盒子模型为border-box类型。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*-- 将栅格系统里的所有元素设为 border box --*/</span></span><br><span class="line">   <span class="selector-class">.container</span> *&#123;</span><br><span class="line">       <span class="attribute">box-sizing</span>: border-box; </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="selector-attr">[class*='col-']</span> &#123;</span><br><span class="line">       <span class="attribute">padding-right</span>: <span class="number">15px</span>; <span class="comment">/*设置gutter，下面会说到*/</span></span><br><span class="line">       <span class="attribute">padding-left</span>: <span class="number">15px</span>; <span class="comment">/*设置gutter，下面会说到*/</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>全局设置border-box很好，它可以省去一次又一次的加减，它还可以让有边框的盒子正常使用百分比宽度。但是使用了border-box可能会与一些依赖默认box-sizing的库冲突，不过这种问题大多数时候可以通过把交由这些库处理的块的box-sizing设置回content-box来解决。</p>
+</blockquote>
+<p><a href="https://juejin.im/entry/58c3d8bdda2f6056096b2b40" target="_blank" rel="noopener">跟着写一个 CSS 栅格布局</a><br><a href="https://www.imooc.com/article/13824" target="_blank" rel="noopener">从css源码理解bootstrap布局容器和栅格系统</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>使用float实现流式布局，一行分为十二列，如果一行中超过了十二列，放不下的元素会滚到前面元素的下方，不会在水平方向overflow（溢出），避免了水平滚动条的出现。</li>
+<li>使用百分比宽度，让内容宽度平滑渐变。</li>
+<li>使用媒体查询，在不同尺寸的设备上应用不同类的预定义列，从而让排版更灵活地适配屏幕尺寸</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/左边定宽右边自适应布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1538,142 +1680,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/13/写React组件-你应该考虑的几点/" itemprop="url">写React组件-你应该考虑的几点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:35:12+08:00">
-                2018-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="React组件的开发原则"><a href="#React组件的开发原则" class="headerlink" title="React组件的开发原则"></a>React组件的开发原则</h1><p>面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 <strong>单一职责原则(SRP - single responsibility principle)</strong></p>
-<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><blockquote>
-<p>当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的</p>
-</blockquote>
-<p>单一职责原则（SRP - single responsibility principle）是编写 React 组件时的基础原则。</p>
-<p>所谓职责可能指的是渲染一个列表、显示一个时间选择器、发起一次 HTTP 请求、描绘一幅图表，或是懒加载一个图片等等。组件应该只选择一个职责去实现。</p>
-<h2 id="DRY原则"><a href="#DRY原则" class="headerlink" title="DRY原则"></a>DRY原则</h2><blockquote>
-<p>如果发现多个地方在做同样的事情，那么这时候就应该合并重复代码。如果在代码中看到了模式，那么表明需要实行 DRY。</p>
-</blockquote>
-<p>组件中的state的设计，尽量简化数据，也要遵循DRY(Don’t Repeat Yourself)原则。</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>参考：<a href="http://ijser.cn/2017-06-25-web-component-design-in-front-end/" target="_blank" rel="noopener">前端组件化设计思路</a></p>
-<ol>
-<li>组件封装的目的是为了重用，提高开发效率和代码质量</li>
-<li>低耦合，单一职责，可复用性，可维护性</li>
-<li>前端组件化设计思路</li>
-</ol>
-<p><a href="https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/#6testableandtested" target="_blank" rel="noopener">7 architectural attributes of a reliable React component</a><br><a href="https://juejin.im/post/5b207f3c5188257d47354a19" target="_blank" rel="noopener">可靠的 React 组件：单一职责原则</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1724,7 +1730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
