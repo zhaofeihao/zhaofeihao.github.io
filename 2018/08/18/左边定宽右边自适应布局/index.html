@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="css,html," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
-<meta name="keywords" content="React">
+<meta name="description" content="左边定宽，右边自适应布局的几种方法这种布局页面结构如下：123456789101112131415161718192021222324252627282930&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Document&amp;lt;/titl">
+<meta name="keywords" content="css,html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写React组件-你应该考虑的几点">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/index.html">
+<meta property="og:title" content="左边定宽右边自适应布局">
+<meta property="og:url" content="http://yoursite.com/2018/08/18/左边定宽右边自适应布局/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
+<meta property="og:description" content="左边定宽，右边自适应布局的几种方法这种布局页面结构如下：123456789101112131415161718192021222324252627282930&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Document&amp;lt;/titl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-16T11:31:24.848Z">
+<meta property="og:image" content="http://yoursite.com/images/left-right-1.png">
+<meta property="og:updated_time" content="2018-08-18T07:17:53.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写React组件-你应该考虑的几点">
-<meta name="twitter:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
+<meta name="twitter:title" content="左边定宽右边自适应布局">
+<meta name="twitter:description" content="左边定宽，右边自适应布局的几种方法这种布局页面结构如下：123456789101112131415161718192021222324252627282930&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;Document&amp;lt;/titl">
+<meta name="twitter:image" content="http://yoursite.com/images/left-right-1.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/18/左边定宽右边自适应布局/"/>
 
 
 
 
 
-  <title>写React组件-你应该考虑的几点 | 赵斐昊</title>
+  <title>左边定宽右边自适应布局 | 赵斐昊</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/左边定宽右边自适应布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">写React组件-你应该考虑的几点</h1>
+          <h1 class="post-title" itemprop="name headline">左边定宽右边自适应布局</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:35:12+08:00">
-                2018-08-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T14:28:40+08:00">
+                2018-08-18
               </time>
             
 
@@ -330,23 +332,12 @@
       
 
       
-        <h1 id="React组件的开发原则"><a href="#React组件的开发原则" class="headerlink" title="React组件的开发原则"></a>React组件的开发原则</h1><p>面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 <strong>单一职责原则(SRP - single responsibility principle)</strong></p>
-<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><blockquote>
-<p>当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的</p>
-</blockquote>
-<p>单一职责原则（SRP - single responsibility principle）是编写 React 组件时的基础原则。</p>
-<p>所谓职责可能指的是渲染一个列表、显示一个时间选择器、发起一次 HTTP 请求、描绘一幅图表，或是懒加载一个图片等等。组件应该只选择一个职责去实现。</p>
-<h2 id="DRY原则"><a href="#DRY原则" class="headerlink" title="DRY原则"></a>DRY原则</h2><blockquote>
-<p>如果发现多个地方在做同样的事情，那么这时候就应该合并重复代码。如果在代码中看到了模式，那么表明需要实行 DRY。</p>
-</blockquote>
-<p>组件中的state的设计，尽量简化数据，也要遵循DRY(Don’t Repeat Yourself)原则。</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>参考：<a href="http://ijser.cn/2017-06-25-web-component-design-in-front-end/" target="_blank" rel="noopener">前端组件化设计思路</a></p>
-<ol>
-<li>组件封装的目的是为了重用，提高开发效率和代码质量</li>
-<li>低耦合，单一职责，可复用性，可维护性</li>
-<li>前端组件化设计思路</li>
-</ol>
-<p><a href="https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/#6testableandtested" target="_blank" rel="noopener">7 architectural attributes of a reliable React component</a><br><a href="https://juejin.im/post/5b207f3c5188257d47354a19" target="_blank" rel="noopener">可靠的 React 组件：单一职责原则</a></p>
+        <h1 id="左边定宽，右边自适应布局的几种方法"><a href="#左边定宽，右边自适应布局的几种方法" class="headerlink" title="左边定宽，右边自适应布局的几种方法"></a>左边定宽，右边自适应布局的几种方法</h1><p>这种布局页面结构如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        * &#123;</span></span><br><span class="line"><span class="undefined">            padding: 0;</span></span><br><span class="line"><span class="undefined">            margin: 0;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line"><span class="undefined">            font-size: 30px;</span></span><br><span class="line"><span class="undefined">            font-weight: bold;</span></span><br><span class="line"><span class="undefined">            text-align: center;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        aside &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#5A6A94</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        section &#123;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#BE4F4F</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>Left - 左边定宽<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>Right - 右边自适应<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>现在页面的效果是这样的<br><img src="/images/left-right-1.png" alt="左定宽右自适应"></p>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p><strong>左边设置左浮动，右边距设置为定宽元素的宽度</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p><strong>利用BFC特性</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><p><strong>利用flex布局，父容器设置 display：flex；Right部分设置 flex：1</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.cnblogs.com/wx1993/p/6727653.html" target="_blank" rel="noopener">原文地址</a><br>原文还提到了两种方法，另外原文中第一种方法有错误，已修正。</p>
 
       
     </div>
@@ -364,7 +355,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag"># React</a>
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/html/" rel="tag"># html</a>
           
         </div>
       
@@ -377,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/13/js合并数组并排序去重/" rel="next" title="js合并数组并排序去重">
-                <i class="fa fa-chevron-left"></i> js合并数组并排序去重
+              <a href="/2018/08/18/input和textarea区别以及div实现textarea/" rel="next" title="input和textarea区别以及div实现textarea">
+                <i class="fa fa-chevron-left"></i> input和textarea区别以及div实现textarea
               </a>
             
           </div>
@@ -386,10 +379,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/15/http缓存机制/" rel="prev" title="http缓存机制">
-                http缓存机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,7 +501,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React组件的开发原则"><span class="nav-number">1.</span> <span class="nav-text">React组件的开发原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">1.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRY原则"><span class="nav-number">1.2.</span> <span class="nav-text">DRY原则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#左边定宽，右边自适应布局的几种方法"><span class="nav-number">1.</span> <span class="nav-text">左边定宽，右边自适应布局的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">1.2.</span> <span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三"><span class="nav-number">1.3.</span> <span class="nav-text">方法三</span></a></li></ol></li></ol></div>
             
 
           </div>

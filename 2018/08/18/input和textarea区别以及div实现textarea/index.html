@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="css,html," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
-<meta name="keywords" content="React">
+<meta name="description" content="input和textarea区别input标签 需要指定type属性，如text，password等。 通过size属性指定显示字符的长度。 value属性指定初始值 Maxlength属性指定文本框可以输入的最长长度。 焦点垂直居中文本框中，单行  textarea标签 需要&amp;lt;/textarea&amp;gt;来封闭标签 内容写在标签对中 使用row、col指定textarea大小 焦点在左上角，">
+<meta name="keywords" content="css,html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写React组件-你应该考虑的几点">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/index.html">
+<meta property="og:title" content="input和textarea区别以及div实现textarea">
+<meta property="og:url" content="http://yoursite.com/2018/08/18/input和textarea区别以及div实现textarea/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
+<meta property="og:description" content="input和textarea区别input标签 需要指定type属性，如text，password等。 通过size属性指定显示字符的长度。 value属性指定初始值 Maxlength属性指定文本框可以输入的最长长度。 焦点垂直居中文本框中，单行  textarea标签 需要&amp;lt;/textarea&amp;gt;来封闭标签 内容写在标签对中 使用row、col指定textarea大小 焦点在左上角，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-16T11:31:24.848Z">
+<meta property="og:updated_time" content="2018-08-18T03:22:36.323Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写React组件-你应该考虑的几点">
-<meta name="twitter:description" content="React组件的开发原则面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 单一职责原则(SRP - single responsibility principle) 单一职责原则 当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的  单一职责原则（SRP - single re">
+<meta name="twitter:title" content="input和textarea区别以及div实现textarea">
+<meta name="twitter:description" content="input和textarea区别input标签 需要指定type属性，如text，password等。 通过size属性指定显示字符的长度。 value属性指定初始值 Maxlength属性指定文本框可以输入的最长长度。 焦点垂直居中文本框中，单行  textarea标签 需要&amp;lt;/textarea&amp;gt;来封闭标签 内容写在标签对中 使用row、col指定textarea大小 焦点在左上角，">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/18/input和textarea区别以及div实现textarea/"/>
 
 
 
 
 
-  <title>写React组件-你应该考虑的几点 | 赵斐昊</title>
+  <title>input和textarea区别以及div实现textarea | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/input和textarea区别以及div实现textarea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">写React组件-你应该考虑的几点</h1>
+          <h1 class="post-title" itemprop="name headline">input和textarea区别以及div实现textarea</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:35:12+08:00">
-                2018-08-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T11:07:58+08:00">
+                2018-08-18
               </time>
             
 
@@ -330,23 +330,24 @@
       
 
       
-        <h1 id="React组件的开发原则"><a href="#React组件的开发原则" class="headerlink" title="React组件的开发原则"></a>React组件的开发原则</h1><p>面试官问我写一个组件时的根本原则是什么，也就是写一个组件时要怎么考虑，当时脑袋转的不够快，完全没有头绪。其实就是我们每天都在强调的原则，对组件细粒度的拆分，也就是 <strong>单一职责原则(SRP - single responsibility principle)</strong></p>
-<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><blockquote>
-<p>当只有唯一的原因能改变一个组件时，该组件就是“单一职责”的</p>
-</blockquote>
-<p>单一职责原则（SRP - single responsibility principle）是编写 React 组件时的基础原则。</p>
-<p>所谓职责可能指的是渲染一个列表、显示一个时间选择器、发起一次 HTTP 请求、描绘一幅图表，或是懒加载一个图片等等。组件应该只选择一个职责去实现。</p>
-<h2 id="DRY原则"><a href="#DRY原则" class="headerlink" title="DRY原则"></a>DRY原则</h2><blockquote>
-<p>如果发现多个地方在做同样的事情，那么这时候就应该合并重复代码。如果在代码中看到了模式，那么表明需要实行 DRY。</p>
-</blockquote>
-<p>组件中的state的设计，尽量简化数据，也要遵循DRY(Don’t Repeat Yourself)原则。</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>参考：<a href="http://ijser.cn/2017-06-25-web-component-design-in-front-end/" target="_blank" rel="noopener">前端组件化设计思路</a></p>
-<ol>
-<li>组件封装的目的是为了重用，提高开发效率和代码质量</li>
-<li>低耦合，单一职责，可复用性，可维护性</li>
-<li>前端组件化设计思路</li>
+        <h1 id="input和textarea区别"><a href="#input和textarea区别" class="headerlink" title="input和textarea区别"></a>input和textarea区别</h1><h2 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h2><ol>
+<li>需要指定type属性，如text，password等。</li>
+<li>通过size属性指定显示字符的长度。</li>
+<li>value属性指定初始值</li>
+<li>Maxlength属性指定文本框可以输入的最长长度。</li>
+<li>焦点垂直居中文本框中，单行</li>
 </ol>
-<p><a href="https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/#6testableandtested" target="_blank" rel="noopener">7 architectural attributes of a reliable React component</a><br><a href="https://juejin.im/post/5b207f3c5188257d47354a19" target="_blank" rel="noopener">可靠的 React 组件：单一职责原则</a></p>
+<h2 id="textarea标签"><a href="#textarea标签" class="headerlink" title="textarea标签"></a>textarea标签</h2><ol>
+<li>需要&lt;/textarea&gt;来封闭标签</li>
+<li>内容写在标签对中</li>
+<li>使用row、col指定textarea大小</li>
+<li>焦点在左上角，多行</li>
+</ol>
+<h1 id="用div来模拟实现一个textarea"><a href="#用div来模拟实现一个textarea" class="headerlink" title="用div来模拟实现一个textarea"></a>用div来模拟实现一个textarea</h1><p><strong>note:</strong> 我们要知道一个h5的属性，那就是<code>contenteditable</code>，将属性设置成true就会使得div是可以编辑的。</p>
+<p>如果将body设置这样的属性，那么整个页面都是可编辑的了。</p>
+<p>这个属性兼容IE6之后的版本，很强大。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-id">#textarea</span> &#123;</span></span><br><span class="line"><span class="undefined">        width: 300px;</span></span><br><span class="line"><span class="undefined">        min-height: 100px;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">max-height</span>: 300<span class="selector-tag">px</span>; <span class="comment">/*超过最大高度时显示滚动条*/</span></span></span><br><span class="line"><span class="css">        <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ccc</span>;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">overflow-y</span>: <span class="selector-tag">auto</span>; <span class="comment">/*内容超出高度时隐藏*/</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'textarea'</span> <span class="attr">contenteditable</span>=<span class="string">'true'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/a72bb81703b7" target="_blank" rel="noopener">原文：input，textarea的区别</a></p>
 
       
     </div>
@@ -364,7 +365,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag"># React</a>
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/html/" rel="tag"># html</a>
           
         </div>
       
@@ -377,8 +380,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/13/js合并数组并排序去重/" rel="next" title="js合并数组并排序去重">
-                <i class="fa fa-chevron-left"></i> js合并数组并排序去重
+              <a href="/2018/08/18/position定位属性值详解/" rel="next" title="position定位属性值详解">
+                <i class="fa fa-chevron-left"></i> position定位属性值详解
               </a>
             
           </div>
@@ -387,8 +390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/15/http缓存机制/" rel="prev" title="http缓存机制">
-                http缓存机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/18/左边定宽右边自适应布局/" rel="prev" title="左边定宽右边自适应布局">
+                左边定宽右边自适应布局 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -512,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React组件的开发原则"><span class="nav-number">1.</span> <span class="nav-text">React组件的开发原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">1.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRY原则"><span class="nav-number">1.2.</span> <span class="nav-text">DRY原则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#input和textarea区别"><span class="nav-number">1.</span> <span class="nav-text">input和textarea区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#input标签"><span class="nav-number">1.1.</span> <span class="nav-text">input标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#textarea标签"><span class="nav-number">1.2.</span> <span class="nav-text">textarea标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用div来模拟实现一个textarea"><span class="nav-number">2.</span> <span class="nav-text">用div来模拟实现一个textarea</span></a></li></ol></div>
             
 
           </div>

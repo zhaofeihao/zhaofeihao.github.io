@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="赵斐昊">
 <meta property="og:description" content="HTML5html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？新特性：  拖拽释放(Drag and drop) API  语义化更好的内容标签（header,nav,footer,aside,article,section）  音频、视频API(audio,video)  画布(Canvas) API  地理(Geolocatio">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-10T09:30:16.896Z">
+<meta property="og:updated_time" content="2018-08-18T02:43:15.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html5和css3基础知识">
 <meta name="twitter:description" content="HTML5html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？新特性：  拖拽释放(Drag and drop) API  语义化更好的内容标签（header,nav,footer,aside,article,section）  音频、视频API(audio,video)  画布(Canvas) API  地理(Geolocatio">
@@ -450,13 +450,6 @@
 <p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</p>
 <p>1.使用空标签清除浮动。<br> 这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。(浮动的元素，高度会塌陷,添加一个空div，利用CSS提供的clear:both清楚浮动，让父级div自动获取高度)<br>2.使用overflow。<br> 给包含浮动元素的父标签添加css属性 overflow:hidden; zoom:1; zoom:1用于兼容IE6。<br>3.使用after伪对象清除浮动。<br> 该方法只适用于非IE浏览器。使用中需注意以下几点。一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；</p>
 </blockquote>
-<p><strong>定位position详解:relative与absolute</strong></p>
-<blockquote>
-<p>position:relative; 如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）</p>
-<p>相对定位：relative 没有脱离正常的文档流，被设置元素相对于其原始位置而进行定位，其原始占位信息仍存在</p>
-<p>position:absolute; 表示绝对定位，位置将依据浏览器左上角开始计算。 绝对定位使元素脱离文档流，因此不占据空间。普通文档流中元素的布局就像绝对定位的元素不存在时一样。（因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其他元素并可以通过z-index来控制它层级次序。z-index的值越高，它显示的越在上层。）</p>
-<p>绝对定位：ablution 脱离了文档流与浮动模型，独立于其他对象而存在，没有占位。</p>
-</blockquote>
 
       
     </div>
@@ -578,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -591,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
