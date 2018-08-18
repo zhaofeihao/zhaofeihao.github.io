@@ -260,6 +260,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/http缓存机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/http缓存机制/" itemprop="url">http缓存机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-15T10:38:35+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTTP缓存机制"><a href="#HTTP缓存机制" class="headerlink" title="HTTP缓存机制"></a>HTTP缓存机制</h1><h2 id="缓存的规则"><a href="#缓存的规则" class="headerlink" title="缓存的规则"></a>缓存的规则</h2><p>我们知道HTTP的缓存属于客户端缓存，后面会提到为什么属于客户端缓存。所以我们认为浏览器存在一个缓存数据库，用于储存一些不经常变化的静态文件（图片、css、js等）。我们将缓存分为<code>强制缓存</code>和<code>协商缓存</code>。</p>
+<h3 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h3><p>当缓存数据库中已有所请求的数据时。客户端直接从缓存数据库中获取数据。当缓存数据库中没有所请求的数据时，客户端的才会从服务端获取数据。<br><img src="/images/http-force-cache.png" alt="http-cache"></p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>又称对比缓存，客户端会先从缓存数据库中获取到一个缓存数据的标识，得到标识后请求服务端验证是否失效（新鲜），如果没有失效服务端会返回304，此时客户端直接从缓存中获取所请求的数据，如果标识失效，服务端会返回更新后的数据。<br><img src="/images/http-negotiate-cache.png" alt="http-negotiate-cache"></p>
+<p><strong>tips:</strong>两类缓存机制可以同时存在，强制缓存的优先级高于协商缓存，当执行强制缓存时，如若缓存命中，则直接使用缓存数据库数据，不在进行缓存协商。</p>
+<h2 id="缓存的方案"><a href="#缓存的方案" class="headerlink" title="缓存的方案"></a>缓存的方案</h2><p>上面的内容让我们大概了解了缓存机制是怎样运行的，但是，服务器是如何判断缓存是否失效呢？我们知道浏览器和服务器进行交互的时候会发送一些请求数据和响应数据，我们称之为HTTP报文。报文中包含首部header和主体部分body。与缓存相关的规则信息就包含在header中。boby中的内容是HTTP请求真正要传输的部分。举个HTTP报文header部分的例子如下：<br><img src="images/response-header.png" alt="response-header"></p>
+<h3 id="强制缓存-1"><a href="#强制缓存-1" class="headerlink" title="强制缓存"></a>强制缓存</h3><p>对于强制缓存，服务器响应的header中会用两个字段来表明——Expires和Cache-Control。</p>
+<p><strong>Expires</strong><br>Exprires的值为服务端返回的数据到期时间。当再次请求时的请求时间小于返回的此时间，则直接使用缓存数据。但由于服务端时间和客户端时间可能有误差，这也将导致缓存命中的误差，另一方面，Expires是HTTP1.0的产物，故现在大多数使用Cache-Control替代。</p>
+<p><strong>Cache-Control</strong><br>Cache-Control有很多属性，不同的属性代表的意义也不同。</p>
+<p>private：客户端可以缓存<br>public：客户端和代理服务器都可以缓存<br>max-age=t：缓存内容将在t秒后失效<br>no-cache：需要使用协商缓存来验证缓存数据<br>no-store：所有内容都不会缓存。</p>
+<h3 id="协商缓存-1"><a href="#协商缓存-1" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存需要进行对比判断是否可以使用缓存。浏览器第一次请求数据时，服务器会将缓存标识与数据一起响应给客户端，客户端将它们备份至缓存中。再次请求时，客户端会将缓存中的标识发送给服务器，服务器根据此标识判断。若未失效，返回304状态码，浏览器拿到此状态码就可以直接使用缓存数据了。<br>对于协商缓存来说，缓存标识我们需要着重理解一下，下面我们将着重介绍它的两种缓存方案。</p>
+<p><strong>Last-Modified</strong></p>
+<p>服务器在响应请求时，会告诉浏览器资源的最后修改时间。</p>
+<p>if-Modified-Since:<br>浏览器再次请求服务器的时候，请求头会包含此字段，后面跟着在缓存中获得的最后修改时间。服务端收到此请求头发现有if-Modified-Since，则与被请求资源的最后修改时间进行对比，如果一致则返回304和响应报文头，浏览器只需要从缓存中获取信息即可。从字面上看，就是说：从某个时间节点算起，是否文件被修改了</p>
+<p>1.如果真的被修改：那么开始传输响应一个整体，服务器返回：200 OK<br>2.如果没有被修改：那么只需传输响应header，服务器返回：304 Not Modified</p>
+<p>if-Unmodified-Since:<br>从字面上看, 就是说: 从某个时间点算起, 是否文件没有被修改</p>
+<p>1.如果没有被修改:则开始`继续’传送文件: 服务器返回: 200 OK<br>2.如果文件被修改:则不传输,服务器返回: 412 Precondition failed (预处理错误)</p>
+<p>这两个的区别是一个是修改了才下载一个是没修改才下载。Last-Modified 说好却也不是特别好，因为如果在服务器上，一个资源被修改了，但其实际内容根本没发生改变，会因为Last-Modified时间匹配不上而返回了整个实体给客户端（即使客户端缓存里有个一模一样的资源）。为了解决这个问题，HTTP1.1推出了Etag。</p>
+<p><strong>Etag</strong><br>服务器响应请求时，通过此字段告诉浏览器当前资源在服务器生成的唯一标识（生成规则由服务器决定)</p>
+<p>If-None-Match：<br>再次请求服务器时，浏览器的请求报文头部会包含此字段，后面的值为在缓存中获取的标识。服务器接收到次报文后发现If-None-Match则与被请求资源的唯一标识进行对比。</p>
+<p>1.不同，说明资源被改动过，则响应整个资源内容，返回状态码200。<br>2.相同，说明资源无心修改，则响应header，浏览器直接从缓存中获取数据信息。返回状态码304.</p>
+<p>但是实际应用中由于Etag的计算是使用算法来得出的，而算法会占用服务端计算的资源，所有服务端的资源都是宝贵的，所以就很少使用Etag了。</p>
+<h2 id="缓存的优点"><a href="#缓存的优点" class="headerlink" title="缓存的优点"></a>缓存的优点</h2><ul>
+<li>减少了冗余的数据传递，节省宽带流量</li>
+<li>减少了服务器的负担，大大提高了网站性能</li>
+<li>加快了客户端加载网页的速度，这也正是HTTP缓存属于客户端缓存的原因。</li>
+</ul>
+<h2 id="不同刷新的请求执行过程"><a href="#不同刷新的请求执行过程" class="headerlink" title="不同刷新的请求执行过程"></a>不同刷新的请求执行过程</h2><p>1.浏览器地址栏中写入URL，回车<br>浏览器发现缓存中有这个文件了，不用继续请求了，直接去缓存拿。（最快）</p>
+<p>2.F5<br>F5就是告诉浏览器，别偷懒，好歹去服务器看看这个文件是否有过期了。于是浏览器就胆胆襟襟的发送一个请求带If-Modify-since。</p>
+<p>3.Ctrl+F5<br>告诉浏览器，你先把你缓存中的这个文件给我删了，然后再去服务器请求个完整的资源文件下来。于是客户端就完成了强行更新的操作.</p>
+<p><a href="https://juejin.im/post/5a1d4e546fb9a0450f21af23" target="_blank" rel="noopener">HTTP缓存机制</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/写React组件-你应该考虑的几点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1637,144 +1786,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/重绘和重排/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/07/重绘和重排/" itemprop="url">重绘和重排</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T16:56:12+08:00">
-                2018-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="影响浏览器重绘和重排"><a href="#影响浏览器重绘和重排" class="headerlink" title="影响浏览器重绘和重排"></a>影响浏览器重绘和重排</h1><h2 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h2><p>重绘是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性值，比同等元素要多花两倍时间，这就是我们尽量避免使用table布局页面的原因之一。</p>
-<h2 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h2><p>浏览器下载完页面中的所有资源（HTML、JavaScript、CSS、图片）之后会解析生成两个内部数据结构（DOM树和渲染树），DOM树表示页面结构，渲染树表示DOM节点如何显示。重排是DOM元素的几何属性变化，DOM树的结构变化，渲染树需要重新计算。</p>
-<h2 id="重绘和重排的关系"><a href="#重绘和重排的关系" class="headerlink" title="重绘和重排的关系"></a>重绘和重排的关系</h2><p>重绘不会引起重排，但重排一定会引起重绘，一个元素的重排通常会带来一系列的反应，甚至触发整个文档的重排和重绘，性能代价是高昂的。</p>
-<h2 id="什么情况下会触发重排？"><a href="#什么情况下会触发重排？" class="headerlink" title="什么情况下会触发重排？"></a>什么情况下会触发重排？</h2><ol>
-<li>页面渲染初始化时；（这个无法避免）</li>
-<li>浏览器窗口改变尺寸；</li>
-<li>元素尺寸改变时；</li>
-<li>元素位置改变时；</li>
-<li>元素内容改变时；</li>
-<li>添加或删除可见的DOM 元素时。</li>
-</ol>
-<h2 id="重排优化有如下五种方法"><a href="#重排优化有如下五种方法" class="headerlink" title="重排优化有如下五种方法"></a>重排优化有如下五种方法</h2><ol>
-<li>将多次改变样式属性的操作合并成一次操作，减少DOM访问。</li>
-<li>如果要批量添加DOM，可以先让元素脱离文档流，操作完后再带入文档流，这样只会触发一次重排。（fragment元素的应用）</li>
-<li>将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。</li>
-<li>由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发两次重排。</li>
-<li>在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行。</li>
-</ol>
-<p><a href="http://www.cnblogs.com/yuri2016/p/6542625.html" target="_blank" rel="noopener">参考</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1825,7 +1836,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
