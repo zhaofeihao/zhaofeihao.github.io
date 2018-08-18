@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="css," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="不是把平凡的事写伟大，是要把伟大的事写的平凡。">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="positionCSS position属性用于指定一个元素在文档中的定位方式。top，right，bottom 和 left 属性则决定了该元素的最终位置。 定位类型 定位元素（positioned element）是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。 相对定位元素（relatively positioned element）是">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="斐昊">
-<meta property="og:url" content="http://yoursite.com/2018/05/26/hello-world/index.html">
+<meta property="og:title" content="position定位属性值详解">
+<meta property="og:url" content="http://yoursite.com/2018/08/18/position定位属性值详解/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="不是把平凡的事写伟大，是要把伟大的事写的平凡。">
+<meta property="og:description" content="positionCSS position属性用于指定一个元素在文档中的定位方式。top，right，bottom 和 left 属性则决定了该元素的最终位置。 定位类型 定位元素（positioned element）是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。 相对定位元素（relatively positioned element）是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-11T01:27:08.984Z">
+<meta property="og:updated_time" content="2018-08-18T01:54:55.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐昊">
-<meta name="twitter:description" content="不是把平凡的事写伟大，是要把伟大的事写的平凡。">
+<meta name="twitter:title" content="position定位属性值详解">
+<meta name="twitter:description" content="positionCSS position属性用于指定一个元素在文档中的定位方式。top，right，bottom 和 left 属性则决定了该元素的最终位置。 定位类型 定位元素（positioned element）是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。 相对定位元素（relatively positioned element）是">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/26/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/18/position定位属性值详解/"/>
 
 
 
 
 
-  <title>斐昊 | 赵斐昊</title>
+  <title>position定位属性值详解 | 赵斐昊</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/position定位属性值详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵斐昊">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">斐昊</h1>
+          <h1 class="post-title" itemprop="name headline">position定位属性值详解</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T14:09:10+08:00">
-                2018-05-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T09:27:17+08:00">
+                2018-08-18
               </time>
             
 
@@ -330,9 +330,28 @@
       
 
       
-        <blockquote>
-<p>不是把平凡的事写伟大，是要把伟大的事写的平凡。</p>
-</blockquote>
+        <h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p>CSS <code>position</code>属性用于指定一个元素在文档中的定位方式。<code>top</code>，<code>right</code>，<code>bottom</code> 和 <code>left</code> 属性则决定了该元素的最终位置。</p>
+<h2 id="定位类型"><a href="#定位类型" class="headerlink" title="定位类型"></a>定位类型</h2><ul>
+<li><strong>定位元素（positioned element）</strong>是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。</li>
+<li><strong>相对定位元素（relatively positioned element）</strong>是计算后位置属性为 relative 的元素。</li>
+<li><strong>绝对定位元素（absolutely positioned element）</strong>是计算后位置属性为 absolute 或 fixed 的元素。</li>
+<li><strong>粘性定位元素（stickily positioned element）</strong>是计算后位置属性为 sticky 的元素。</li>
+</ul>
+<p>大多数情况下，height和width 被设定为auto的绝对定位元素，按其内容大小调整尺寸。但是，被绝对定位的元素可以通过指定top和bottom ，保留height未指定（即auto），来填充可用的垂直空间。它们同样可以通过指定left 和 right并将width 指定为auto来填充可用的水平空间。</p>
+<p>除了上述情况（绝对定位元素填充可用空间）：</p>
+<ul>
+<li>如果top和bottom都被指定（技术上，而不是auto），<code>top</code> 胜出。</li>
+<li>如果指定了left 和right两侧，则在direction为<code>ltr</code>（中文、英语等）时<code>left</code> 赢，并且在direction为<code>rtl</code>时<code>right</code>赢（阿拉伯文，希伯来文等）。</li>
+</ul>
+<h2 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h2><ul>
+<li><code>static</code> 该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。</li>
+<li><code>relative</code> 该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效。</li>
+<li><code>absolute</code> 不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。</li>
+<li><code>fixed</code> 不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform  属性非 none 时，容器由视口改为该祖先。</li>
+<li><code>sticky</code> 盒位置根据正常流计算(这称为正常流动中的位置)，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位。在所有情况下（即便被定位元素为 table 时），该元素定位均不对后续元素造成影响。当元素 B 被粘性定位时，后续元素的位置仍按照 B 未定位时的位置来确定。position: sticky 对 table 元素的效果与 position: relative 相同。<strong>粘性定位可以被认为是相对定位和固定定位的混合。元素在跨越特定阈值前为相对定位，之后为固定定位。</strong></li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position#%E7%A4%BA%E4%BE%8B" target="_blank" rel="noopener">MDN示例</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position" target="_blank" rel="noopener">参考：MDN position</a></p>
 
       
     </div>
@@ -348,6 +367,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
 
       
       
@@ -357,15 +382,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/16/前端攻击技术-XSS和CSRF/" rel="next" title="前端攻击技术-XSS和CSRF">
+                <i class="fa fa-chevron-left"></i> 前端攻击技术-XSS和CSRF
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/03/js实现几种排序/" rel="prev" title="js实现几种排序">
-                js实现几种排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -417,8 +442,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -469,6 +503,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#position"><span class="nav-number">1.</span> <span class="nav-text">position</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位类型"><span class="nav-number">1.1.</span> <span class="nav-text">定位类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取值"><span class="nav-number">1.2.</span> <span class="nav-text">取值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.3.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

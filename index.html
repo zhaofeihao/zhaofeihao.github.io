@@ -260,6 +260,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/position定位属性值详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/position定位属性值详解/" itemprop="url">position定位属性值详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T09:27:17+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p>CSS <code>position</code>属性用于指定一个元素在文档中的定位方式。<code>top</code>，<code>right</code>，<code>bottom</code> 和 <code>left</code> 属性则决定了该元素的最终位置。</p>
+<h2 id="定位类型"><a href="#定位类型" class="headerlink" title="定位类型"></a>定位类型</h2><ul>
+<li><strong>定位元素（positioned element）</strong>是其计算后位置属性为 relative, absolute, fixed 或 sticky 的一个元素。</li>
+<li><strong>相对定位元素（relatively positioned element）</strong>是计算后位置属性为 relative 的元素。</li>
+<li><strong>绝对定位元素（absolutely positioned element）</strong>是计算后位置属性为 absolute 或 fixed 的元素。</li>
+<li><strong>粘性定位元素（stickily positioned element）</strong>是计算后位置属性为 sticky 的元素。</li>
+</ul>
+<p>大多数情况下，height和width 被设定为auto的绝对定位元素，按其内容大小调整尺寸。但是，被绝对定位的元素可以通过指定top和bottom ，保留height未指定（即auto），来填充可用的垂直空间。它们同样可以通过指定left 和 right并将width 指定为auto来填充可用的水平空间。</p>
+<p>除了上述情况（绝对定位元素填充可用空间）：</p>
+<ul>
+<li>如果top和bottom都被指定（技术上，而不是auto），<code>top</code> 胜出。</li>
+<li>如果指定了left 和right两侧，则在direction为<code>ltr</code>（中文、英语等）时<code>left</code> 赢，并且在direction为<code>rtl</code>时<code>right</code>赢（阿拉伯文，希伯来文等）。</li>
+</ul>
+<h2 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h2><ul>
+<li><code>static</code> 该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。</li>
+<li><code>relative</code> 该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效。</li>
+<li><code>absolute</code> 不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。</li>
+<li><code>fixed</code> 不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform  属性非 none 时，容器由视口改为该祖先。</li>
+<li><code>sticky</code> 盒位置根据正常流计算(这称为正常流动中的位置)，然后相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位。在所有情况下（即便被定位元素为 table 时），该元素定位均不对后续元素造成影响。当元素 B 被粘性定位时，后续元素的位置仍按照 B 未定位时的位置来确定。position: sticky 对 table 元素的效果与 position: relative 相同。<strong>粘性定位可以被认为是相对定位和固定定位的混合。元素在跨越特定阈值前为相对定位，之后为固定定位。</strong></li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position#%E7%A4%BA%E4%BE%8B" target="_blank" rel="noopener">MDN示例</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position" target="_blank" rel="noopener">参考：MDN position</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/16/前端攻击技术-XSS和CSRF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -331,7 +472,31 @@
       
         
           
-            
+            <h1 id="web前端攻击技术与防范——XSS、CSRF"><a href="#web前端攻击技术与防范——XSS、CSRF" class="headerlink" title="web前端攻击技术与防范——XSS、CSRF"></a>web前端攻击技术与防范——XSS、CSRF</h1><p>先上结论：</p>
+<ol>
+<li>xss 跨站脚本攻击，主要是前端层面的，用户在输入层面插入攻击脚本，改变页面的显示，或则窃取网站 cookie，预防方法：不相信用户的所有操作，对用户输入进行一个转义，不允许 js 对 cookie 的读写</li>
+<li>csrf 跨站请求伪造，以你的名义，发送恶意请求，通过 cookie 加参数等形式过滤</li>
+<li>我们没法彻底杜绝攻击，只能提高攻击门槛</li>
+</ol>
+<h2 id="XSS攻击-cross-site-script"><a href="#XSS攻击-cross-site-script" class="headerlink" title="XSS攻击(cross-site script)"></a>XSS攻击(cross-site script)</h2><p><strong>1、XSS攻击形式：</strong><br>主要是通过html标签注入，篡改网页，插入恶意的脚本，前端可能没有经过严格的校验直接就进到数据库，数据库又通过前端程序又回显到浏览器.</p>
+<p><strong>2、攻击的目的：</strong><br>攻击者可通过这种方式拿到用户的一些信息，例如cookie 获取敏感信息，甚至自己建网站，做一些非法的操作等；或者，拿到数据后以用户的身份进行勒索，发一下不好的信息等。</p>
+<p><strong>3、攻击防御</strong><br>首先前端要对用户输入的信息进行过滤，可以用正则，通过替换标签的方式进行转码或解码<br>例如&lt;&gt; 空格 &amp; ‘’ “”等替换成html编码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> htmlEncodeByRegExp:<span class="function"><span class="keyword">function</span> (<span class="params">str</span>)</span>&#123;  </span><br><span class="line">      <span class="keyword">var</span> s = <span class="string">""</span>;</span><br><span class="line">      <span class="keyword">if</span>(str.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">      s = str.replace(<span class="regexp">/&amp;/g</span>,<span class="string">"&amp;amp;"</span>);</span><br><span class="line">      s = s.replace(<span class="regexp">/&lt;/g</span>,<span class="string">"&amp;lt;"</span>);</span><br><span class="line">      s = s.replace(<span class="regexp">/&gt;/g</span>,<span class="string">"&amp;gt;"</span>);</span><br><span class="line">      s = s.replace(<span class="regexp">/ /g</span>,<span class="string">"&amp;nbsp;"</span>);</span><br><span class="line">     s = s.replace(<span class="regexp">/\'/g</span>,<span class="string">"&amp;#39;"</span>);</span><br><span class="line">     s = s.replace(<span class="regexp">/\"/g</span>,<span class="string">"&amp;quot;"</span>);</span><br><span class="line">     <span class="keyword">return</span> s;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="CSRF攻击-cross-site-request-forgery-跨站请求伪造"><a href="#CSRF攻击-cross-site-request-forgery-跨站请求伪造" class="headerlink" title="CSRF攻击(cross site request forgery,跨站请求伪造)"></a>CSRF攻击(cross site request forgery,跨站请求伪造)</h2><p>CSRF也是一种网络攻击方式，比起xss攻击，是另外一种更具危险性的攻击方式，xss是站点用户进行攻击，而csrf是通过伪装成站点用户进行攻击，而且防范的资源也少，难以防范</p>
+<p>csrf攻击形式：攻击者盗用用户的身份信息，并以用户的名义进行发送恶意的请求等，例如发邮件，盗取账号等非法手段.</p>
+<blockquote>
+<p>例如：你登录网站，并在本地种下了cookie<br>     如果在没退出该网站的时候 不小心访问了恶意网站，而且这个网站需要你发一些请求等<br>     此时，你是携带cookie进行访问的，那么你的cookie里的信息就会被恶意网站捕捉到，那么你的信息就被盗用，导致一些不法分子做一些事情</p>
+</blockquote>
+<p><strong>攻击防御：</strong><br>1、验证HTTP Referer字段</p>
+<blockquote>
+<p>在HTTP头中有Referer字段，他记录该HTTP请求的来源地址，如果跳转的网站与来源地址相符，那就是合法的，如果不符则可能是csrf攻击，拒绝该请求</p>
+</blockquote>
+<p>2、在请求地址中添加token并验证</p>
+<blockquote>
+<p>这种的话在请求的时候加一个token，值可以是随机产生的一段数字，<br>token是存入数据库之后，后台返给客户端的，如果客户端再次登录的时候，<br>后台发现token没有，或者通过查询数据库不正确，那么就拒绝该请求</p>
+</blockquote>
+<p>如果想防止一个账号避免在不同的机器上登录，那么我们就可以通过token来判断，<br>如果a机器登录后，我们就将用户的token从数据库清除，从新生成，<br>那么另外一台b机器在执行操作的时候，token就失效了，只能重新登录，这样就可以防止两台机器登同一账号</p>
+<p>3、在HTTP头中自定义属性并验证<br>如果说通过每次请求的时候都得加token那么各个接口都得加很麻烦，<br>那么我们通过http的请求头来设置token<br>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/v1/api'</span>,</span><br><span class="line">    dataType: <span class="string">'json'</span>,</span><br><span class="line">    data: param,</span><br><span class="line">    type:<span class="string">'post'</span>,</span><br><span class="line">    headers: &#123;<span class="string">'Accept'</span>:<span class="string">'application/json'</span>,<span class="string">'Authorization'</span>:tokenValue&#125;</span><br><span class="line">    success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -450,7 +615,15 @@
       
         
           
-            <h1 id="什么是ajax跨域"><a href="#什么是ajax跨域" class="headerlink" title="什么是ajax跨域"></a>什么是ajax跨域</h1><h2 id="ajax跨域原理"><a href="#ajax跨域原理" class="headerlink" title="ajax跨域原理"></a>ajax跨域原理</h2><p>ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">浏览器同源政策及其规避方法(阮一峰)</a></p>
+            <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ol>
+<li>浏览器的同源策略导致了跨域</li>
+<li>用于隔离潜在恶意文件的重要安全机制</li>
+<li>jsonp ，允许 script 加载第三方资源</li>
+<li>nginx 反向代理（nginx 服务内部配置 Access-Control-Allow-Origin *）</li>
+<li>cors 前后端协作设置请求头部，Access-Control-Allow-Origin 等头部信息</li>
+<li>iframe 嵌套通讯，postmessage</li>
+</ol>
+<h1 id="什么是ajax跨域"><a href="#什么是ajax跨域" class="headerlink" title="什么是ajax跨域"></a>什么是ajax跨域</h1><h2 id="ajax跨域原理"><a href="#ajax跨域原理" class="headerlink" title="ajax跨域原理"></a>ajax跨域原理</h2><p>ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">浏览器同源政策及其规避方法(阮一峰)</a></p>
 <h2 id="CORS请求原理"><a href="#CORS请求原理" class="headerlink" title="CORS请求原理"></a>CORS请求原理</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解(阮一峰)</a></p>
 <p><strong>如何判断是否是简单请求?</strong></p>
 <p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。只要同时满足以下两大条件，就属于简单请求。</p>
@@ -1197,6 +1370,12 @@
 <p>如果发现多个地方在做同样的事情，那么这时候就应该合并重复代码。如果在代码中看到了模式，那么表明需要实行 DRY。</p>
 </blockquote>
 <p>组件中的state的设计，尽量简化数据，也要遵循DRY(Don’t Repeat Yourself)原则。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>参考：<a href="http://ijser.cn/2017-06-25-web-component-design-in-front-end/" target="_blank" rel="noopener">前端组件化设计思路</a></p>
+<ol>
+<li>组件封装的目的是为了重用，提高开发效率和代码质量</li>
+<li>低耦合，单一职责，可复用性，可维护性</li>
+<li>前端组件化设计思路</li>
+</ol>
 <p><a href="https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/#6testableandtested" target="_blank" rel="noopener">7 architectural attributes of a reliable React component</a><br><a href="https://juejin.im/post/5b207f3c5188257d47354a19" target="_blank" rel="noopener">可靠的 React 组件：单一职责原则</a></p>
 
           
@@ -1498,257 +1677,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/08/html5和css3基础知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/08/html5和css3基础知识/" itemprop="url">html5和css3基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-08T17:01:13+08:00">
-                2018-08-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h2 id="html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><a href="#html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？" class="headerlink" title="html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？"></a>html5有哪些新特性，移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h2><p><strong>新特性：</strong></p>
-<ol>
-<li><p>拖拽释放(Drag and drop) API</p>
-</li>
-<li><p>语义化更好的内容标签（header,nav,footer,aside,article,section）</p>
-</li>
-<li><p>音频、视频API(audio,video)</p>
-</li>
-<li><p>画布(Canvas) API</p>
-</li>
-<li><p>地理(Geolocation) API</p>
-</li>
-<li><p>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<a href="https://blog.csdn.net/u013628152/article/details/50269323" target="_blank" rel="noopener">参考博文</a> <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/LocalStorage" target="_blank" rel="noopener">MDN</a></p>
-</li>
-<li><p>sessionStorage 的数据在浏览器关闭后自动删除</p>
-</li>
-<li><p>表单控件，calendar、date、time、email、url、search  </p>
-</li>
-<li><p>新的技术webworker, websocket, Geolocation</p>
-</li>
-</ol>
-<p><strong>移除的元素：</strong></p>
-<ol>
-<li><p>纯表现的元素：basefont，big，center，font, s，strike，tt，u；</p>
-</li>
-<li><p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
-</li>
-</ol>
-<p><strong>支持HTML5新标签：</strong></p>
-<ol>
-<li>IE8/IE7/IE6支持通过 document.createElement 方法产生的标签，可以利用这一特性让这些浏览器支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式（当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架）：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;script&gt; src="http://html5shim.googlecode.com/svn/trunk/html5.js"&lt;/script&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>本地存储（Local Storage ）和cookies（储存在用户本地终端上的数据）之间的区别是什么？</strong><br>Cookies:服务器和客户端都可以访问；大小只有4KB左右；有有效期，过期后将会删除；<br>本地存储：只有本地浏览器端可访问数据，服务器不能访问本地存储直到故意通过POST或者GET的通道发送到服务器；每个域5MB；没有过期数据，它将保留知道用户从浏览器清除或者使用Javascript代码移除</p>
-<p><strong>如何实现浏览器内多个标签页之间的通信?</strong><br>调用 localstorge、cookies 等本地存储方式</p>
-<p><strong>新的 HTML5 文档类型和字符集是？</strong><br>HTML5文档类型：&lt;!doctype html&gt;</p>
-<p>HTML5使用的编码<meta charset="”UTF-8”"></p>
-<p><strong>HTML5 Canvas 元素有什么用</strong><br>Canvas 元素用于在网页上绘制图形，该元素标签强大之处在于可以直接在 HTML 上进行图形操作。</p>
-<hr>
-<h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><p><strong>CSS3新特性</strong></p>
-<ol>
-<li><p>CSS3实现圆角（border-radius），阴影（box-shadow）</p>
-</li>
-<li><p>对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）</p>
-</li>
-<li><p>transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);// 旋转,缩放,定位,倾斜<br><a href="https://c.runoob.com/codedemo/3391" target="_blank" rel="noopener">示例</a></p>
-</li>
-<li><p>增加了更多的CSS选择器  多背景 rgba</p>
-</li>
-<li><p>在CSS3中唯一引入的伪元素是 ::selection.(::selection选择器匹配元素中被用户选中或处于高亮状态的部分。)</p>
-</li>
-<li><p>媒体查询，多栏布局</p>
-</li>
-<li><p>border-image</p>
-</li>
-</ol>
-<p><strong>使用transform实现一个div旋转</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#myDiv</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#2f69b3</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">transform</span><span class="selector-pseudo">:rotate(10deg)</span>; </span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:skew(20deg);  倾斜*/</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:scale(1.5); 放大 */</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform:translate(120px,0); X轴右移，Y轴不动 */</span></span></span><br><span class="line"><span class="css">            <span class="comment">/* transform: rotateZ(30deg); */</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'myDiv'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> myDiv = <span class="built_in">document</span>.getElementById(<span class="string">'myDiv'</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> t = <span class="number">10</span>;</span></span><br><span class="line"><span class="javascript">        setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            myDiv.style.transform = <span class="string">`rotate(<span class="subst">$&#123;t++&#125;</span>deg)`</span></span></span><br><span class="line"><span class="undefined">        &#125;,100)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>CSS3新增伪类</strong><br>p:first-of-type 选择属于其父元素的首个p元素的每个p元素。</p>
-<p>p:last-of-type  选择属于其父元素的最后p元素的每个p元素。</p>
-<p>p:only-of-type  选择属于其父元素唯一的p元素的每个p元素。</p>
-<p>p:only-child    选择属于其父元素的唯一子元素的每个p元素。</p>
-<p>p:nth-child(2)  选择属于其父元素的第二个子元素的每个p元素。</p>
-<p>:enabled、:disabled 控制表单控件的禁用状态。</p>
-<p>:checked，单选框或复选框被选中。</p>
-<p><strong>40个重要的H5面试题</strong><br><a href="http://blog.jobbole.com/78346/" target="_blank" rel="noopener">参考</a></p>
-<h1 id="其他一些HTML、css知识点"><a href="#其他一些HTML、css知识点" class="headerlink" title="其他一些HTML、css知识点"></a>其他一些HTML、css知识点</h1><p><strong>xhtml和html的区别</strong></p>
-<blockquote>
-<p>HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言<br>最主要的不同：<br>XHTML 元素必须被正确地嵌套。<br>XHTML 元素必须被关闭。<br>标签名必须用小写字母。<br>XHTML 文档必须拥有根元素。</p>
-</blockquote>
-<p><strong>盒子模型</strong></p>
-<blockquote>
-<p>在网页中，一个元素占有空间的大小由几个部分构成，其中包括元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）四个部分。这四个部分占有的空间中，有的部分可以显示相应的内容，而有的部分只用来分隔相邻的区域。4个部分一起构成了css中元素的盒模型。</p>
-</blockquote>
-<p><strong>对WEB标准以及W3C的理解与认识</strong></p>
-<blockquote>
-<p>标签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外 链css和js脚本、结构行为表现的分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维 护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；</p>
-</blockquote>
-<p><strong>行内元素\块级元素\ 空(void)元素</strong></p>
-<blockquote>
-<p>行内元素：a、b、span、img、input、strong、select、label、em、button、textarea<br>块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote<br>空元素：即系没有内容的HTML元素，例如：br、meta、hr、link、input、img</p>
-</blockquote>
-<p><strong>CSS引入的方式有哪些? link和@import的区别</strong></p>
-<blockquote>
-<p>内联方式：指的是直接在 HTML 标签中的 style 属性中添加 CSS。<br>嵌入方式：指的是在 HTML 头部中的 &lt;style&gt; 标签下书写 CSS 代码。<br>链接方式：指的是使用 HTML 头部的 &lt;head&gt; 标签通过&lt;link href=‘xx.css’&gt;引入外部的 CSS 文件。<br>导入方式：指的是使用 CSS 规则引入外部 CSS 文件。@import url(style.css);</p>
-<p>区别：<br>link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。<br>link支持使用Javascript控制DOM去改变样式；而@import不支持。</p>
-</blockquote>
-<p><strong>src与href的区别</strong></p>
-<blockquote>
-<p>href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。</p>
-<p>src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。</p>
-</blockquote>
-<p><strong>css属性的继承</strong><br>可以继承的属性很少，只有颜色，文字，字体间距、行高、对齐方式，和列表的样式可以继承。</p>
-<blockquote>
-<p>所有元素可继承：visibility和cursor。<br>内联元素可继承：letter-spacing、word-spacing、white-space、line-height、color、font、font-family、font-size、font-style、font-variant、font-weight、text-decoration、text-transform、direction。<br>终端块状元素可继承：text-indent和text-align。<br>列表元素可继承：list-style、list-style-type、list-style-position、list-style-image。</p>
-</blockquote>
-<p><strong>同步和异步的区别</strong></p>
-<blockquote>
-<p>同步是阻塞模式，异步是非阻塞模式。<br>同步就是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个进程将会一直等待下去，直到收到返回信息才继续执行下去；<br>异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。</p>
-</blockquote>
-<p><strong>px和em的区别</strong></p>
-<blockquote>
-<p>px和em都是长度单位，区别是，px的值是固定的，指定是多少就是多少，计算比较容易。em得值不是固定的，并且em会继承父级元素的字体大小。浏览器的默认字体高都是16px。所以未经调整的浏览器都符合: 1em=16px。那么12px=0.75em, 10px=0.625em</p>
-</blockquote>
-<p><strong>优雅降级和渐进增强</strong></p>
-<blockquote>
-<p>渐进增强 progressive enhancement：<br>针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
-<p>优雅降级 graceful degradation：<br>一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
-<p>区别：<br>a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给<br>b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要<br>c. 降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带</p>
-</blockquote>
-<p><strong>display:none和visibility:hidden的区别</strong></p>
-<blockquote>
-<p>display:none  隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，就当他从来不存在。</p>
-<p>visibility:hidden  隐藏对应的元素，但是在文档布局中仍保留原来的空间。</p>
-</blockquote>
-<p><strong>解释下浮动和它的工作原理？清除浮动的技巧</strong><br><a href="https://segmentfault.com/a/1190000004553339" target="_blank" rel="noopener">清除浮动方式总结</a></p>
-<blockquote>
-<p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</p>
-<p>1.使用空标签清除浮动。<br> 这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。(浮动的元素，高度会塌陷,添加一个空div，利用CSS提供的clear:both清楚浮动，让父级div自动获取高度)<br>2.使用overflow。<br> 给包含浮动元素的父标签添加css属性 overflow:hidden; zoom:1; zoom:1用于兼容IE6。<br>3.使用after伪对象清除浮动。<br> 该方法只适用于非IE浏览器。使用中需注意以下几点。一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；</p>
-</blockquote>
-<p><strong>定位position详解:relative与absolute</strong></p>
-<blockquote>
-<p>position:relative; 如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）</p>
-<p>相对定位：relative 没有脱离正常的文档流，被设置元素相对于其原始位置而进行定位，其原始占位信息仍存在</p>
-<p>position:absolute; 表示绝对定位，位置将依据浏览器左上角开始计算。 绝对定位使元素脱离文档流，因此不占据空间。普通文档流中元素的布局就像绝对定位的元素不存在时一样。（因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其他元素并可以通过z-index来控制它层级次序。z-index的值越高，它显示的越在上层。）</p>
-<p>绝对定位：ablution 脱离了文档流与浮动模型，独立于其他对象而存在，没有占位。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1794,7 +1727,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

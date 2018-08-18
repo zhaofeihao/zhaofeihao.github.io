@@ -260,6 +260,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/06/http协议的一些基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/06/http协议的一些基础知识/" itemprop="url">http协议的一些基础知识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-06T16:35:30+08:00">
+                2018-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="http需要知道的"><a href="#http需要知道的" class="headerlink" title="http需要知道的"></a>http需要知道的</h1><h2 id="Http与Https的区别"><a href="#Http与Https的区别" class="headerlink" title="Http与Https的区别"></a>Http与Https的区别</h2><p>1.HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头<br>2.HTTP 是不安全的，而 HTTPS 是安全的<br>3.HTTP 标准端口是80 ，而 HTTPS 的标准端口是443<br>4.在OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层<br>5.HTTP 无法加密，而HTTPS 对传输的数据进行加密<br>6.HTTP无需证书，而HTTPS 需要CA机构wosign的颁发的SSL证书</p>
+<blockquote>
+<p>https = http + 加密 + 认证 + 完整性保护</p>
+</blockquote>
+<p>http的缺点：</p>
+<ul>
+<li>通信使用明文(不加密)，内容可能会被窃听</li>
+<li>不验证通信方身份，因此有可能遭遇伪装</li>
+<li>无法证明报文完整性，所以有可能遭篡改</li>
+</ul>
+<p>https解决了上述三个问题：</p>
+<ul>
+<li>https采用混合加密机制(共享密钥加密+公开密钥加密)</li>
+<li>通过证书来验证服务器和客户端身份</li>
+</ul>
+<h2 id="HTTPS工作原理"><a href="#HTTPS工作原理" class="headerlink" title="HTTPS工作原理"></a>HTTPS工作原理</h2><p>1.首先HTTP请求服务端生成证书，客户端对证书的有效期、合法性、域名是否与请求的域名一致、证书的公钥（RSA加密）等进行校验；<br>2.客户端如果校验通过后，就根据证书的公钥的有效， 生成随机数，随机数使用公钥进行加密（RSA加密）；<br>3.消息体产生后，对它的摘要进行MD5（或者SHA1）算法加密，此时就得到了RSA签名；<br>4.发送给服务端，此时只有服务端（RSA私钥）能解密。<br>5.解密得到的随机数，再用AES加密，作为密钥（此时的密钥只有客户端和服务端知道）。</p>
+<h2 id="Http协议是无状态协议"><a href="#Http协议是无状态协议" class="headerlink" title="Http协议是无状态协议"></a>Http协议是无状态协议</h2><p><strong>无状态协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息。也就是说，当客户端一次HTTP请求完成以后，客户端再发送一次HTTP请求，HTTP并不知道当前客户端是一个”老用户“。</strong></p>
+<p>可以使用Cookie来解决无状态的问题，Cookie就相当于一个通行证，第一次访问的时候服务器给客户端发送一个Cookie，当客户端再次来的时候，拿着Cookie(通行证)，那么服务器就知道这个是”老用户“。</p>
+<h2 id="URI和URL的区别"><a href="#URI和URL的区别" class="headerlink" title="URI和URL的区别"></a>URI和URL的区别</h2><p><strong>URI，是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。</strong></p>
+<p>Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的。<br>绝对URI格式如下：<br>协议名+登录信息(可省)+服务器地址+服务器端口号+带层次的文件路径+查询字符串+片段标识符<br>如<a href="http://user:pass@www.example.com:80/dir/index.html?uid=1#ch1" target="_blank" rel="noopener">http://user:pass@www.example.com:80/dir/index.html?uid=1#ch1</a></p>
+<p><strong>URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。</strong></p>
+<h2 id="常用的HTTP方法"><a href="#常用的HTTP方法" class="headerlink" title="常用的HTTP方法"></a>常用的HTTP方法</h2><p>1.GET - 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器<br>2.POST - 用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>3.PUT - 传输文件，报文主体中包含文件内容，保存到对应URI位置，不安全。<br>4.HEAD - 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br>5.DELETE - 删除文件，与PUT方法相反，删除对应URI位置的文件，不安全。<br>6.OPTIONS - 查询相应URI支持的HTTP方法。<br>7.TRACE - 让服务器将之前的请求通信返回给客户端，查明途径的代理服务器通信过程中的操作。<br>8.CONNECT - 要求在于代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。</p>
+<h2 id="GET方法与POST方法的区别"><a href="#GET方法与POST方法的区别" class="headerlink" title="GET方法与POST方法的区别"></a>GET方法与POST方法的区别</h2><ul>
+<li>get重点在从服务器上获取资源，post重点在向服务器发送数据；</li>
+<li>get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如 http ://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</li>
+<li>Get传输的数据量小，因为受URL长度限制，但效率较高；Post可以传输大量数据，所以上传文件时只能用Post方式；</li>
+<li>get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等；post较get安全性较高；</li>
+<li>get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码。post支持标准字符集，可以正确传递中文字符。</li>
+</ul>
+<h2 id="HTTP请求报文与响应报文格式"><a href="#HTTP请求报文与响应报文格式" class="headerlink" title="HTTP请求报文与响应报文格式"></a>HTTP请求报文与响应报文格式</h2><p>请求报文包含三部分：</p>
+<ul>
+<li>请求行：包含请求方法、URI、HTTP版本信息</li>
+<li>请求首部字段</li>
+<li>请求内容实体</li>
+<li>空行<br>响应报文包含三部分：</li>
+<li>状态行：包含HTTP版本、状态码、状态码的原因短语</li>
+<li>响应首部字段</li>
+<li>响应内容实体</li>
+<li>空行</li>
+</ul>
+<p>常见的首部<br>1.通用首部字段（请求报文与响应报文都会使用的首部字段）</p>
+<ul>
+<li>Date：创建报文时间</li>
+<li>Connection：连接的管理</li>
+<li>Cache-Control：缓存的控制</li>
+<li>Transfer-Encoding：报文主体的传输编码方式</li>
+</ul>
+<p>2.请求首部字段（请求报文会使用的首部字段）</p>
+<ul>
+<li>Host：请求资源所在服务器</li>
+<li>Accept：可处理的媒体类型</li>
+<li>Accept-Charset：可接收的字符集</li>
+<li>Accept-Encoding：可接受的内容编码</li>
+<li>Accept-Language：可接受的自然语言</li>
+</ul>
+<p>3.响应首部字段（响应报文会使用的首部字段）</p>
+<ul>
+<li>Accept-Ranges：可接受的字节范围</li>
+<li>Location：令客户端重新定向到的URI</li>
+<li>Server：HTTP服务器的安装信息</li>
+</ul>
+<p>4.实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</p>
+<ul>
+<li>Allow：资源可支持的HTTP方法</li>
+<li>Content-Type：实体主类的类型</li>
+<li>Content-Encoding：实体主体适用的编码方式</li>
+<li>Content-Language：实体主体的自然语言</li>
+<li>Content-Length：实体主体的的字节数</li>
+<li>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</li>
+</ul>
+<h2 id="一次完整的HTTP请求所经历的7个步骤"><a href="#一次完整的HTTP请求所经历的7个步骤" class="headerlink" title="一次完整的HTTP请求所经历的7个步骤"></a>一次完整的HTTP请求所经历的7个步骤</h2><p>1.建立TCP连接<br>2.Web浏览器向Web服务器发送请求行，方法名+资源+http版本<br>3.Web浏览器发送请求头，之后浏览器发送一空白行来通知服务器已经结束了该头信息的发送<br>4.Web服务器应答，应答的第一部分是协议的版本号和应答状态码。<br>5.Web服务器发送应答头<br>6.Web服务器向浏览器发送数据，Web服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，它就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据<br>7.Web服务器关闭TCP连接，一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码： <code>Connection:keep-alive</code> TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求。保持连接节省了为每个请求建立新连接所需的时间，还节约了网络带宽。</p>
+<p>建立TCP连接-&gt;发送请求行-&gt;发送请求头-&gt;（到达服务器）发送状态行-&gt;发送响应头-&gt;发送响应数据-&gt;断开TCP连接</p>
+<h2 id="常见的HTTP响应状态码"><a href="#常见的HTTP响应状态码" class="headerlink" title="常见的HTTP响应状态码"></a>常见的HTTP响应状态码</h2><ul>
+<li>200：请求被正常处理</li>
+<li>204：请求被受理但没有资源可以返回</li>
+<li>206：客户端只是请求资源的一部分，服务器只对请求的部分资源执行GET方法，响应报文中通过Content-Range指定范围的资源。</li>
+<li>301：永久性重定向</li>
+<li>302：临时重定向</li>
+<li>303：与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上</li>
+<li>304：发送附带条件的请求时，条件不满足时返回，与重定向无关</li>
+<li>307：临时重定向，与302类似，只是强制要求使用POST方法</li>
+<li>400：请求报文语法有误，服务器无法识别</li>
+<li>401：请求需要认证</li>
+<li>403：请求的对应资源禁止被访问</li>
+<li>404：服务器无法找到对应资源</li>
+<li>500：服务器内部错误</li>
+<li>503：服务器正忙</li>
+</ul>
+<h2 id="HTTP1-1版本新特性"><a href="#HTTP1-1版本新特性" class="headerlink" title="HTTP1.1版本新特性"></a>HTTP1.1版本新特性</h2><ul>
+<li>默认持久连接节省通信量，只要客户端服务端任意一端没有明确提出断开TCP连接，就一直保持连接，可以发送多次HTTP请求</li>
+<li>管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应</li>
+<li>断点续传</li>
+</ul>
+<h2 id="HTTP2-0新特性"><a href="#HTTP2-0新特性" class="headerlink" title="HTTP2.0新特性"></a>HTTP2.0新特性</h2><h3 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h3><p>改进传输性能，实现低延迟高吞吐量的呢？关键之一就是在应用层（HTTP）和传输层（TCP）之间增加一个二进制分帧层。</p>
+<p>在整理二进制分帧及其作用的时候我们先来铺垫一点关于帧的知识：</p>
+<ul>
+<li>帧：HTTP2.0通信的最小单位，所有帧都共享一个8字节的首部，其中包含帧的长度、类型、标志、还有一个保留位，并且至少有标识出当前帧所属的流的标识符，帧承载着特定类型的数据，如HTTP首部、负荷、等等。</li>
+<li>消息：比帧大的通讯单位，是指逻辑上的HTTP消息，比如请求、响应等。由一个或多个帧组成</li>
+<li>流：比消息大的通讯单位。是TCP连接中的一个虚拟通道，可以承载双向的消息。每个流都有一个唯一的整数标识符</li>
+</ul>
+<p><strong>什么是二进制分帧</strong><br>在二进制分帧层上，HTTP2.0会将所有传输信息分割为更小的消息和帧，并对它们采用二进制格式的编码将其封装。其中，HTTP1.X中的首部信息header封装到Headers帧中，而request body将被封装到Data帧中。<br><strong>二进制分帧如何工作</strong><br>HTTP2.0通信都在一个TCP连接上完成，这个连接可以承载任意数量的双向数据流，相应的每个数据流以消息的形式发送。而消息由一或多个帧组成，这些帧可以乱序发送，然后根据每个帧首部的流标识符重新组装。<br><strong>二进制分帧对性能优化工作的贡献</strong><br>二进制分帧主要是为下文中的各种特性提供了基础。它能把一个数据划分封装为更小更便捷的数据。首先是在单链接多资源方式中，减少了服务端的链接压力，内存占用更少，链接吞吐量更大。这一点可以结合下文中的多路复用来体会。另一方面，由于TCP链接的减少而使网络拥塞状态得以改善，同时慢启动时间的减少。使拥塞和丢包恢复的速度更快。</p>
+<h3 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a>首部压缩</h3><p>HTTP1.1并不支持HTTP首部压缩，为此SPDY和HTTP2.0出现了。SPDY是用的是DEFLATE算法，而HTTP2.0则使用了专门为首部压缩设计的HPACK算法。<br><strong>什么是首部压缩</strong><br>HTTP1.x每次通讯（请求或响应）都会携带首部信息用于描述资源属性。而HTTP2.0在客户端和服务端之间使用首部表来跟踪和存储之前发送的键值对。请求与响应首部的定义在HTTP2.0中基本没有变，只是所有首部键必须全部小写，而且要求行要独立为:method:、:scheme:、:host:、:path:这些键值对</p>
+<p><strong>首部压缩如何工作</strong><br>对于相同的数据，不再重新通过每次请求和响应发送。每个新的首部键值对要么追加到当前表的末尾，要么替换表中之前的值。首部表在HTTP2.0的链接存续期内始终存在，由客户端和服务端共同渐进的更新。</p>
+<p><strong>首部压缩性能优化工作的贡献</strong><br>首部表在HTTP2.0使用了首部压缩的技术。使报头更紧凑，更快速传输，有利于移动网络环境。减少每次通讯的数据量，使网络拥塞状态得以改善。</p>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>HTTP2.0为数据流和连接的流量提供了一个简单的机制：</p>
+<ul>
+<li>流量基于HTTP链接的每一跳进行，而非端到端的控制</li>
+<li>流量控制基于窗口更新帧进行，即接收方广播自己准备接收某个数据流的多少字节，以及对整个链接要接收多少个字节。</li>
+<li>流量控制有方向性，即接收方可能根据自己的情况为没个流乃至整个链接设置任意窗口大小</li>
+<li>流量控制可以由接收方禁用，包括针对个别的流和针对整个链接。</li>
+<li>帧的类型决定了流量控制是否适用于帧，目前只有DATA帧服从流量控制，所有其他类型的帧并不会消耗流量控制窗口的空间。这保证了重要的控制帧不会被流量控制阻塞</li>
+</ul>
+<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>在HTTP1.1中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量的限制。超过限制数目的请求会被阻塞。而HTTP2.0中的多路复用优化了这一性能。</p>
+<p><strong>什么是多路复用</strong><br>基于二进制分帧层，HTTP2.0可以在共享TCP链接的基础上同时发送请求和响应。HTTP消息被分解为独立的帧，而不破坏消息本身的语义，交错发出去，在另一端根据流标识符和首部将他们重新组装起来。</p>
+<p><strong>多路复用对性能优化工作的贡献</strong></p>
+<ul>
+<li>可以并行交错的发送请求和响应，这些请求和响应之间互不影响</li>
+<li>只使用一个链接即可并行发送多个请求和响应</li>
+<li>消除不必要的延迟，从而减少页面加载的时间</li>
+<li>不必再为绕过HTTP1.x限制而多做很多工作</li>
+</ul>
+<h3 id="请求优先级"><a href="#请求优先级" class="headerlink" title="请求优先级"></a>请求优先级</h3><p>把HTTP消息分为很多独立帧之后，就可以通过优化这些帧的交错和传输顺序进一步优化性能。</p>
+<p><strong>什么是请求优先级</strong><br>每个流都可以带有一个31bit的优先值：0表示最高优先级；2的31次方-1表示最低优先级。<br><strong>请求优先级如何工作</strong><br>客户端明确指定优先级，服务端可以根据这个优先级作为交互数据的依据，比如客户端优先设置为.css&gt;.js&gt;.jpg。服务端按此顺序返回结果更加有利于高效利用底层连接，提高用户体验。然而，在使用请求优先级时应注意服务端是否支持请求优先级，是否会引起队首阻塞问题，比如高优先级的慢响应请求会阻塞其他资源的交互。<br><strong>请求优先级对性能优化工作的贡献</strong><br>服务器可以根据流的优先级控制资源分配（CPU、内存、宽带），而在响应数据准备好之后，优先将最高优先级的帧发送给客户端。浏览器可以在发现资源时立即分派请求，指定每个流的优先级，让服务器决定最优的响应次序。这样请求就不用排队了，既节省了时间，又最大限度的利用了每个连接。</p>
+<h3 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h3><p>HTTP2.0新增的一个强大的新功能，就是服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确的请求。</p>
+<p><strong>什么是服务器推送（HTTP2.0中）</strong><br>服务端根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。如下图，客户端请求stream 1(/page.html)。服务端在返回stream 1的消息的同时推送了stream 2(/script.js)和stream 4(/style.css)</p>
+<p><strong>服务器推送如何工作</strong></p>
+<ul>
+<li>PUSH_PROMISE帧是服务端向客户端有意推送资源的信号。</li>
+<li>PUSH_PROMISE帧中只包含预推送资源的首部。如果客户端对PUSH_PROMISE帧没有意见，服务端在PUSH_PROMISE帧后发送响应的DATA帧。如果客户端已经缓存了该资源，不需要推送，可以拒绝PUSH_PROMISE帧。</li>
+<li>PUSH-PROMISE必须遵循请求-响应原则，只能借着对请求的响应推送资源。</li>
+<li>PUSH_PROMISE帧必须在返回响应之前发送，以免客户端出现竞态条件（竞态条件是指在多线程的情况下不同的执行顺序会导致计算机执行出不同的结果正确性不同）</li>
+<li>HTTP2.0连接后，客户端与服务端交换SETTINGS帧，借此限定双向并发的最大数量。因此，客户端可以限定推送流的数量，或者通过把这个只设置为0来完全禁止服务器推送。</li>
+<li>所有推送的资源都必须遵守同源策略。换句话说，服务器不能随便将第三方资源推送给客户端，而必须是经过双方的确认才行。</li>
+</ul>
+<p><strong>服务器推送对性能优化工作的贡献</strong><br>服务端推送是一种在客户端请求之前发送数据的机制。在HTTP2.0中，服务器可以对一个客户端的请求发送多个响应。如果一个请求是由你的主页发送的，服务器可能会响应主页内容、logo以及样式表，因为他知道客户端会用到这些东西。这样不但减轻了数据传送冗余步骤，也加快了页面响应的速度，提高了用户体验。</p>
+<h2 id="HTTP优化方案"><a href="#HTTP优化方案" class="headerlink" title="HTTP优化方案"></a>HTTP优化方案</h2><p>1.<code>TCP复用</code>：TCP连接复用是将多个客户端的HTTP请求复用到一个服务器端TCP连接上，而HTTP复用则是一个客户端的多个HTTP请求通过一个TCP连接进行处理。前者是负载均衡设备的独特功能；而后者是HTTP 1.1协议所支持的新功能，目前被大多数浏览器所支持。</p>
+<p>2.<code>内容缓存</code>：将经常用到的内容进行缓存起来，那么客户端就可以直接在内存中获取相应的数据了。</p>
+<p>3.<code>压缩</code>：将文本数据进行压缩，减少带宽</p>
+<p>4.<code>SSL加速（SSL Acceleration）</code>：使用SSL协议对HTTP协议进行加密，在通道内加密并加速</p>
+<p>5.<code>TCP缓冲</code>：通过采用TCP缓冲技术，可以提高服务器端响应时间和处理效率，减少由于通信链路问题给服务器造成的连接负担。</p>
+<p><a href="https://www.jianshu.com/p/fca985f0b40d" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/浏览器缓存机制关键字段/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1725,133 +1985,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/26/hello-world/" itemprop="url">斐昊</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T14:09:10+08:00">
-                2018-05-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>不是把平凡的事写伟大，是要把伟大的事写的平凡。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1897,7 +2035,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

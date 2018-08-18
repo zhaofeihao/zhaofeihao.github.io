@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是ajax跨域ajax跨域原理ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 浏览器同源政策及其规避方法(阮一峰) CORS请求原理CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。跨域资源共享 COR">
+<meta name="description" content="结论 浏览器的同源策略导致了跨域 用于隔离潜在恶意文件的重要安全机制 jsonp ，允许 script 加载第三方资源 nginx 反向代理（nginx 服务内部配置 Access-Control-Allow-Origin *） cors 前后端协作设置请求头部，Access-Control-Allow-Origin 等头部信息 iframe 嵌套通讯，postmessage  什么是ajax跨域">
 <meta name="keywords" content="javascript,interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax跨域解决方案">
 <meta property="og:url" content="http://yoursite.com/2018/08/16/ajax跨域解决方案/index.html">
 <meta property="og:site_name" content="赵斐昊">
-<meta property="og:description" content="什么是ajax跨域ajax跨域原理ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 浏览器同源政策及其规避方法(阮一峰) CORS请求原理CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。跨域资源共享 COR">
+<meta property="og:description" content="结论 浏览器的同源策略导致了跨域 用于隔离潜在恶意文件的重要安全机制 jsonp ，允许 script 加载第三方资源 nginx 反向代理（nginx 服务内部配置 Access-Control-Allow-Origin *） cors 前后端协作设置请求头部，Access-Control-Allow-Origin 等头部信息 iframe 嵌套通讯，postmessage  什么是ajax跨域">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-16T07:47:00.107Z">
+<meta property="og:updated_time" content="2018-08-16T11:07:01.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax跨域解决方案">
-<meta name="twitter:description" content="什么是ajax跨域ajax跨域原理ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 浏览器同源政策及其规避方法(阮一峰) CORS请求原理CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。跨域资源共享 COR">
+<meta name="twitter:description" content="结论 浏览器的同源策略导致了跨域 用于隔离潜在恶意文件的重要安全机制 jsonp ，允许 script 加载第三方资源 nginx 反向代理（nginx 服务内部配置 Access-Control-Allow-Origin *） cors 前后端协作设置请求头部，Access-Control-Allow-Origin 等头部信息 iframe 嵌套通讯，postmessage  什么是ajax跨域">
 
 
 
@@ -330,7 +330,15 @@
       
 
       
-        <h1 id="什么是ajax跨域"><a href="#什么是ajax跨域" class="headerlink" title="什么是ajax跨域"></a>什么是ajax跨域</h1><h2 id="ajax跨域原理"><a href="#ajax跨域原理" class="headerlink" title="ajax跨域原理"></a>ajax跨域原理</h2><p>ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">浏览器同源政策及其规避方法(阮一峰)</a></p>
+        <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ol>
+<li>浏览器的同源策略导致了跨域</li>
+<li>用于隔离潜在恶意文件的重要安全机制</li>
+<li>jsonp ，允许 script 加载第三方资源</li>
+<li>nginx 反向代理（nginx 服务内部配置 Access-Control-Allow-Origin *）</li>
+<li>cors 前后端协作设置请求头部，Access-Control-Allow-Origin 等头部信息</li>
+<li>iframe 嵌套通讯，postmessage</li>
+</ol>
+<h1 id="什么是ajax跨域"><a href="#什么是ajax跨域" class="headerlink" title="什么是ajax跨域"></a>什么是ajax跨域</h1><h2 id="ajax跨域原理"><a href="#ajax跨域原理" class="headerlink" title="ajax跨域原理"></a>ajax跨域原理</h2><p>ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”,可以参考 <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">浏览器同源政策及其规避方法(阮一峰)</a></p>
 <h2 id="CORS请求原理"><a href="#CORS请求原理" class="headerlink" title="CORS请求原理"></a>CORS请求原理</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解(阮一峰)</a></p>
 <p><strong>如何判断是否是简单请求?</strong></p>
 <p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。只要同时满足以下两大条件，就属于简单请求。</p>
@@ -497,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -543,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ajax跨域"><span class="nav-number">1.</span> <span class="nav-text">什么是ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax跨域原理"><span class="nav-number">1.1.</span> <span class="nav-text">ajax跨域原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS请求原理"><span class="nav-number">1.2.</span> <span class="nav-text">CORS请求原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax跨域的表现"><span class="nav-number">1.2.1.</span> <span class="nav-text">ajax跨域的表现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决ajax跨域"><span class="nav-number">2.</span> <span class="nav-text">如何解决ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSONP方式解决跨域问题"><span class="nav-number">2.1.</span> <span class="nav-text">JSONP方式解决跨域问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS解决跨域问题"><span class="nav-number">2.2.</span> <span class="nav-text">CORS解决跨域问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ajax跨域"><span class="nav-number">2.</span> <span class="nav-text">什么是ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax跨域原理"><span class="nav-number">2.1.</span> <span class="nav-text">ajax跨域原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS请求原理"><span class="nav-number">2.2.</span> <span class="nav-text">CORS请求原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax跨域的表现"><span class="nav-number">2.2.1.</span> <span class="nav-text">ajax跨域的表现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何解决ajax跨域"><span class="nav-number">3.</span> <span class="nav-text">如何解决ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSONP方式解决跨域问题"><span class="nav-number">3.1.</span> <span class="nav-text">JSONP方式解决跨域问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS解决跨域问题"><span class="nav-number">3.2.</span> <span class="nav-text">CORS解决跨域问题</span></a></li></ol></li></ol></div>
             
 
           </div>
