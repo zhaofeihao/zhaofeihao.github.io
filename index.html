@@ -260,6 +260,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/原生JavaScript实现AJAX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/原生JavaScript实现AJAX/" itemprop="url">原生JavaScript实现AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T17:29:44+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="原生-JavaScript-实现-AJAX"><a href="#原生-JavaScript-实现-AJAX" class="headerlink" title="原生 JavaScript 实现 AJAX"></a>原生 JavaScript 实现 AJAX</h1><p>一个完整的AJAX请求一般包括以下步骤：</p>
+<ul>
+<li>实例化<code>XMLHttpRequest</code>对象</li>
+<li>连接服务器</li>
+<li>发送请求</li>
+<li>接收响应数据</li>
+</ul>
+<p>将AJAX请求封装成ajax()方法，它接受一个配置对象params。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">params</span>) </span>&#123; </span><br><span class="line"> params = params || &#123;&#125;; </span><br><span class="line"> params.data = params.data || &#123;&#125;; </span><br><span class="line"> <span class="comment">// ajax请求 </span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">json</span>(<span class="params">params</span>) </span>&#123; </span><br><span class="line">  <span class="comment">// 请求方式，默认是GET</span></span><br><span class="line">  params.type = (params.type || <span class="string">'GET'</span>).toUpperCase();</span><br><span class="line">  <span class="comment">// 避免有特殊字符，必须格式化传输数据</span></span><br><span class="line">  params.data = formatParams(params.data); </span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="literal">null</span>;  </span><br><span class="line"></span><br><span class="line">  <span class="comment">// 实例化XMLHttpRequest对象 </span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest) &#123; </span><br><span class="line">   xhr = <span class="keyword">new</span> XMLHttpRequest(); </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">   <span class="comment">// IE6及其以下版本 </span></span><br><span class="line">   xhr = <span class="keyword">new</span> ActiveXObjcet(<span class="string">'Microsoft.XMLHTTP'</span>); </span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 监听事件，只要 readyState 的值变化，就会调用 readystatechange 事件</span></span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">   <span class="comment">// readyState属性表示请求/响应过程的当前活动阶段，4为完成，已经接收到全部响应数据</span></span><br><span class="line">   <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>) &#123; </span><br><span class="line">    <span class="keyword">var</span> status = xhr.status; </span><br><span class="line">    <span class="comment">// status：响应的HTTP状态码，以2开头的都是成功</span></span><br><span class="line">    <span class="keyword">if</span>(status &gt;= <span class="number">200</span> &amp;&amp; status &lt; <span class="number">300</span>) &#123; </span><br><span class="line">     <span class="keyword">var</span> response = <span class="string">''</span>;</span><br><span class="line">     <span class="comment">// 判断接受数据的内容类型</span></span><br><span class="line">     <span class="keyword">var</span> type = xhr.getResponseHeader(<span class="string">'Content-type'</span>); </span><br><span class="line">     <span class="keyword">if</span>(type.indexOf(<span class="string">'xml'</span>) !== <span class="number">-1</span> &amp;&amp; xhr.responseXML) &#123; </span><br><span class="line">      response = xhr.responseXML; <span class="comment">//Document对象响应 </span></span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span>(type === <span class="string">'application/json'</span>) &#123; </span><br><span class="line">      response = <span class="built_in">JSON</span>.parse(xhr.responseText); <span class="comment">//JSON响应 </span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">      response = xhr.responseText; <span class="comment">//字符串响应 </span></span><br><span class="line">     &#125;; </span><br><span class="line">     <span class="comment">// 成功回调函数</span></span><br><span class="line">     params.success &amp;&amp; params.success(response); </span><br><span class="line">   &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">     params.error &amp;&amp; params.error(status); </span><br><span class="line">   &#125; </span><br><span class="line">   &#125;; </span><br><span class="line">  &#125;; </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 连接和传输数据 </span></span><br><span class="line">  <span class="keyword">if</span>(params.type == <span class="string">'GET'</span>) &#123;</span><br><span class="line">   <span class="comment">// 三个参数：请求方式、请求地址(get方式时，传输数据是加在地址后的)、是否异步请求(同步请求的情况极少)；</span></span><br><span class="line">   xhr.open(params.type, params.url + <span class="string">'?'</span> + params.data, <span class="literal">true</span>); </span><br><span class="line">   xhr.send(<span class="literal">null</span>); </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">   xhr.open(params.type, params.url, <span class="literal">true</span>); </span><br><span class="line">   <span class="comment">//必须，设置提交时的内容类型 </span></span><br><span class="line">   xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>);</span><br><span class="line">   <span class="comment">// 传输数据</span></span><br><span class="line">   xhr.send(params.data); </span><br><span class="line">  &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> </span><br><span class="line"> <span class="comment">//格式化参数 </span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">formatParams</span>(<span class="params">data</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> arr = []; </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> name <span class="keyword">in</span> data) &#123;</span><br><span class="line">   <span class="comment">// encodeURIComponent() ：用于对 URI 中的某一部分进行编码</span></span><br><span class="line">   arr.push(<span class="built_in">encodeURIComponent</span>(name) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(data[name])); </span><br><span class="line">  &#125;; </span><br><span class="line">  <span class="comment">// 添加一个随机数参数，防止缓存 </span></span><br><span class="line">  arr.push(<span class="string">'v='</span> + random()); </span><br><span class="line">  <span class="keyword">return</span> arr.join(<span class="string">'&amp;'</span>); </span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 获取随机数 </span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10000</span> + <span class="number">500</span>); </span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/css设置元素水平居中/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1517,162 +1644,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/css盒模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/15/css盒模型/" itemprop="url">css盒模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-15T14:01:06+08:00">
-                2018-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CSS-盒模型、解决方案、BFC-原理讲解"><a href="#CSS-盒模型、解决方案、BFC-原理讲解" class="headerlink" title="CSS 盒模型、解决方案、BFC 原理讲解"></a>CSS 盒模型、解决方案、BFC 原理讲解</h1><h2 id="W3C-标准盒模型-amp-IE-怪异盒模型"><a href="#W3C-标准盒模型-amp-IE-怪异盒模型" class="headerlink" title="W3C 标准盒模型 &amp; IE 怪异盒模型"></a>W3C 标准盒模型 &amp; IE 怪异盒模型</h2><p>盒模型由 4 部分组成，从内到外分别是：content padding border margin</p>
-<p><strong>W3C 标准盒模型</strong>一个元素的宽度（高度以此类推）应该这样计算：</p>
-<blockquote>
-<p>一个元素的宽度 =  content<br>盒子总宽度 = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right</p>
-</blockquote>
-<p><strong>IE 怪异盒模型</strong>一个元素的宽度（高度以此类推）却是这样计算的：</p>
-<blockquote>
-<p>一个元素的宽度 =  content + padding + border<br>盒子总宽度 = margin-left + width + margin-right</p>
-</blockquote>
-<h2 id="解决方案-box-sizing"><a href="#解决方案-box-sizing" class="headerlink" title="解决方案 box-sizing"></a>解决方案 box-sizing</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// W3C 标准盒模型（浏览器默认）</span><br><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">content-box</span>;</span><br><span class="line"></span><br><span class="line">// IE 怪异盒模型</span><br><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">border-box</span>;</span><br></pre></td></tr></table></figure>
-<p>当我们设置 <code>box-sizing: border-box;</code> 时，border 和 padding 就被包含在了宽高之内，和 IE 盒模型是一样的。</p>
-<p>所以，为了避免你同一份 css 在不同浏览器下表现不同，最好加上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*, *<span class="selector-pseudo">:before</span>, *<span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="JS-如何获取盒模型对应的宽和高"><a href="#JS-如何获取盒模型对应的宽和高" class="headerlink" title="JS 如何获取盒模型对应的宽和高"></a>JS 如何获取盒模型对应的宽和高</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  * &#123;</span></span><br><span class="line"><span class="undefined">    margin: 0;</span></span><br><span class="line"><span class="undefined">    padding: 0;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="css">  <span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="undefined">    width: 100px;</span></span><br><span class="line"><span class="undefined">    height: 100px;</span></span><br><span class="line"><span class="undefined">    padding: 50px;</span></span><br><span class="line"><span class="undefined">    border: 5px solid red;</span></span><br><span class="line"><span class="undefined">    margin: 50px;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span> <span class="attr">style</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> box = <span class="built_in">document</span>.getElementById(<span class="string">'box'</span>)</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 只能取到内联样式的宽高</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="string">'style:'</span> + box.style.width) <span class="comment">// 100px</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// 内联样式和外联样式的宽高都能取到，但只有 IE 支持</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="string">'currentStyle:'</span> + box.currentStyle.width) <span class="comment">// 100px</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// 内联样式和外联样式的宽高都能取到，几乎所有主流浏览器都支持</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="string">'getComputedStyle:'</span> + getComputedStyle(box).width) <span class="comment">// 100px</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">// 内联样式和外联样式的宽高都能取到，几乎所有主流浏览器都支持，取到的是盒子总宽度</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="string">'getBoundingClientRect:'</span> + box.getBoundingClientRect().width) <span class="comment">// 210</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="BFC块级元素格式化上下文"><a href="#BFC块级元素格式化上下文" class="headerlink" title="BFC块级元素格式化上下文"></a>BFC块级元素格式化上下文</h2><h3 id="BFC原理"><a href="#BFC原理" class="headerlink" title="BFC原理"></a>BFC原理</h3><ol>
-<li>在 BFC 的垂直方向上，边距会发生重叠</li>
-<li>BFC 区域不会与浮动区域重叠</li>
-<li>BFC 在页面上是一个独立的容器，与其他元素互不影响</li>
-<li>计算 BFC 高度时，浮动元素也会参与计算</li>
-</ol>
-<h3 id="如何创建-BFC"><a href="#如何创建-BFC" class="headerlink" title="如何创建 BFC"></a>如何创建 BFC</h3><ol>
-<li><code>float</code> 值不为 none，只要设置了float浮动，当前元素就创建了一个 BFC</li>
-<li><code>position</code>值不为static，只要设置了position定位，当前元素就创建了一个 BFC</li>
-<li><code>display</code> 值不为默认，只要设置了display，当前元素就创建了一个 BFC</li>
-<li><code>overflow</code> 值不为 visible，只要设置了overflow，当前元素就创建了一个 BFC</li>
-</ol>
-<h3 id="BFC-使用场景"><a href="#BFC-使用场景" class="headerlink" title="BFC 使用场景"></a>BFC 使用场景</h3><h4 id="解决边距重叠问题"><a href="#解决边距重叠问题" class="headerlink" title="解决边距重叠问题"></a>解决边距重叠问题</h4><p>当元素都设置了 margin 边距时，margin 将取最大值。为了不让边距重叠，可以给子元素加一个父元素，并设置该父元素为 BFC，这样就不会发生边距重叠现象了(BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然)。</p>
-<p>边距重叠情况(margin为最大值25px)：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    html,*&#123;</span></span><br><span class="line"><span class="undefined">      padding: 0;margin: 0;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#margin</span>&#123;</span></span><br><span class="line"><span class="undefined">      background: pink;</span></span><br><span class="line"><span class="undefined">      overflow: hidden;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#margin</span>&gt;<span class="selector-tag">p</span>&#123;</span></span><br><span class="line"><span class="undefined">      margin: 5px auto 25px;//上5 横向auto 下25</span></span><br><span class="line"><span class="undefined">      background: red;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"margin"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>子元素加一个父元素，并设置该父元素为 BFC(p元素上下边距变为30px)：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--...--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"margin"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'overflow: hidden'</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="侵占浮动元素的位置"><a href="#侵占浮动元素的位置" class="headerlink" title="侵占浮动元素的位置"></a>侵占浮动元素的位置</h4><p>设置非浮动元素为 BFC 即可。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    html,*&#123;</span></span><br><span class="line"><span class="undefined">      padding: 0;margin: 0;//去掉浏览器默认padding和margin</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#layout</span>&#123;</span></span><br><span class="line"><span class="undefined">      background: red;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="undefined">      width: 100px;</span></span><br><span class="line"><span class="undefined">      height: 100px;</span></span><br><span class="line"><span class="undefined">      background: pink;//粉色块儿为left</span></span><br><span class="line"><span class="undefined">      float:left;//粉色块儿left设置为浮动</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.right</span>&#123;</span></span><br><span class="line"><span class="undefined">      height: 110px;</span></span><br><span class="line"><span class="undefined">      background: #ccc;//灰色块儿为right</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"layout"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><img src="/images/bfc-float.png" alt="bfc-float"><br>从运行效果可以发现，当右侧增高的时候会侵入左侧的占位，这个是float的特性，显示这个不符合我们左右布局的目的，那怎么办呢？就是给右侧的元素创建一个 BFC,加上 <code>.right {overflow:hidden}</code><br><img src="/images/bfc-float2.png" alt="bfc-float2"><br>可以看到露出了红色背景。左右互相不影响，可以实现两栏布局。</p>
-<h4 id="清除浮动的原理"><a href="#清除浮动的原理" class="headerlink" title="清除浮动的原理"></a>清除浮动的原理</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    html,*&#123;</span></span><br><span class="line"><span class="undefined">      padding: 0;margin: 0;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#float</span>&#123;</span></span><br><span class="line"><span class="undefined">      background: red;//父元素背景应为红色</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.float</span>&#123;</span></span><br><span class="line"><span class="undefined">      float: left;//子元素设置为浮动</span></span><br><span class="line"><span class="undefined">      font-size: 30px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"float"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"float"</span>&gt;</span>我的浮动的小智<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果如下，可以看出父级元素的高度为0，因为 float 导致了元素的坍塌，这时我们给父级元素创建一个 BFC，就能解决问题。<br><img src="/images/clear-float.png" alt="clear-float"></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#float</span> &#123;</span><br><span class="line">    background: red;//父元素背景应为红色</span><br><span class="line">    <span class="selector-tag">overflow</span>: <span class="selector-tag">auto</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/clear-float2.png" alt="clear-float2"></p>
-<p>原理就是：<strong>计算 BFC 高度时，浮动元素也会参与计算</strong></p>
-<p><a href="https://juejin.im/entry/59a2786a6fb9a0248c2deaf1" target="_blank" rel="noopener">原文地址：CSS 盒模型、解决方案、BFC 原理讲解</a><br><a href="https://segmentfault.com/a/1190000015235886" target="_blank" rel="noopener">参考</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1723,7 +1694,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
