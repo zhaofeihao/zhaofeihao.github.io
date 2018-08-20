@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="赵斐昊">
 <meta property="og:description" content="行内元素的居中常用行内元素为a/img/input/span 等，标签内的HTML文本也属于此类。对于此类情况，水平居中是通过给父元素设置 text-align:center来实现的。 但是，有个缺点，由于text-align是可继承属性，即父元素内部的所有元素都会继承这个属性，从而它的子元素内部的文本都会居中显示了。因此需要对子元素的文本居中方式单独设定。  扩展：css中的继承 可以继承的属性">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-18T09:19:35.704Z">
+<meta property="og:updated_time" content="2018-08-20T07:30:05.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css设置元素水平居中">
 <meta name="twitter:description" content="行内元素的居中常用行内元素为a/img/input/span 等，标签内的HTML文本也属于此类。对于此类情况，水平居中是通过给父元素设置 text-align:center来实现的。 但是，有个缺点，由于text-align是可继承属性，即父元素内部的所有元素都会继承这个属性，从而它的子元素内部的文本都会居中显示了。因此需要对子元素的文本居中方式单独设定。  扩展：css中的继承 可以继承的属性">
@@ -347,7 +347,7 @@
 <h3 id="不定宽"><a href="#不定宽" class="headerlink" title="不定宽"></a>不定宽</h3><p>不定宽元素如果要居中需要额外的辅助手段</p>
 <ol>
 <li><p>css3新特性<code>transform</code><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform" target="_blank" rel="noopener">MDN transform</a><br>这里需要子元素是绝对定位.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#82ab00</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%);<span class="comment">/*X轴反方向平移自身宽度的50%*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#82ab00</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%);<span class="comment">/*X轴反方向平移自身宽度的50%*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>借助table<br>缺点：无关标签太多，加深了嵌套的层级，维护性很差，影响浏览器性能。</p>
 </li>
@@ -474,7 +474,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

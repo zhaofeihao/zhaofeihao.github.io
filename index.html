@@ -260,6 +260,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/js中的浅拷贝和深拷贝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/js中的浅拷贝和深拷贝/" itemprop="url">js中的浅拷贝和深拷贝</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-20T19:40:21+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JavaScript中的浅拷贝和深拷贝"><a href="#JavaScript中的浅拷贝和深拷贝" class="headerlink" title="JavaScript中的浅拷贝和深拷贝"></a>JavaScript中的浅拷贝和深拷贝</h1><h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>这是因为浅拷贝只复制一层对象的属性，并不包括对象里面的为引用类型的数据。</p>
+<p>那么赋值和浅拷贝的区别，看下面这个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    <span class="string">'name'</span> : <span class="string">'zhangsan'</span>,</span><br><span class="line">    <span class="string">'age'</span> :  <span class="string">'18'</span>,</span><br><span class="line">    <span class="string">'language'</span> : [<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>]],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj3 = shallowCopy(obj1);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dst = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> src) &#123;</span><br><span class="line">        <span class="keyword">if</span> (src.hasOwnProperty(prop)) &#123;</span><br><span class="line">            dst[prop] = src[prop];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dst;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj2.name = <span class="string">"lisi"</span>;</span><br><span class="line">obj3.age = <span class="string">"20"</span>;</span><br><span class="line"></span><br><span class="line">obj2.language[<span class="number">1</span>] = [<span class="string">"二"</span>,<span class="string">"三"</span>];</span><br><span class="line">obj3.language[<span class="number">2</span>] = [<span class="string">"四"</span>,<span class="string">"五"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1);  </span><br><span class="line"><span class="comment">//obj1 = &#123;</span></span><br><span class="line"><span class="comment">//    'name' : 'lisi',</span></span><br><span class="line"><span class="comment">//    'age' :  '18',</span></span><br><span class="line"><span class="comment">//    'language' : [1,["二","三"],["四","五"]],</span></span><br><span class="line"><span class="comment">//&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br><span class="line"><span class="comment">//obj2 = &#123;</span></span><br><span class="line"><span class="comment">//    'name' : 'lisi',</span></span><br><span class="line"><span class="comment">//    'age' :  '18',</span></span><br><span class="line"><span class="comment">//    'language' : [1,["二","三"],["四","五"]],</span></span><br><span class="line"><span class="comment">//&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj3);</span><br><span class="line"><span class="comment">//obj3 = &#123;</span></span><br><span class="line"><span class="comment">//    'name' : 'zhangsan',</span></span><br><span class="line"><span class="comment">//    'age' :  '20',</span></span><br><span class="line"><span class="comment">//    'language' : [1,["二","三"],["四","五"]],</span></span><br><span class="line"><span class="comment">//&#125;;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>obj1：原始数据</li>
+<li>obj2：赋值操作得到</li>
+<li>obj3：浅拷贝得到</li>
+</ul>
+<p>然后我们改变 <code>obj2</code> 的 <code>name</code> 属性和 <code>obj3</code> 的 <code>age</code> 属性，可以看到，改变赋值得到的对象 <code>obj2</code> 同时也会改变原始值 <code>obj1</code>，而改变浅拷贝得到的的 <code>obj3</code> 则不会改变原始对象 <code>obj1</code>。这就可以说明赋值得到的对象 <code>obj2</code> 只是将指针改变，其引用的仍然是同一个对象，而浅拷贝得到的的 <code>obj3</code> 则是重新创建了新对象。</p>
+<p>此外，还可以通过 <code>Object.assign()</code> 、 <code>Array.prototype.slice()</code> 和 <code>Array.prototype.concat()</code> 返回一个数组或者对象的浅拷贝。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>深拷贝是对对象以及对象的所有子对象进行拷贝,也就是拷贝出一个新的实例，新的实例和之前的实例互不影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归实现一个深拷贝</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">source</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(!source || <span class="keyword">typeof</span> source !== <span class="string">'object'</span>)&#123;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error arguments'</span>, <span class="string">'shallowClone'</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">var</span> targetObj = source.constructor === <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> keys <span class="keyword">in</span> source)&#123;</span><br><span class="line">      <span class="keyword">if</span>(source.hasOwnProperty(keys))&#123;</span><br><span class="line">         <span class="keyword">if</span>(source[keys] &amp;&amp; <span class="keyword">typeof</span> source[keys] === <span class="string">'object'</span>)&#123;</span><br><span class="line">           targetObj[keys] = source[keys].constructor === <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">           targetObj[keys] = deepClone(source[keys]);</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           targetObj[keys] = source[keys];</span><br><span class="line">         &#125;</span><br><span class="line">      &#125; </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> targetObj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// test example</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">  arr: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  obj: &#123;</span><br><span class="line">    key: <span class="string">'value'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  func: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = deepClone(o1);</span><br><span class="line"><span class="built_in">console</span>.log(o3 === o1); <span class="comment">// =&gt; false</span></span><br><span class="line"><span class="built_in">console</span>.log(o3.obj === o1.obj); <span class="comment">// =&gt; false</span></span><br><span class="line"><span class="built_in">console</span>.log(o2.func === o1.func); <span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+<p>还有一种实现深拷贝的方式是利用JSON对象中的parse和stringify，JOSN对象中的stringify可以把一个js对象序列化为一个JSON字符串，parse可以把JSON字符串反序列化为一个js对象，通过这两个方法组合 <code>JSON.parse(JSON.stringify(source));</code> ，也可以实现对象的深拷贝。但是其缺点是，<strong>在序列化JavaScript对象时，所有函数和原型成员会被有意忽略</strong>。</p>
+<h2 id="jQuery的extend方法"><a href="#jQuery的extend方法" class="headerlink" title="jQuery的extend方法"></a>jQuery的extend方法</h2><p>jQuery 中一个重要的函数便是 extend，既可以对本身 jQuery 的属性和方法进行扩张，又可以对原型的属性和方法进行扩展。</p>
+<p>先来说下 extend 函数的功能，大概有两种，如果参数只有一个 object，即表示将这个对象扩展到 jQuery 的命名空间中，也就是所谓的 jQuery 的扩展。如果函数接收了多个 object，则表示一种属性拷贝，将后面多个对象的属性全拷贝到第一个对象上，这其中，还包括深拷贝，即非引用拷贝，第一个参数如果是 true 则表示深拷贝。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery.extend(target);<span class="comment">// jQuery 的扩展</span></span><br><span class="line">jQuery.extend(target, obj1, obj2,..);<span class="comment">//浅拷贝 </span></span><br><span class="line">jQuery.extend(<span class="literal">true</span>, target, obj1, obj2,..);<span class="comment">//深拷贝</span></span><br></pre></td></tr></table></figure>
+<p>以下是 jQuery 3 之后的 extend 函数源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">jQuery.extend = jQuery.fn.extend = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> options, name, src, copy, copyIsArray, clone, target = <span class="built_in">arguments</span>[<span class="number">0</span>] || &#123;&#125;,</span><br><span class="line">    i = <span class="number">1</span>,</span><br><span class="line">    length = <span class="built_in">arguments</span>.length,</span><br><span class="line">    deep = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否为深拷贝</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> target === <span class="string">"boolean"</span>) &#123;</span><br><span class="line">    deep = target;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 参数后移</span></span><br><span class="line">    target = <span class="built_in">arguments</span>[i] || &#123;&#125;;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 处理 target 是字符串或奇怪的情况，isFunction(target) 可以判断 target 是否为函数</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> target !== <span class="string">"object"</span> &amp;&amp; !jQuery.isFunction(target)) &#123;</span><br><span class="line">    target = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否 jQuery 的扩展</span></span><br><span class="line">  <span class="keyword">if</span> (i === length) &#123;</span><br><span class="line">    target = <span class="keyword">this</span>; <span class="comment">// this 做一个标记，可以指向 jQuery，也可以指向 jQuery.fn</span></span><br><span class="line">    i--;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (; i &lt; length; i++) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// null/undefined 判断</span></span><br><span class="line">    <span class="keyword">if</span> ((options = <span class="built_in">arguments</span>[i]) != <span class="literal">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 这里已经统一了，无论前面函数的参数怎样，现在的任务就是 target 是目标对象，options 是被拷贝对象</span></span><br><span class="line">      <span class="keyword">for</span> (name <span class="keyword">in</span> options) &#123;</span><br><span class="line">        src = target[name];</span><br><span class="line">        copy = options[name];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 防止死循环，跳过自身情况</span></span><br><span class="line">        <span class="keyword">if</span> (target === copy) &#123;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 深拷贝，且被拷贝对象是 object 或 array</span></span><br><span class="line">        <span class="comment">// 这是深拷贝的重点</span></span><br><span class="line">        <span class="keyword">if</span> (deep &amp;&amp; copy &amp;&amp; (jQuery.isPlainObject(copy) || (copyIsArray = <span class="built_in">Array</span>.isArray(copy)))) &#123;</span><br><span class="line">          <span class="comment">// 说明被拷贝对象是数组</span></span><br><span class="line">          <span class="keyword">if</span> (copyIsArray) &#123;</span><br><span class="line">            copyIsArray = <span class="literal">false</span>;</span><br><span class="line">            clone = src &amp;&amp; <span class="built_in">Array</span>.isArray(src) ? src : [];</span><br><span class="line">          <span class="comment">// 被拷贝对象是 object</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : &#123;&#125;;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 递归拷贝子属性</span></span><br><span class="line">          target[name] = jQuery.extend(deep, clone, copy);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 常规变量，直接 =</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (copy !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">            target[name] = copy;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return the modified object</span></span><br><span class="line">  <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://segmentfault.com/a/1190000008637489" target="_blank" rel="noopener">JavaScript中的浅拷贝和深拷贝 - segmentFault</a><br><a href="https://juejin.im/post/59ac1c4ef265da248e75892b" target="_blank" rel="noopener">js深拷贝vs浅拷贝 - 掘金</a><br><a href="https://github.com/songjinzhong/JQuerySource/tree/master/01-%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84" target="_blank" rel="noopener">jquery源码解读(extend) - GitHub</a><br><a href="https://segmentfault.com/a/1190000004082170#articleHeader3" target="_blank" rel="noopener">jquery的extend的使用 - segmentFault</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/原生js实现图片懒加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -622,7 +758,7 @@
 <h3 id="不定宽"><a href="#不定宽" class="headerlink" title="不定宽"></a>不定宽</h3><p>不定宽元素如果要居中需要额外的辅助手段</p>
 <ol>
 <li><p>css3新特性<code>transform</code><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform" target="_blank" rel="noopener">MDN transform</a><br>这里需要子元素是绝对定位.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#82ab00</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%);<span class="comment">/*X轴反方向平移自身宽度的50%*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#82ab00</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%);<span class="comment">/*X轴反方向平移自身宽度的50%*/</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>借助table<br>缺点：无关标签太多，加深了嵌套的层级，维护性很差，影响浏览器性能。</p>
 </li>
@@ -893,7 +1029,7 @@
 <p>现在页面的效果是这样的<br><img src="/images/left-right-1.png" alt="左定宽右自适应"></p>
 <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p><strong>左边设置左浮动，右边距设置为定宽元素的宽度</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p><strong>利用BFC特性</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><p><strong>利用flex布局，父容器设置 display：flex；Right部分设置 flex：1</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><p><strong>利用flex布局，父容器设置 display：flex；Right部分设置 flex：1</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* align-items: stretch  若是想保持左右两边高度一致，加上该属性，设置其中一边的高度即可，不设置height的话以两者最高子元素高度为准*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><a href="https://www.cnblogs.com/wx1993/p/6727653.html" target="_blank" rel="noopener">原文地址</a><br>原文还提到了两种方法，另外原文中第一种方法有错误，已修正。</p>
 
           
@@ -1524,150 +1660,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/for-in和for-of/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/15/for-in和for-of/" itemprop="url">for-in和for-of</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-15T18:47:54+08:00">
-                2018-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="for-in和for-of的区别"><a href="#for-in和for-of的区别" class="headerlink" title="for-in和for-of的区别"></a>for-in和for-of的区别</h1><h2 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN</a><br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句</p>
-<h2 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in" target="_blank" rel="noopener">MDN</a><br>for…in语句以任意顺序遍历一个对象的可枚举属性。对于每个不同的属性，语句都会被执行。</p>
-<h2 id="for-in和for-of的区别-1"><a href="#for-in和for-of的区别-1" class="headerlink" title="for-in和for-of的区别"></a>for-in和for-of的区别</h2><p><strong>它们之间的主要区别在于它们的迭代方式。</strong></p>
-<ul>
-<li>for…in 语句以原始插入顺序迭代对象的可枚举属性。</li>
-<li>for…of 语句遍历可迭代对象定义要迭代的数据。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.objCustom = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; </span><br><span class="line"><span class="built_in">Array</span>.prototype.arrCustom = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> iterable = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line">iterable.foo = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 0, 1, 2, "foo", "arrCustom", "objCustom"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="keyword">if</span> (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// 0, 1, 2, "foo"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 3, 5, 7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>几点结论：</p>
-<ol>
-<li>推荐在循环对象属性的时候，使用for…in,在遍历数组的时候的时候使用for…of。</li>
-<li>for…in循环出的是key，for…of循环出的是value</li>
-<li>注意，for…of是ES6新引入的特性。修复了ES5引入的for…in的不足</li>
-<li>for…of不能循环普通的对象，需要通过和Object.keys()搭配使用</li>
-</ol>
-<p>假设我们要遍历一个数组的value<br><code>let aArray = [&#39;a&#39;,123,{a:&#39;1&#39;,b:&#39;2&#39;}]</code></p>
-<p>使用for…in循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;aArray[index]&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用for…of循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> value <span class="keyword">of</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>咋一看好像好像只是写法不一样而已，那为什么说for…of修复了for…in的缺陷和不足。<br>假设我们往数组添加一个属性name:<br><code>aArray.name = &#39;demo&#39;</code>,再分别查看上面写的两个循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;aArray[index]&#125;</span>`</span>); <span class="comment">//a 123 [object Object] demo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> value <span class="keyword">of</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value); <span class="comment">// a 123 &#123;a: "1", b: "2"&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>所以说，作用于数组的for-in循环除了遍历数组元素以外,还会遍历自定义属性。</p>
-<p>for…of循环不会循环对象的key，只会循环出数组的value，因此for…of不能循环遍历普通对象,对普通对象的属性遍历推荐使用for…in</p>
-<p>如果实在想用for…of来遍历普通对象的属性的话，可以通过和Object.keys()搭配使用，先获取对象的所有key的数组,然后遍历：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student=&#123;</span><br><span class="line">    name:<span class="string">'wujunchuan'</span>,</span><br><span class="line">    age:<span class="number">22</span>,</span><br><span class="line">    locate:&#123;</span><br><span class="line">    country:<span class="string">'china'</span>,</span><br><span class="line">    city:<span class="string">'nanjing'</span>,</span><br><span class="line">    school:<span class="string">'nupt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(student))&#123;</span><br><span class="line">    <span class="comment">//使用Object.keys()方法获取对象key的数组</span></span><br><span class="line">    <span class="built_in">console</span>.log(key+<span class="string">": "</span>+student[key]); <span class="comment">// name: wujunchuan age: 22 locate: [object Object]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN for…of</a></p>
-<p><a href="https://segmentfault.com/q/1010000006658882" target="_blank" rel="noopener">segmentFault 两者区别</a></p>
-<p><a href="https://github.com/wujunchuan/wujunchuan.github.io/issues/11" target="_blank" rel="noopener">Javascript中的for-of循环</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1718,7 +1710,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

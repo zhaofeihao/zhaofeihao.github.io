@@ -260,6 +260,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/for-in和for-of/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/for-in和for-of/" itemprop="url">for-in和for-of</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-15T18:47:54+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="for-in和for-of的区别"><a href="#for-in和for-of的区别" class="headerlink" title="for-in和for-of的区别"></a>for-in和for-of的区别</h1><h2 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN</a><br>for…of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句</p>
+<h2 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in" target="_blank" rel="noopener">MDN</a><br>for…in语句以任意顺序遍历一个对象的可枚举属性。对于每个不同的属性，语句都会被执行。</p>
+<h2 id="for-in和for-of的区别-1"><a href="#for-in和for-of的区别-1" class="headerlink" title="for-in和for-of的区别"></a>for-in和for-of的区别</h2><p><strong>它们之间的主要区别在于它们的迭代方式。</strong></p>
+<ul>
+<li>for…in 语句以原始插入顺序迭代对象的可枚举属性。</li>
+<li>for…of 语句遍历可迭代对象定义要迭代的数据。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.objCustom = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; </span><br><span class="line"><span class="built_in">Array</span>.prototype.arrCustom = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> iterable = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line">iterable.foo = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 0, 1, 2, "foo", "arrCustom", "objCustom"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123;</span><br><span class="line">  <span class="keyword">if</span> (iterable.hasOwnProperty(i)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// 0, 1, 2, "foo"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 3, 5, 7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>几点结论：</p>
+<ol>
+<li>推荐在循环对象属性的时候，使用for…in,在遍历数组的时候的时候使用for…of。</li>
+<li>for…in循环出的是key，for…of循环出的是value</li>
+<li>注意，for…of是ES6新引入的特性。修复了ES5引入的for…in的不足</li>
+<li>for…of不能循环普通的对象，需要通过和Object.keys()搭配使用</li>
+</ol>
+<p>假设我们要遍历一个数组的value<br><code>let aArray = [&#39;a&#39;,123,{a:&#39;1&#39;,b:&#39;2&#39;}]</code></p>
+<p>使用for…in循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;aArray[index]&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用for…of循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> value <span class="keyword">of</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>咋一看好像好像只是写法不一样而已，那为什么说for…of修复了for…in的缺陷和不足。<br>假设我们往数组添加一个属性name:<br><code>aArray.name = &#39;demo&#39;</code>,再分别查看上面写的两个循环：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> index <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;aArray[index]&#125;</span>`</span>); <span class="comment">//a 123 [object Object] demo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> value <span class="keyword">of</span> aArray)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value); <span class="comment">// a 123 &#123;a: "1", b: "2"&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以说，作用于数组的for-in循环除了遍历数组元素以外,还会遍历自定义属性。</p>
+<p>for…of循环不会循环对象的key，只会循环出数组的value，因此for…of不能循环遍历普通对象,对普通对象的属性遍历推荐使用for…in</p>
+<p>如果实在想用for…of来遍历普通对象的属性的话，可以通过和Object.keys()搭配使用，先获取对象的所有key的数组,然后遍历：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student=&#123;</span><br><span class="line">    name:<span class="string">'wujunchuan'</span>,</span><br><span class="line">    age:<span class="number">22</span>,</span><br><span class="line">    locate:&#123;</span><br><span class="line">    country:<span class="string">'china'</span>,</span><br><span class="line">    city:<span class="string">'nanjing'</span>,</span><br><span class="line">    school:<span class="string">'nupt'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(student))&#123;</span><br><span class="line">    <span class="comment">//使用Object.keys()方法获取对象key的数组</span></span><br><span class="line">    <span class="built_in">console</span>.log(key+<span class="string">": "</span>+student[key]); <span class="comment">// name: wujunchuan age: 22 locate: [object Object]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN for…of</a></p>
+<p><a href="https://segmentfault.com/q/1010000006658882" target="_blank" rel="noopener">segmentFault 两者区别</a></p>
+<p><a href="https://github.com/wujunchuan/wujunchuan.github.io/issues/11" target="_blank" rel="noopener">Javascript中的for-of循环</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/js遍历对象的三种方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1621,169 +1765,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/Promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/07/Promise/" itemprop="url">Promise</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T21:02:36+08:00">
-                2018-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="关于Promise需要知道的"><a href="#关于Promise需要知道的" class="headerlink" title="关于Promise需要知道的"></a>关于Promise需要知道的</h1><h2 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h2><blockquote>
-<p>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。</p>
-</blockquote>
-<h2 id="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><a href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）" class="headerlink" title="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"></a>传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</h2><ol>
-<li>调用回调过早</li>
-<li>调用回调过晚（或没有被调用）</li>
-<li>调用回调次数过少或过多</li>
-<li>未能传递所需的环境和参数</li>
-<li>吞掉可能出现的错误和异常</li>
-</ol>
-<p>Promise的解决办法：</p>
-<ol>
-<li>调用回调过早</li>
-</ol>
-<p>对于Promise来说，即使是立即完成的Promise也无法被同步观察到，也就是说一个Promise调用then()的时候，即使这个Promise已经决议了，提供给then的回调也总会被异步调用。</p>
-<ol>
-<li>调用回调过晚（或没有被调用）</li>
-</ol>
-<p>对于一个Promise对象注册的每一个观察回调都是相对独立、互不干预的。而Promise对象调用resolve()和reject()时，每个注册的观察回调也都会被自动调度。所以这些观察回调的任意一个都无法影响或延误对其他回调的调用。</p>
-<ol>
-<li>调用回调次数过少或过多</li>
-</ol>
-<p>Promise的定义方式使得它只能被决议一次。即使代码中出现多次决议，这个Promise也会接受第一次决议，并会忽略掉其他任何后续调用。所以任何通过then()注册的回调只会被调用一次。</p>
-<ol>
-<li>未能传递所需的环境和参数</li>
-</ol>
-<p>凡是被决议的值都会传递到观察回调中，如果没有显示的决议值也会传递一个undefined给观察回调。需要注意的是，Promise只允许传一个决议值，其他值将会被默默忽略掉。</p>
-<ol>
-<li>吞掉可能出现的错误和异常</li>
-</ol>
-<p>如果在创建Promise时，存在JavaScript代码错误，会直接导致该Promise的拒绝决议，那么你可以通过reject()来捕获异常，代码中的任何异常都不会吞掉。</p>
-<h2 id="Promise中的异步模式有哪些？有什么区别？"><a href="#Promise中的异步模式有哪些？有什么区别？" class="headerlink" title="Promise中的异步模式有哪些？有什么区别？"></a>Promise中的异步模式有哪些？有什么区别？</h2><p>也就是在问，Promise.all()和Promise.race()的区别</p>
-<blockquote>
-<p>all会将传入的数组中的所有promise全部决议以后，将决议值以数组的形式传入到观察回调中，任何一个promise决议为拒绝，那么就会调用拒绝回调。</p>
-<p>race会将传入的数组中的所有promise中第一个决议的决议值传递给观察回调，即使决议结果是拒绝。</p>
-</blockquote>
-<h2 id="如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><a href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？" class="headerlink" title="如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？"></a>如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</h2><p>all会立即决议，决议结果是fullfilled，值是undefined</p>
-<p>race会永远都不决议，程序卡死……</p>
-<h2 id="如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><a href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）" class="headerlink" title="如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）"></a>如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</h2><p>可以通过Promise.resolve()方法对不确定的值进行Promise化，返回一个Promise对象。</p>
-<p>如果是一个立即值，如一个普通变量，那么该Promise会立即决议为成功。</p>
-<p>如果是一个Promise值，那么会将该Promise直接返回赋值给这个Promise，不会有额外开销。</p>
-<p>如果是一个类Promise值， 比如其中含有名称为then的成员变量，那么会将then展开形成一个新的Promise对象。</p>
-<h2 id="Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><a href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？" class="headerlink" title="Promise是如何捕获异常的？与传统的try/catch相比有什么优势？"></a>Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</h2><p>传统的try/catch捕获异常方式是无法捕获异步的异常的.<br>而对于Promise对象来说，构造Promise实例时的代码如果出错，则会被认为是一个拒绝的决议，并会向观察回调中传递异常信息。所以即使是一个异步的请求，Promise也是可以捕获异常的。此外，Promise还可以通过catch回调来捕获回调中的异常。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/29235579" target="_blank" rel="noopener">参考</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1834,7 +1815,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

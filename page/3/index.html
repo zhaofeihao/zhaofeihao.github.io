@@ -260,6 +260,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/Promise/" itemprop="url">Promise</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T21:02:36+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于Promise需要知道的"><a href="#关于Promise需要知道的" class="headerlink" title="关于Promise需要知道的"></a>关于Promise需要知道的</h1><h2 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h2><blockquote>
+<p>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。</p>
+</blockquote>
+<h2 id="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"><a href="#传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）" class="headerlink" title="传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）"></a>传统的回调式异步操作有什么缺点？（Promise是如何解决异步操作）</h2><ol>
+<li>调用回调过早</li>
+<li>调用回调过晚（或没有被调用）</li>
+<li>调用回调次数过少或过多</li>
+<li>未能传递所需的环境和参数</li>
+<li>吞掉可能出现的错误和异常</li>
+</ol>
+<p>Promise的解决办法：</p>
+<ol>
+<li>调用回调过早</li>
+</ol>
+<p>对于Promise来说，即使是立即完成的Promise也无法被同步观察到，也就是说一个Promise调用then()的时候，即使这个Promise已经决议了，提供给then的回调也总会被异步调用。</p>
+<ol>
+<li>调用回调过晚（或没有被调用）</li>
+</ol>
+<p>对于一个Promise对象注册的每一个观察回调都是相对独立、互不干预的。而Promise对象调用resolve()和reject()时，每个注册的观察回调也都会被自动调度。所以这些观察回调的任意一个都无法影响或延误对其他回调的调用。</p>
+<ol>
+<li>调用回调次数过少或过多</li>
+</ol>
+<p>Promise的定义方式使得它只能被决议一次。即使代码中出现多次决议，这个Promise也会接受第一次决议，并会忽略掉其他任何后续调用。所以任何通过then()注册的回调只会被调用一次。</p>
+<ol>
+<li>未能传递所需的环境和参数</li>
+</ol>
+<p>凡是被决议的值都会传递到观察回调中，如果没有显示的决议值也会传递一个undefined给观察回调。需要注意的是，Promise只允许传一个决议值，其他值将会被默默忽略掉。</p>
+<ol>
+<li>吞掉可能出现的错误和异常</li>
+</ol>
+<p>如果在创建Promise时，存在JavaScript代码错误，会直接导致该Promise的拒绝决议，那么你可以通过reject()来捕获异常，代码中的任何异常都不会吞掉。</p>
+<h2 id="Promise中的异步模式有哪些？有什么区别？"><a href="#Promise中的异步模式有哪些？有什么区别？" class="headerlink" title="Promise中的异步模式有哪些？有什么区别？"></a>Promise中的异步模式有哪些？有什么区别？</h2><p>也就是在问，Promise.all()和Promise.race()的区别</p>
+<blockquote>
+<p>all会将传入的数组中的所有promise全部决议以后，将决议值以数组的形式传入到观察回调中，任何一个promise决议为拒绝，那么就会调用拒绝回调。</p>
+<p>race会将传入的数组中的所有promise中第一个决议的决议值传递给观察回调，即使决议结果是拒绝。</p>
+</blockquote>
+<h2 id="如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？"><a href="#如果向Promise-all-和Promise-race-传递空数组，运行结果会有什么不同？" class="headerlink" title="如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？"></a>如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？</h2><p>all会立即决议，决议结果是fullfilled，值是undefined</p>
+<p>race会永远都不决议，程序卡死……</p>
+<h2 id="如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）"><a href="#如何确保一个变量是可信任的Promise（Promise-resolve方法传入不同值的不同处理有哪些）" class="headerlink" title="如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）"></a>如何确保一个变量是可信任的Promise（Promise.resolve方法传入不同值的不同处理有哪些）</h2><p>可以通过Promise.resolve()方法对不确定的值进行Promise化，返回一个Promise对象。</p>
+<p>如果是一个立即值，如一个普通变量，那么该Promise会立即决议为成功。</p>
+<p>如果是一个Promise值，那么会将该Promise直接返回赋值给这个Promise，不会有额外开销。</p>
+<p>如果是一个类Promise值， 比如其中含有名称为then的成员变量，那么会将then展开形成一个新的Promise对象。</p>
+<h2 id="Promise是如何捕获异常的？与传统的try-catch相比有什么优势？"><a href="#Promise是如何捕获异常的？与传统的try-catch相比有什么优势？" class="headerlink" title="Promise是如何捕获异常的？与传统的try/catch相比有什么优势？"></a>Promise是如何捕获异常的？与传统的try/catch相比有什么优势？</h2><p>传统的try/catch捕获异常方式是无法捕获异步的异常的.<br>而对于Promise对象来说，构造Promise实例时的代码如果出错，则会被认为是一个拒绝的决议，并会向观察回调中传递异常信息。所以即使是一个异步的请求，Promise也是可以捕获异常的。此外，Promise还可以通过catch回调来捕获回调中的异常。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/29235579" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/css3实现垂直居中/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -334,7 +497,7 @@
             <h1 id="css3实现垂直居中的三种方法"><a href="#css3实现垂直居中的三种方法" class="headerlink" title="css3实现垂直居中的三种方法"></a>css3实现垂直居中的三种方法</h1><p>目标：垂直居中main块<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Am I centered yet?<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Center me, please!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="方法一：通过绝对定位实现"><a href="#方法一：通过绝对定位实现" class="headerlink" title="方法一：通过绝对定位实现"></a>方法一：通过绝对定位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>绝对定位的top: 50%; left: 50%将main块的左上角定位到main块父节点（即body元素）的中心点，也就是页面的中心点。transform translate移位变换，当位移值是百分数时，是相对于当前块的尺寸大小的。因此main块在X轴向左位移本身宽度的50%，在Y轴向上位移本身高度的50%后，恰当使main块在当前页面垂直中心。</p>
-<h2 id="方法二：通过viewport相关尺寸单位实现"><a href="#方法二：通过viewport相关尺寸单位实现" class="headerlink" title="方法二：通过viewport相关尺寸单位实现"></a>方法二：通过viewport相关尺寸单位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50vh</span> auto <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二：通过viewport相关尺寸单位实现"><a href="#方法二：通过viewport相关尺寸单位实现" class="headerlink" title="方法二：通过viewport相关尺寸单位实现"></a>方法二：通过viewport相关尺寸单位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50vh</span> auto <span class="number">0</span>; <span class="comment">/*三值语法 上 横向 下*/</span></span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>1vh是viewport高度的1%，50vh指viewport高度的50%；相应的，1vw是viewport宽度的1%。通过设置main块的上边距margin-top值为50vh，使main块的上边沿正好在页面的垂直方向的等分线上的。而左右边距都为auto，实现了main块在水平方向上居中。再通过与方法一中一样的移位方法，使main块在当前页面上垂直居中。需要注意的是，<strong>要使用这种方法，main块的宽度width值必需要设置。</strong></p>
 <h2 id="方法三：通过flex布局实现"><a href="#方法三：通过flex布局实现" class="headerlink" title="方法三：通过flex布局实现"></a>方法三：通过flex布局实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>要对main块进行flex布局，需要将display: flex的属性值设置在main块的父节点（即body元素)上，同时还要设置最小高度值为viewport的高度值。之后只要简单main块的页边距为auto，就自动实现垂直和水平方向上的自动居中。</p>
@@ -1743,143 +1906,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/js执行环境及作用域/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/29/js执行环境及作用域/" itemprop="url">js执行环境及作用域</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T10:46:11+08:00">
-                2018-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="整理一些基础知识"><a href="#整理一些基础知识" class="headerlink" title="整理一些基础知识"></a>整理一些基础知识</h1><h2 id="js基本数据类型"><a href="#js基本数据类型" class="headerlink" title="js基本数据类型"></a>js基本数据类型</h2><p><code>Boolean</code> <code>Number</code> <code>String</code> <code>Null</code> <code>Undefined</code> <code>Symbol</code><br>参考MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="noopener">Javascript数据类型和数据结构</a></p>
-<p>这里主要对Symbol不是很熟悉。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值. 在某些语言当中也有类似的原子类型(Atoms). 你也可以认为为它们是C里面的枚举类型. 参考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol" target="_blank" rel="noopener">Symbol</a></p>
-<h2 id="如何判断js数据类型"><a href="#如何判断js数据类型" class="headerlink" title="如何判断js数据类型"></a>如何判断js数据类型</h2><p><code>typeof x</code>  |  <code>typeof(x)</code></p>
-<p>但是上面的方法无法区分对象、数组和null，这就用到了对象的一个原生原型扩展函数,用来更精确的区分数据类型 <code>Object.prototype.toString.call(x)</code></p>
-<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p><code>执行环境</code>定义了变量或者函数有权访问的其他数据，决定了他们各自的行为。<br>每个执行环境都有一个与之关联的<code>变量对象</code>,环境中定义的所有变量和函数都保存在这个对象中。</p>
-<p>在浏览器中，全局执行环境是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出时才被销毁）。</p>
-<p>每个函数都有自己的执行环境，当执行流进入到一个函数时，函数的环境就会被推入一个环境栈中。在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<p>当代码在一个环境中执行时，会创建变量对象的一个<code>作用域链</code>。用途是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
-<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，逐级向后回溯，直至找到标识符为止。</p>
-<p>内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系是线性的，有次序的。每个环境都可以向上搜索作用域链，以查询变量和函数名。但任何环境都不能向下搜索作用域链进入另一个执行环境。</p>
-<h2 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h2><p>当执行流进入下列任何一个语句时，作用域链就会得到加长。</p>
-<ul>
-<li>try-catch语句的catch块</li>
-<li>with语句</li>
-</ul>
-<p>对with语句来说，会将指定的对象添加到作用域链中。对catch语句来说，会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> qs = <span class="string">'?debug=true'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span>(location)&#123;</span><br><span class="line">    <span class="keyword">var</span> url = href + qs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>with语句接收location对象，因此其变量对象中就包含了location对象中所有属性和方法。这里使用href相当于location.href。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1930,7 +1956,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
