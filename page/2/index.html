@@ -260,6 +260,129 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/js遍历对象的三种方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/js遍历对象的三种方式/" itemprop="url">js遍历对象的三种方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-15T16:27:10+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="js遍历对象属性-for-in、Object-keys、Object-getOwnProperty"><a href="#js遍历对象属性-for-in、Object-keys、Object-getOwnProperty" class="headerlink" title="js遍历对象属性(for in、Object.keys、Object.getOwnProperty)"></a>js遍历对象属性(for in、Object.keys、Object.getOwnProperty)</h1><h2 id="for-in"><a href="#for-in" class="headerlink" title="for in"></a>for in</h2><p>主要用于遍历对象的 <strong>自有、继承自原型的可枚举属性</strong>.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"zhaofeihao"</span>, </span><br><span class="line">    <span class="string">"career"</span>:<span class="string">"it"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"age"</span>, &#123;<span class="attr">value</span>:<span class="string">"forever 18"</span>, <span class="attr">enumerable</span>:<span class="literal">false</span>&#125;);</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"proto"</span>);&#125;;</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer2 = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);<span class="comment">//name career protoPer1 protoPer2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys"></a>Object.keys</h2><p>返回一个数组，元素均为对象 <strong>自有的可枚举属性</strong>.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"zhaofehiao"</span>, </span><br><span class="line">    <span class="string">"career"</span>:<span class="string">"it"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"age"</span>, &#123;<span class="attr">value</span>:<span class="string">"forever 18"</span>, <span class="attr">enumerable</span>:<span class="literal">false</span>&#125;);</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"proto"</span>);&#125;;</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer2 = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj));<span class="comment">// ["name", "career"]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Object-getOwnProperty"><a href="#Object-getOwnProperty" class="headerlink" title="Object.getOwnProperty"></a>Object.getOwnProperty</h2><p>用于返回对象的 <strong>自有的可枚举和不可枚举的属性</strong>.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"zhaofeihao"</span>, </span><br><span class="line">    <span class="string">"career"</span>:<span class="string">"it"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"age"</span>, &#123;<span class="attr">value</span>:<span class="string">"forever 18"</span>, <span class="attr">enumerable</span>:<span class="literal">false</span>&#125;);</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"proto"</span>);&#125;;</span><br><span class="line"><span class="built_in">Object</span>.prototype.protoPer2 = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(obj));<span class="comment">// ["name", "career", "age"]</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://segmentfault.com/a/1190000007908692" target="_blank" rel="noopener">原文地址</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/css盒模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1661,132 +1784,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/css3实现垂直居中/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/07/css3实现垂直居中/" itemprop="url">css3实现垂直居中</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T20:34:18+08:00">
-                2018-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="css3实现垂直居中的三种方法"><a href="#css3实现垂直居中的三种方法" class="headerlink" title="css3实现垂直居中的三种方法"></a>css3实现垂直居中的三种方法</h1><p>目标：垂直居中main块<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Am I centered yet?<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Center me, please!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="方法一：通过绝对定位实现"><a href="#方法一：通过绝对定位实现" class="headerlink" title="方法一：通过绝对定位实现"></a>方法一：通过绝对定位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>绝对定位的top: 50%; left: 50%将main块的左上角定位到main块父节点（即body元素）的中心点，也就是页面的中心点。transform translate移位变换，当位移值是百分数时，是相对于当前块的尺寸大小的。因此main块在X轴向左位移本身宽度的50%，在Y轴向上位移本身高度的50%后，恰当使main块在当前页面垂直中心。</p>
-<h2 id="方法二：通过viewport相关尺寸单位实现"><a href="#方法二：通过viewport相关尺寸单位实现" class="headerlink" title="方法二：通过viewport相关尺寸单位实现"></a>方法二：通过viewport相关尺寸单位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50vh</span> auto <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1vh是viewport高度的1%，50vh指viewport高度的50%；相应的，1vw是viewport宽度的1%。通过设置main块的上边距margin-top值为50vh，使main块的上边沿正好在页面的垂直方向的等分线上的。而左右边距都为auto，实现了main块在水平方向上居中。再通过与方法一中一样的移位方法，使main块在当前页面上垂直居中。需要注意的是，<strong>要使用这种方法，main块的宽度width值必需要设置。</strong></p>
-<h2 id="方法三：通过flex布局实现"><a href="#方法三：通过flex布局实现" class="headerlink" title="方法三：通过flex布局实现"></a>方法三：通过flex布局实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>要对main块进行flex布局，需要将display: flex的属性值设置在main块的父节点（即body元素)上，同时还要设置最小高度值为viewport的高度值。之后只要简单main块的页边距为auto，就自动实现垂直和水平方向上的自动居中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1837,7 +1834,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1850,7 +1847,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -260,6 +260,132 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/css3实现垂直居中/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵斐昊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵斐昊">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/css3实现垂直居中/" itemprop="url">css3实现垂直居中</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T20:34:18+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="css3实现垂直居中的三种方法"><a href="#css3实现垂直居中的三种方法" class="headerlink" title="css3实现垂直居中的三种方法"></a>css3实现垂直居中的三种方法</h1><p>目标：垂直居中main块<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Am I centered yet?<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Center me, please!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="方法一：通过绝对定位实现"><a href="#方法一：通过绝对定位实现" class="headerlink" title="方法一：通过绝对定位实现"></a>方法一：通过绝对定位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绝对定位的top: 50%; left: 50%将main块的左上角定位到main块父节点（即body元素）的中心点，也就是页面的中心点。transform translate移位变换，当位移值是百分数时，是相对于当前块的尺寸大小的。因此main块在X轴向左位移本身宽度的50%，在Y轴向上位移本身高度的50%后，恰当使main块在当前页面垂直中心。</p>
+<h2 id="方法二：通过viewport相关尺寸单位实现"><a href="#方法二：通过viewport相关尺寸单位实现" class="headerlink" title="方法二：通过viewport相关尺寸单位实现"></a>方法二：通过viewport相关尺寸单位实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50vh</span> auto <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1vh是viewport高度的1%，50vh指viewport高度的50%；相应的，1vw是viewport宽度的1%。通过设置main块的上边距margin-top值为50vh，使main块的上边沿正好在页面的垂直方向的等分线上的。而左右边距都为auto，实现了main块在水平方向上居中。再通过与方法一中一样的移位方法，使main块在当前页面上垂直居中。需要注意的是，<strong>要使用这种方法，main块的宽度width值必需要设置。</strong></p>
+<h2 id="方法三：通过flex布局实现"><a href="#方法三：通过flex布局实现" class="headerlink" title="方法三：通过flex布局实现"></a>方法三：通过flex布局实现</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要对main块进行flex布局，需要将display: flex的属性值设置在main块的父节点（即body元素)上，同时还要设置最小高度值为viewport的高度值。之后只要简单main块的页边距为auto，就自动实现垂直和水平方向上的自动居中。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/javascript内存泄漏及如何避免/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1754,145 +1880,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/使用express后台的react应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵斐昊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵斐昊">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/使用express后台的react应用/" itemprop="url">使用Express后台的React App</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T19:48:50+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="使用Express后台的React-App"><a href="#使用Express后台的React-App" class="headerlink" title="使用Express后台的React App"></a>使用Express后台的React App</h1><h2 id="创建一个Express-App"><a href="#创建一个Express-App" class="headerlink" title="创建一个Express App"></a>创建一个Express App</h2><p>这里使用<a href="http://www.expressjs.com.cn/starter/generator.html" target="_blank" rel="noopener">express-generator</a>工具生成生成一个Express App。</p>
-<p>安装生成器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g express-generator</span><br><span class="line"><span class="comment"># or:  yarn global add express-generator</span></span><br></pre></td></tr></table></figure></p>
-<p>然后运行它，来创建Express App<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ express my-express</span><br></pre></td></tr></table></figure></p>
-<p>进入生成的文件夹，安装所需依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> my-express</span><br><span class="line">$ npm install   <span class="comment"># or yarn install</span></span><br></pre></td></tr></table></figure></p>
-<p>我们来编辑<code>react-backend/routes/users.js</code>文件以最简单的方式返回一些数据,针对原文件作出一点改变：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* GET users listing. */</span></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// Comment out this line:</span></span><br><span class="line">  <span class="comment">//res.send('respond with a resource');</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// And insert something like this instead:</span></span><br><span class="line">  res.json([&#123;</span><br><span class="line">  	id: <span class="number">1</span>,</span><br><span class="line">  	username: <span class="string">"samsepi0l"</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  	id: <span class="number">2</span>,</span><br><span class="line">  	username: <span class="string">"D0loresH4ze"</span></span><br><span class="line">  &#125;]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure></p>
-<p>这样就可以了，通过执行以下代码启动该App<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ PORT=3001 node bin/www</span><br></pre></td></tr></table></figure></p>
-<p>在window上是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> PORT=3001 &amp;&amp; node bin/www</span><br></pre></td></tr></table></figure></p>
-<p><code>PORT</code>变量：Express App默认占用3000端口，而React App 默认也是3000端口，为避免冲突，将Express改为在3000端口启动。</p>
-<h2 id="创建React-App"><a href="#创建React-App" class="headerlink" title="创建React App"></a>创建React App</h2><p>React App文件夹可以存放在任意位置，不必非得作为Express App的子文件夹。</p>
-<p>首先，确保你的<code>create-react-app</code>安装过了，如果没有安装过，那么：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure></p>
-<p>然后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-react</span><br></pre></td></tr></table></figure></p>
-<h2 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h2><p>这里是使React App与Express App进行通信的关键点。</p>
-<p>在你的React App文件夹(my-react)中，打开<code>package.json</code>,在”scripts”部分下，添加”proxy”：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"react-scripts start"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"react-scripts build"</span>,</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"react-scripts test --env=jsdom"</span>,</span><br><span class="line">    <span class="string">"eject"</span>: <span class="string">"react-scripts eject"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"proxy"</span>: <span class="string">"http://localhost:3001"</span></span><br></pre></td></tr></table></figure></p>
-<p>端口3001必须与Express服务器运行的端口一致。</p>
-<p>这样配置的作用在于，任何时候你的React App请求非静态资源时，它都会转向服务器指定的”proxy”</p>
-<p>这时就可以启动你的React App了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br><span class="line"><span class="comment">#or yarn start</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="在React中请求数据"><a href="#在React中请求数据" class="headerlink" title="在React中请求数据"></a>在React中请求数据</h2><p>这里使用axios库进行请求，需要先在React App中进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure></p>
-<p>打开<code>client/src/App.js</code>文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      users: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    axios.get(<span class="string">'/users'</span>)</span><br><span class="line">    .then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;<span class="keyword">return</span> res.data&#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">users</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123; users &#125;));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;h1&gt;Users&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &#123;this.state.users.map(user =&gt;</span></span><br><span class="line"><span class="regexp">          &lt;div key=&#123;user.id&#125;&gt;&#123;user.username&#125;&lt;/</span>div&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://daveceddia.com/create-react-app-express-backend/" target="_blank" rel="noopener">原文地址</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1943,7 +1930,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1956,7 +1943,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
