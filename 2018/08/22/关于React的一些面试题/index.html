@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>关于React的一些面试题 | 赵斐昊</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">关于React的一些面试题</h1><a id="logo" href="/.">赵斐昊</a><p class="description">假程序员假程序员假程序员假程序员假程序员假程序员假程序员假程序员。</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">关于React的一些面试题</h1><div class="post-meta">Aug 22, 2018<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/08/22/关于React的一些面试题/" href="/2018/08/22/关于React的一些面试题/#disqus_thread"></a><div class="post-content"><h3 id="React-的工作原理"><a href="#React-的工作原理" class="headerlink" title="React 的工作原理"></a>React 的工作原理</h3><p>React 会创建一个虚拟 DOM(virtual DOM)。当一个组件中的状态改变时，React 首先会通过 “diff” 算法来标记虚拟 DOM 中的改变，第二步是调节(<a href="https://github.com/Pau1fitz/react-interview/blob/master/zh-cn.md#react-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" target="_blank" rel="noopener">react官方文档 - reconciliation</a>)，会用 diff 的结果来更新 DOM。</p>
+<h3 id="使用-React-有何优点"><a href="#使用-React-有何优点" class="headerlink" title="使用 React 有何优点"></a>使用 React 有何优点</h3><ul>
+<li>只需查看 render 函数就会很容易知道一个组件是如何被渲染的</li>
+<li>JSX 的引入，使得组件的代码更加可读，也更容易看懂组件的布局，或者组件之间是如何互相引用的</li>
+<li>支持服务端渲染，这可以改进 SEO 和性能</li>
+<li>易于测试</li>
+<li>React 只关注 View 层，所以可以和其它任何框架(如Backbone.js, Angular.js)一起使用</li>
+</ul>
+<h3 id="展示组件-Presentational-component-和容器组件-Container-component-之间有何不同"><a href="#展示组件-Presentational-component-和容器组件-Container-component-之间有何不同" class="headerlink" title="展示组件(Presentational component)和容器组件(Container component)之间有何不同"></a>展示组件(Presentational component)和容器组件(Container component)之间有何不同</h3><p>展示组件关心组件看起来是什么。展示专门通过 props 接受数据和回调，并且几乎不会有自身的状态，但当展示组件拥有自身的状态时，通常也只关心 UI 状态而不是数据的状态。</p>
+<p>容器组件则更关心组件是如何运作的。容器组件会为展示组件或者其它容器组件提供数据和行为(behavior)，它们会调用 Flux actions，并将其作为回调提供给展示组件。容器组件经常是有状态的，因为它们是(其它组件的)数据源。</p>
+<h3 id="类组件-Class-component-和函数式组件-Functional-component-之间有何不同"><a href="#类组件-Class-component-和函数式组件-Functional-component-之间有何不同" class="headerlink" title="类组件(Class component)和函数式组件(Functional component)之间有何不同"></a>类组件(Class component)和函数式组件(Functional component)之间有何不同</h3><ul>
+<li>类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态</li>
+<li>当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 ‘无状态组件(stateless component)’，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件</li>
+</ul>
+<h3 id="组件的-状态-state-和属性-props-之间有何不同"><a href="#组件的-状态-state-和属性-props-之间有何不同" class="headerlink" title="(组件的)状态(state)和属性(props)之间有何不同"></a>(组件的)状态(state)和属性(props)之间有何不同</h3><ul>
+<li>State 是一种数据结构，用于组件挂载时所需数据的默认值。State 可能会随着时间的推移而发生突变，但多数时候是作为用户事件行为的结果。</li>
+<li>Props(properties 的简写)则是组件的配置。props 由父组件传递给子组件，并且就子组件而言，props 是不可变的(immutable)。组件不能改变自身的 props，但是可以把其子组件的 props 放在一起(统一管理)。Props 也不仅仅是数据—回调函数也可以通过 props 传递。</li>
+</ul>
+<h3 id="指出-组件-生命周期方法的不同"><a href="#指出-组件-生命周期方法的不同" class="headerlink" title="指出(组件)生命周期方法的不同"></a>指出(组件)生命周期方法的不同</h3><ul>
+<li><code>componentWillMount</code> — 多用于根组件中的应用程序配置</li>
+<li><code>componentDidMount</code> — 在这可以完成所有没有 DOM 就不能做的所有配置，并开始获取所有你需要的数据；如果需要设置事件监听，也可以在这完成</li>
+<li><code>componentWillReceiveProps</code> — 这个周期函数作用于特定的 prop 改变导致的 state 转换</li>
+<li><code>shouldComponentUpdate</code> — 如果你担心组件过度渲染，shouldComponentUpdate 是一个改善性能的地方，因为如果组件接收了新的 prop， 它可以阻止(组件)重新渲染。shouldComponentUpdate 应该返回一个布尔值来决定组件是否要重新渲染</li>
+<li><code>componentWillUpdate</code> — 很少使用。它可以用于代替组件的 componentWillReceiveProps 和 shouldComponentUpdate(但不能访问之前的 props)</li>
+<li><code>componentDidUpdate</code> — 常用于更新 DOM，响应 prop 或 state 的改变</li>
+<li><code>componentWillUnmount</code> — 在这你可以取消网络请求，或者移除所有与组件相关的事件监听器</li>
+</ul>
+<h3 id="应该在-React-组件的何处发起-Ajax-请求"><a href="#应该在-React-组件的何处发起-Ajax-请求" class="headerlink" title="应该在 React 组件的何处发起 Ajax 请求"></a>应该在 React 组件的何处发起 Ajax 请求</h3><p>在 React 组件中，应该在 componentDidMount 中发起网络请求。这个方法会在组件第一次“挂载”(被添加到 DOM)时执行，在组件的生命周期中仅会执行一次。更重要的是，你不能保证在组件挂载之前 Ajax 请求已经完成，如果是这样，也就意味着你将尝试在一个未挂载的组件上调用 setState，这将不起作用。在 componentDidMount 中发起网络请求将保证这有一个组件可以更新了。</p>
+<h3 id="何为受控组件-controlled-component"><a href="#何为受控组件-controlled-component" class="headerlink" title="何为受控组件(controlled component)"></a>何为受控组件(controlled component)</h3><p>在 HTML 中，类似 &lt;input&gt;, &lt;textarea&gt; 和 &lt;select&gt; 这样的表单元素会维护自身的状态，并基于用户的输入来更新。当用户提交表单时，前面提到的元素的值将随表单一起被发送。但在 React 中会有些不同，包含表单元素的组件将会在 state 中追踪输入的值，并且每次调用回调函数时，如 onChange 会更新 state，重新渲染组件。一个输入表单元素，它的值通过 React 的这种方式来控制，这样的元素就被称为”受控元素”。</p>
+<h3 id="何为高阶组件-higher-order-component"><a href="#何为高阶组件-higher-order-component" class="headerlink" title="何为高阶组件(higher order component)"></a>何为高阶组件(higher order component)</h3><p>高阶组件是一个以组件为参数并返回一个新组件的函数。HOC 运行你重用代码、逻辑和引导抽象。最常见的可能是 Redux 的 connect 函数。除了简单分享工具库和简单的组合，HOC最好的方式是共享 React 组件之间的行为。如果你发现你在不同的地方写了大量代码来做同一件事时，就应该考虑将代码重构为可重用的 HOC。</p>
+<h3 id="使用箭头函数-arrow-functions-的优点是什么"><a href="#使用箭头函数-arrow-functions-的优点是什么" class="headerlink" title="使用箭头函数(arrow functions)的优点是什么"></a>使用箭头函数(arrow functions)的优点是什么</h3><ul>
+<li>作用域安全：在箭头函数之前，每一个新创建的函数都有定义自身的 this 值(在构造函数中是新对象；在严格模式下，函数调用中的 this 是未定义的；如果函数被称为“对象方法”，则为基础对象等)，但箭头函数不会，它会使用封闭执行上下文的 this 值。</li>
+<li>简单：箭头函数易于阅读和书写</li>
+<li>清晰：当一切都是一个箭头函数，任何常规函数都可以立即用于定义作用域。开发者总是可以查找 next-higher 函数语句，以查看 this 的值</li>
+</ul>
+<h3 id="为什么建议传递给-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么建议传递给-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么建议传递给 setState 的参数是一个 callback 而不是一个对象"></a>为什么建议传递给 setState 的参数是一个 callback 而不是一个对象</h3><p>因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state。</p>
+<h3 id="怎么阻止组件的渲染"><a href="#怎么阻止组件的渲染" class="headerlink" title="怎么阻止组件的渲染"></a>怎么阻止组件的渲染</h3><p>在组件的 render 方法中返回 null 并不会影响触发组件的生命周期方法</p>
+<h3 id="当渲染一个列表时，何为-key？设置-key-的目的是什么"><a href="#当渲染一个列表时，何为-key？设置-key-的目的是什么" class="headerlink" title="当渲染一个列表时，何为 key？设置 key 的目的是什么"></a>当渲染一个列表时，何为 key？设置 key 的目的是什么</h3><p>Keys 会有助于 React 识别哪些 items 改变了，被添加了或者被移除了。Keys 应该被赋予数组内的元素以赋予(DOM)元素一个稳定的标识，选择一个 key 的最佳方法是使用一个字符串，该字符串能惟一地标识一个列表项。很多时候你会使用数据中的 IDs 作为 keys，当你没有稳定的 IDs 用于被渲染的 items 时，可以使用项目索引作为渲染项的 key，但这种方式并不推荐，如果 items 可以重新排序，就会导致 re-render 变慢。</p>
+<h3 id="在构造函数中-调用-super-props-的目的是什么"><a href="#在构造函数中-调用-super-props-的目的是什么" class="headerlink" title="(在构造函数中)调用 super(props) 的目的是什么"></a>(在构造函数中)调用 super(props) 的目的是什么</h3><p>在 super() 被调用之前，子类是不能使用 this 的，在 ES2015 中，子类必须在 constructor 中调用 super()。传递 props 给 super() 的原因则是便于(在子类中)能在 constructor 访问 this.props。</p>
+<h3 id="何为-JSX"><a href="#何为-JSX" class="headerlink" title="何为 JSX"></a>何为 JSX</h3><p>JSX 是 JavaScript 语法的一种语法扩展，并拥有 JavaScript 的全部功能。JSX 生产 React “元素”，你可以将任何的 JavaScript 表达式封装在花括号里，然后将其嵌入到 JSX 中。在编译完成之后，JSX 表达式就变成了常规的 JavaScript 对象，这意味着你可以在 if 语句和 for 循环内部使用 JSX，将它赋值给变量，接受它作为参数，并从函数中返回它。</p>
+<h3 id="怎么用-React-createElement-重写下面的代码"><a href="#怎么用-React-createElement-重写下面的代码" class="headerlink" title="怎么用 React.createElement 重写下面的代码"></a>怎么用 React.createElement 重写下面的代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;h1 className=<span class="string">"greeting"</span>&gt;</span><br><span class="line">    Hello, world!</span><br><span class="line">  &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>⤵️<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = React.createElement(</span><br><span class="line">  <span class="string">'h1'</span>,</span><br><span class="line">  &#123;<span class="attr">className</span>: <span class="string">'greeting'</span>&#125;,</span><br><span class="line">  <span class="string">'Hello, world!'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="何为-Children"><a href="#何为-Children" class="headerlink" title="何为 Children"></a>何为 Children</h3><p>在JSX表达式中，一个开始标签(比如<a>)和一个关闭标签(比如</a>)之间的内容会作为一个特殊的属性props.children被自动传递给包含着它的组件。</p>
+<p>这个属性有许多可用的方法，包括 React.Children.map，React.Children.forEach， React.Children.count， React.Children.only，React.Children.toArray。</p>
+<h3 id="在-React-中，何为-state"><a href="#在-React-中，何为-state" class="headerlink" title="在 React 中，何为 state"></a>在 React 中，何为 state</h3><p>State 和 props 类似，但它是私有的，并且完全由组件自身控制。State 本质上是一个持有数据，并决定组件如何渲染的对象。</p>
+<h3 id="什么原因会促使你脱离-create-react-app-的依赖"><a href="#什么原因会促使你脱离-create-react-app-的依赖" class="headerlink" title="什么原因会促使你脱离 create-react-app 的依赖"></a>什么原因会促使你脱离 create-react-app 的依赖</h3><p>当你想去配置 webpack 或 babel presets。</p>
+<h3 id="何为-redux"><a href="#何为-redux" class="headerlink" title="何为 redux"></a>何为 redux</h3><p>Redux 的基本思想是整个应用的 state 保持在一个单一的 store 中。store 就是一个简单的 javascript 对象，而改变应用 state 的唯一方式是在应用中触发 actions，然后为这些 actions 编写 reducers 来修改 state。整个 state 转化是在 reducers 中完成，并且不应该有任何副作用。</p>
+<h3 id="在-Redux-中，何为-store"><a href="#在-Redux-中，何为-store" class="headerlink" title="在 Redux 中，何为 store"></a>在 Redux 中，何为 store</h3><p>Store 是一个 javascript 对象，它保存了整个应用的 state。与此同时，Store 也承担以下职责：</p>
+<ul>
+<li>允许通过 getState() 访问 state</li>
+<li>运行通过 dispatch(action) 改变 state</li>
+<li>通过 subscribe(listener) 注册 listeners</li>
+<li>通过 subscribe(listener) 返回的函数处理 listeners 的注销</li>
+</ul>
+<h3 id="何为-action"><a href="#何为-action" class="headerlink" title="何为 action"></a>何为 action</h3><p>Actions 是一个纯 javascript 对象，它们必须有一个 type 属性表明正在执行的 action 的类型。实质上，action 是将数据从应用程序发送到 store 的有效载荷。</p>
+<h3 id="何为-reducer"><a href="#何为-reducer" class="headerlink" title="何为 reducer"></a>何为 reducer</h3><p>一个 reducer 是一个纯函数，该函数以先前的 state 和一个 action 作为参数，并返回下一个 state。</p>
+<h3 id="何为纯函数-pure-function"><a href="#何为纯函数-pure-function" class="headerlink" title="何为纯函数(pure function)"></a>何为纯函数(pure function)</h3><p>一个纯函数是一个不依赖于且不改变其作用域之外的变量状态的函数，这也意味着一个纯函数对于同样的参数总是返回同样的结果。</p>
+<p><a href="https://github.com/Pau1fitz/react-interview/blob/master/zh-cn.md#react-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86" target="_blank" rel="noopener">GitHub - React面试问题</a></p>
+</div><div class="tags"><a href="/tags/interview/">interview</a><a href="/tags/React/">React</a></div><div class="post-nav"><a class="next" href="/2018/08/22/javascript异步机制/">javascript异步机制</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2018/08/22/关于React的一些面试题/';
+    this.page.identifier = '2018/08/22/关于React的一些面试题/';
+    this.page.title = '关于React的一些面试题';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//zhaofeihao.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zhaofeihao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://zhaofeihao.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/TCP-UDP/" style="font-size: 15px;">TCP-UDP</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/interview/" style="font-size: 15px;">interview</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/flex/" style="font-size: 15px;">flex</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/综合/" style="font-size: 15px;">综合</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/浏览器缓存/" style="font-size: 15px;">浏览器缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/22/关于React的一些面试题/">关于React的一些面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/22/javascript异步机制/">javascript异步机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/22/setTimeout和setInterval/">setTimeout和setInterval</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/22/React和jQuery的区别/">React和jQuery的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/21/判断一个对象是数组的四种方式/">判断一个对象是数组的四种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/21/js中的事件流及理解DOM事件流/">js中的事件流及理解DOM事件流</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/21/使用call-apply模拟bind/">使用call/apply模拟bind</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/21/js中的call、apply和bind/">js中的call、apply和bind</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/20/js中的浅拷贝和深拷贝/">js中的浅拷贝和深拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/20/原生js实现图片懒加载/">原生js实现图片懒加载</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//zhaofeihao.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">赵斐昊.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
