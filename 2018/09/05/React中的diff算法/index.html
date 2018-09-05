@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>React中的diff算法 | 赵斐昊</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">React中的diff算法</h1><a id="logo" href="/.">赵斐昊</a><p class="description">假程序员假程序员假程序员假程序员假程序员假程序员假程序员假程序员。</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">React中的diff算法</h1><div class="post-meta">Sep 5, 2018<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/09/05/React中的diff算法/" href="/2018/09/05/React中的diff算法/#disqus_thread"></a><div class="post-content"><p>diff算法堪称react的灵魂。</p>
+<p>react团队在对树中节点的比较上，做出了三个策略，最终使得diff算法的复杂度降低到了O(n)。</p>
+<ul>
+<li>在现实场景中，Web UI发生跨层级移动的概率比较低</li>
+<li>具有相同类的组件，生成的树形结构是一致的；具备不同的类的组件，将会生成不同的树形结构</li>
+<li>对于同层级的一组子节点，可以通过添加唯一标识的方式，快速甄别</li>
+</ul>
+<p>基于这三大策略，我们可以将整颗树的比较分成三部分来进行。在分析前，我们先来看一张经典图：<br><img src="/images/diff-core-concept.png" alt="react diff 核心图"></p>
+<h3 id="tree-diff"><a href="#tree-diff" class="headerlink" title="tree diff"></a>tree diff</h3><p>react只会对同层级的组件进行比较，如果新树中节点不存在，react会直接删除该节点，不进行后续的比较；同样的，如果新增了子节点，那么react会在该位置新插入一个节点。</p>
+<p><em>如果出现了 DOM 节点跨层级的移动操作，React diff 会有怎样的表现？</em><br><img src="/images/cross-level-move.jpg" alt="跨层级移动图示"><br>由于 React 只会简单的考虑同层级节点的位置变换，而对于不同层级的节点，只有创建和删除操作。当根节点发现子节点中 A 消失了，就会直接销毁 A；当 D 发现多了一个子节点 A，则会创建新的 A（包括子节点）作为其子节点。此时，React diff 的执行情况：<strong>create A -&gt; create B -&gt; create C -&gt; delete A</strong>。</p>
+<p>由此可发现，当出现节点跨层级移动时，并不会出现想象中的移动操作，而是以 A 为根节点的树被整个重新创建，这是一种影响 React 性能的操作，<strong>因此 React 官方建议不要进行 DOM 节点跨层级的操作</strong>。</p>
+<h3 id="component-diff"><a href="#component-diff" class="headerlink" title="component diff"></a>component diff</h3><ul>
+<li>如果是同一类型的组件，按照tree diff策略继续比较 virtual DOM tree。</li>
+<li>如果不是，则将该组件判断为 dirty component，从而替换整个组件下的所有子节点。</li>
+<li>对于同一类型的组件，有可能其 Virtual DOM 没有任何变化，如果能够确切的知道这点那可以节省大量的 diff 运算时间，因此 React 允许用户通过 shouldComponentUpdate() 来判断该组件是否需要进行 diff。</li>
+</ul>
+<p>如下图，当 component D 改变为 component G 时，即使这两个 component 结构相似，一旦 React 判断 D 和 G 是不同类型的组件，就不会比较二者的结构，而是直接删除 component D，重新创建 component G 以及其子节点。虽然当两个 component 是不同类型但结构相似时，React diff 会影响性能，但正如 React 官方博客所言：不同类型的 component 是很少存在相似 DOM tree 的机会，因此这种极端因素很难在实现开发过程中造成重大影响的。</p>
+<p><img src="/images/component-diff.jpg" alt="component diff"></p>
+<h3 id="element-diff"><a href="#element-diff" class="headerlink" title="element diff"></a>element diff</h3><p>对于第三种策略，在同一组子节点设置唯一的key来进行识别，也是一种优化非常好的方法。</p>
+<p>首先，我们从一张图开始，分析一组子节点之间如何比较不同的。<br><img src="/images/element-diff.png" alt="element diff"><br>如图所示，在没有key的情况下，通常会如何进行处理？</p>
+<p>在新树中的第一个节点是B，但是旧树中，第一个节点是A，因此，react会将A移除，在将新节点B插入；<br>同理，第二次比较，会将节点B移除，节点A插入；第三次将节点C移除，节点D插入；第四次将节点D移除，节点C插入。<br>这样的流程，或许你也发现了，他们所消耗的成本太大，只有移除和插入的操作，远远没有使用到旧的组件。因为，没有唯一key的存在，react无法去判断是否在之前的树中存在着已有的组件，从而无法将旧组件进行复用。</p>
+<p>回到如果回到具备key值的情况下，又是另一番场景了。<br><img src="/images/element-diff-with-key.png" alt="带有key的元素进行diff"></p>
+<p>如果有新节点变化的图，又是如何进行比较的。<br><img src="/images/new-element-diff.png" alt="有新插入的元素"></p>
+<ul>
+<li>在新树中，第一个节点是B，lastIndex记为0，然后查找旧树中节点情况，会发现存在B节点，且其下标大于新树的下标，因此，不做任何变化</li>
+<li>新树中，第二个节点是E，lastIndex记为1，然后查找旧树时，会发现并不存在该节点，因此，react会在下标为1的地方插入节点E。</li>
+<li>在新树中，第三个节点是C，lastIndex记为2，之后，会发现旧树中存在节点C，其下标也为2，因此，不进行任何操作</li>
+<li>在新树中，第四个节点是A，lastIndex记为3，之后，在旧树中存在节点A，其下标为0，小于新树中的下标，因此，将节点A移至下标3的地方。</li>
+<li>完成之后，进行比较新旧树的比较，发现旧树中存在D节点，将至移除。</li>
+</ul>
+<p><a href="https://zhuanlan.zhihu.com/p/20346379" target="_blank" rel="noopener">知乎专栏 - 不可思议的 react diff</a><br><a href="https://github.com/laizimo/zimo-article/issues/22" target="_blank" rel="noopener">Github - react diff算法</a></p>
+</div><div class="tags"><a href="/tags/React/">React</a></div><div class="post-nav"><a class="pre" href="/2018/09/05/HTML-attribute和DOM-property区别/">HTML-attribute和DOM-property区别</a><a class="next" href="/2018/09/04/async-await/">async/await</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2018/09/05/React中的diff算法/';
+    this.page.identifier = '2018/09/05/React中的diff算法/';
+    this.page.title = 'React中的diff算法';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//zhaofeihao.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zhaofeihao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://zhaofeihao.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/interview/" style="font-size: 15px;">interview</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/TCP-UDP/" style="font-size: 15px;">TCP-UDP</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/flex/" style="font-size: 15px;">flex</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/综合/" style="font-size: 15px;">综合</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/浏览器缓存/" style="font-size: 15px;">浏览器缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/HTML-attribute和DOM-property区别/">HTML-attribute和DOM-property区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/React中的diff算法/">React中的diff算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/async-await/">async/await</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/前端模块化-AMD和CMD的区别/">前端模块化,AMD和CMD的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/js中的new/">js中的new</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/原生js实现class语法糖/">原生js实现class语法糖</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/js变量提升vs函数提升机制/">js变量提升vs函数提升机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/CSS文件加载顺序/">CSS文件加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/web图片加载与渲染时机/">web图片加载与渲染时机</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/CSS3选择器-nth-child和-nth-of-type之间的差异/">CSS3选择器:nth-child和:nth-of-type之间的差异</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//zhaofeihao.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">赵斐昊.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
