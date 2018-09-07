@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>js中的变量对象VO和活动对象AO | 赵斐昊</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js中的变量对象VO和活动对象AO</h1><a id="logo" href="/.">赵斐昊</a><p class="description">假程序员假程序员假程序员假程序员假程序员假程序员假程序员假程序员。</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">js中的变量对象VO和活动对象AO</h1><div class="post-meta">Sep 7, 2018<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/09/07/js中的变量对象VO和活动对象AO/" href="/2018/09/07/js中的变量对象VO和活动对象AO/#disqus_thread"></a><div class="post-content"><p>执行上下文的 <strong>创建阶段</strong>，主要有三个内容：</p>
+<ol>
+<li>创建变量对象；</li>
+<li>初始化作用域链；</li>
+<li>确定this的指向。</li>
+</ol>
+<p>执行上下文的 <strong>执行阶段</strong>，也有三个内容：</p>
+<ol>
+<li>变量赋值；</li>
+<li>函数引用；</li>
+<li>执行其他代码。</li>
+</ol>
+<p>这里提到的 <strong>函数调用</strong>，说的是执行上下文的第一阶段，<strong>创建阶段</strong>（还没开始执行函数体相关的代码），<br>提到的 <strong>函数执行</strong>，说的是执行上下文的第二阶段，<strong>执行阶段</strong>（开始执行函数体相关的代码）。</p>
+<p>说到执行上下文中的的变量对象的时候,涉及两个概念：</p>
+<ul>
+<li>VO：Variable Object的简写，就是变量对象。</li>
+<li>AO：Activation Object的简写，叫做活动对象。</li>
+</ul>
+<p>他们的区别就是在于执行上下文的不同生命周期阶段，<strong>变量对象VO在执行上下文的创建阶段</strong>，而 <strong>活动对象AO在执行上下文的执行阶段</strong>。</p>
+<p>举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明example函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> plus();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用example函数</span></span><br><span class="line">example(<span class="number">5</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="变量对象-AO"><a href="#变量对象-AO" class="headerlink" title="变量对象(AO)"></a>变量对象(AO)</h3><p>VO（变量对象）包含：函数的形参（arguments）、函数声明（FunctionDeclaration, FD）、变量声明（VariableDeclaration，var）。</p>
+<p>当调用example函数的时候，进入执行上下文的创建阶段，创建的变量对象为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VO:&#123;</span><br><span class="line">    <span class="built_in">arguments</span>: &#123;<span class="attr">x</span>:<span class="literal">undefined</span>&#125;,</span><br><span class="line">    plus: reference to <span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">    a:<span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="活动对象-AO"><a href="#活动对象-AO" class="headerlink" title="活动对象(AO)"></a>活动对象(AO)</h3><p>当example函数开始执行的时候，进入执行上下文的执行阶段，变量对象就会被激活，首先通过arguments属性初始化成为活动对象AO：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AO:&#123;</span><br><span class="line">    <span class="built_in">arguments</span>:&#123;<span class="attr">callee</span>:example,<span class="attr">x</span>:<span class="number">5</span>,<span class="attr">length</span>:<span class="number">1</span>&#125;,</span><br><span class="line">    plus:reference to <span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">    a:<span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>AO对象是随着执行代码的执行过程中而变化的，随着代码的执行，变量开始初始化，下一步AO就会变成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AO:&#123;</span><br><span class="line">    <span class="built_in">arguments</span>:&#123;<span class="attr">callee</span>:example,<span class="attr">x</span>:<span class="number">5</span>,<span class="attr">length</span>:<span class="number">1</span>&#125;,</span><br><span class="line">    plus:reference to <span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">    a:<span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://segmentfault.com/a/1190000010339180" target="_blank" rel="noopener">segmentfault - 关于javascript中的变量对象和活动对象</a></p>
+</div><div class="tags"><a href="/tags/javascript/">javascript</a></div><div class="post-nav"><a class="next" href="/2018/09/06/CSS权重优先级/">CSS权重优先级</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2018/09/07/js中的变量对象VO和活动对象AO/';
+    this.page.identifier = '2018/09/07/js中的变量对象VO和活动对象AO/';
+    this.page.title = 'js中的变量对象VO和活动对象AO';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//zhaofeihao.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zhaofeihao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://zhaofeihao.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/interview/" style="font-size: 15px;">interview</a> <a href="/tags/TCP-UDP/" style="font-size: 15px;">TCP-UDP</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/flex/" style="font-size: 15px;">flex</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/综合/" style="font-size: 15px;">综合</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/浏览器缓存/" style="font-size: 15px;">浏览器缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/js中的变量对象VO和活动对象AO/">js中的变量对象VO和活动对象AO</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/CSS权重优先级/">CSS权重优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/form表单的4种提交方式/">form表单的4种提交方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/前端路由/">前端路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/cookie、localStorage和sessionStorage/">cookie、localStorage和sessionStorage</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/CSS常见布局方式/">CSS常见布局方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/CSS伪类和伪元素/">CSS伪类和伪元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/HTML-attribute和DOM-property区别/">HTML-attribute和DOM-property区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/05/React中的diff算法/">React中的diff算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/async-await/">async/await</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//zhaofeihao.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">赵斐昊.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
