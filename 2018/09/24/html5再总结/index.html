@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>html5再总结 | 赵斐昊</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">html5再总结</h1><a id="logo" href="/.">赵斐昊</a><p class="description">假程序员假程序员假程序员假程序员假程序员假程序员假程序员假程序员。</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">html5再总结</h1><div class="post-meta">Sep 24, 2018<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" data-disqus-identifier="2018/09/24/html5再总结/" href="/2018/09/24/html5再总结/#disqus_thread"></a><div class="post-content"><h3 id="谈谈你对HTML5的理解"><a href="#谈谈你对HTML5的理解" class="headerlink" title="谈谈你对HTML5的理解"></a>谈谈你对HTML5的理解</h3><p>H5从广义上说是前端开发中各种最新技术的总称，包含了HTML5、CSS3、JavaScript、ES6和各种开源框架等最新前端开发技术的总和。H5广泛而深入地吸收了移动互联网时代的技术精髓，再加上其自身跨平台、免安装、更新快的技术优势，自2014年底发布以来，已经逐渐成为现代互联网和移动互联网开发的核心技术。<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5" target="_blank" rel="noopener">MDN - HTML5</a></p>
+<h3 id="目前哪些浏览器支持HTML5？"><a href="#目前哪些浏览器支持HTML5？" class="headerlink" title="目前哪些浏览器支持HTML5？"></a>目前哪些浏览器支持HTML5？</h3><p>几乎所有的浏览器都支持HTML 5，例如Safari，Chrome，火狐，Opera，IE等。</p>
+<h3 id="HTML5中的DataList是什么？"><a href="#HTML5中的DataList是什么？" class="headerlink" title="HTML5中的DataList是什么？"></a>HTML5中的DataList是什么？</h3><p>HTML 5中的DataList控件元素有助于提供自动完成功能的文本框，如下图所示。<br><img src="/images/h5-datalist.png" alt="DataList控件"><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">list</span>=<span class="string">'Country'</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">'Country'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">'India'</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">'Italy'</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">'Iran'</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">'Israel'</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">'Indonesia'</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="SVG是什么？"><a href="#SVG是什么？" class="headerlink" title="SVG是什么？"></a>SVG是什么？</h3><p>SVG表示（scalable vector graphics）可缩放矢量图形。这是一个基于文本的图形语言，它可以绘制使用文本、线、点等的图形，因此可以轻巧又快速地渲染。<br><a href="https://www.w3cplus.com/svg/svg-shapes-lines.html" target="_blank" rel="noopener">SVG基础——如何创建简单的图形和线条</a><br>使用HTML5举个简单的SVG例子,想要使用HTML5 SVG显示一条直线:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg width=<span class="string">"300px"</span> height=<span class="string">"250px"</span>&gt;</span><br><span class="line">     &lt;line x1=<span class="string">"100"</span> y1=<span class="string">"200"</span> x2=<span class="string">"250"</span> y2=<span class="string">"50"</span> stroke=<span class="string">"#000"</span> stroke-width=<span class="string">"5"</span> /&gt; </span><br><span class="line">&lt;<span class="regexp">/svg&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/svg-line.jpg" alt="svg画直线"></p>
+<h3 id="HTML5中canvas是什么？"><a href="#HTML5中canvas是什么？" class="headerlink" title="HTML5中canvas是什么？"></a>HTML5中canvas是什么？</h3><p><code>&lt;canvas&gt;</code> 是 HTML5 新增的元素，可用于通过使用JavaScript中的脚本来绘制图形。例如，它可以用于绘制图形，制作照片，创建动画，甚至可以进行实时视频处理或渲染。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--定义Canvas区域--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//获取画布区域的访问</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">//绘制图形</span></span></span><br><span class="line"><span class="javascript">    ctx.fillStyle = <span class="string">'green'</span>;</span></span><br><span class="line"><span class="undefined">    ctx.fillRect(10, 10, 100, 100);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/canvas-rect.jpg" alt="canvas画矩形"></p>
+<h3 id="Canvas和SVG图形的区别是什么？"><a href="#Canvas和SVG图形的区别是什么？" class="headerlink" title="Canvas和SVG图形的区别是什么？"></a>Canvas和SVG图形的区别是什么？</h3><p><a href="https://github.com/abcrun/abcrun.github.com/issues/13" target="_blank" rel="noopener">详细看这里</a></p>
+<ol>
+<li>从图像类别区分，Canvas是基于像素的位图，而SVG却是基于矢量图形。</li>
+<li>从渲染模式上来说，Canvas属于 即时模式，而SVG则是 保留模式。<blockquote>
+<p>SVG 作为一种在内存模型中持久保存的保留模式图形模型而著称。类似于 HTML，SVG 构建一个包含元素、特性和样式的对象模型。当 <code>&lt;svg&gt;</code>元素出现在 HTML5 文档中时，它的行为类似于一个内联块，是 HTML 文档树的一部分。<br>Canvas 是一个位图，包含一个即时模式图形应用程序编程接口 (API) 来在它之上进行绘制。Canvas 是一种“即发即弃”模型，直接向它的位图呈现它的图形，然后对所绘制的形状没有任何认知，只会得到最终的位图。</p>
+</blockquote>
+</li>
+<li>从结构上说，Canvas没有图层的概念，所有的修改整个画布都要重新渲染，而SVG则可以对单独的标签进行修改。</li>
+<li>从操作对象上说，Canvas是基于HTML canvas标签，通过宿主提供的Javascript API对整个画布进行操作的，而SVG则是基于XML元素的。</li>
+<li>从功能上讲，SVG发布日期较早，所以功能相对Canvas比较完善。</li>
+<li>关于动画，Canvas更适合做基于位图的动画，而SVG则适合图表的展示。</li>
+</ol>
+<h3 id="HTML5中我们如何实现应用缓存？"><a href="#HTML5中我们如何实现应用缓存？" class="headerlink" title="HTML5中我们如何实现应用缓存？"></a>HTML5中我们如何实现应用缓存？</h3><p>首先我们需要指定”manifest”文件，“manifest”文件帮助你定义你的缓存如何工作。以下是”mainfest”文件的结构：<br><img src="/images/html5-manifest.jpg" alt="manifest文件"><br><a href="https://www.html5rocks.com/zh/tutorials/appcache/beginner/" target="_blank" rel="noopener">详细看这篇文章</a></p>
+<ul>
+<li>CACHE MANIFEST 字符串应在第一行，且必不可少。</li>
+<li>网站的缓存数据量不得超过 5 MB。</li>
+<li>如果清单文件或其中指定的资源无法下载，就无法进行整个缓存更新进程。在这种情况下，浏览器将继续使用原应用缓存。</li>
+</ul>
+<h3 id="HTML5-为什么只需要写-lt-DOCTYPE-HTML-gt"><a href="#HTML5-为什么只需要写-lt-DOCTYPE-HTML-gt" class="headerlink" title="HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;"></a>HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;</h3><p>HTML5不基于SGML<sup><a href="#fn_1" id="reffn_1">1</a></sup>，因此不需要对DTD<sup><a href="#fn_2" id="reffn_2">2</a></sup>进行引用，只需要DOCTYPE来规范浏览器的行为（让浏览器按照他们应该的方式来运行）。而HTML4.01基于SGML，所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
+<h3 id="行内元素有哪些？块级元素有哪些？-空-void-元素有那些？"><a href="#行内元素有哪些？块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？"></a>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h3><p>行内元素：<code>a</code>  <code>b</code>  <code>span</code>  <code>img</code>  <code>input</code>  <code>select</code>  <code>strong</code></p>
+<p>块级元素：<code>div</code>  <code>ul</code>  <code>ol</code>  <code>li</code>  <code>dl</code>  <code>dt</code>  <code>dd</code>  <code>h1</code>  <code>p</code> 等</p>
+<p>空元素：<code>&lt;br&gt;</code>  <code>&lt;hr&gt;</code>  <code>&lt;img&gt;</code>  <code>&lt;link&gt;</code> <code>&lt;meta&gt;</code></p>
+<h3 id="页面导入样式时，使用link和-import有什么区别？"><a href="#页面导入样式时，使用link和-import有什么区别？" class="headerlink" title="页面导入样式时，使用link和@import有什么区别？"></a>页面导入样式时，使用link和@import有什么区别？</h3><ul>
+<li>link属于XHTML标签，而@import是css提供的；</li>
+<li>页面被加载时，link会同时被加载，而@import引用的css会等到页面被加载完再加载；</li>
+<li>@import只在IE5以上才能识别，而link是XHTML标签，无兼容问题；</li>
+<li>link方式的样式的权重高于@import的权重。</li>
+<li>link标签可以使用JavaScript控制DOM去改变样式；而@import不支持。</li>
+</ul>
+<h3 id="html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？"><a href="#html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？" class="headerlink" title="html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？"></a>html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？</h3><p>新特性，新增元素：<br>内容元素：article、footer、header、nav、section<br>表单控件：calendar、date、time、email、url、search<br>控件元素：webworker，websockt，Geolocation</p>
+<p>移除元素：<br>显现层元素：basefont，big，center，font，s，strike，tt，u<br>性能较差元素：frame，frameset，noframes</p>
+<p>处理兼容问题有两种方式：<br>IE6/IE7/IE8支持通过document方法产生的标签，利用这一特性让这些浏览器支持HTML5新标签。<br>使用是html5shim框架。</p>
+<h3 id="简述一下你对HTML语义化的理解？"><a href="#简述一下你对HTML语义化的理解？" class="headerlink" title="简述一下你对HTML语义化的理解？"></a>简述一下你对HTML语义化的理解？</h3><ul>
+<li>用正确的标签做正确的事情</li>
+<li>html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析</li>
+<li>即使在没有样式css情况下也以一种文档格式显示，并且是容易阅读的</li>
+<li>搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO</li>
+<li>使阅读源代码的人更容易将网站分块，便于阅读维护理解。</li>
+</ul>
+<h3 id="iframe有那些缺点？"><a href="#iframe有那些缺点？" class="headerlink" title="iframe有那些缺点？"></a>iframe有那些缺点？</h3><p>在网页中使用框架结构最大的弊病是搜索引擎的“蜘蛛”程序无法解读这种页面。</p>
+<h3 id="Doctype作用-严格模式与混杂模式如何区分？它们有何意义"><a href="#Doctype作用-严格模式与混杂模式如何区分？它们有何意义" class="headerlink" title="Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?"></a>Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?</h3><p><code>&lt;!Doctype&gt;</code>声明位于文档中的最前面，处于<code>&lt;html&gt;</code>标签之前。告知浏览器的解析器，用什么文档类型规范来解析这个文档。<br>严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行。<br>在混杂模式中，页面以宽松的向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。<br>DOCTYPE不存在或格式不正确会导致文档以混杂模式呈现。</p>
+<h3 id="常见兼容性问题？"><a href="#常见兼容性问题？" class="headerlink" title="常见兼容性问题？"></a>常见兼容性问题？</h3><p>png24位的图片在IE6浏览器上出现背景<br>解决方案：做成PNG8</p>
+<p>浏览器默认的 margin 和 padding 不同<br>解决方案：加一个全局的<code>*{margin:0;padding:0;}</code>来统一</p>
+<p>IE6双边距bug：块属性标签float后，又有横行的 margin 情况下，在 IE6 显示 margin 比设置的大。浮动IE产生的双倍距离 <code>#box{float:left;width:10px;margin:0 0 0 100px;}</code>这种情况下IE6会产生200px的距离。<br>解决方法：加上<code>display：inline</code>，使浮动忽略</p>
+<p>IE下，可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute()获取自定义属性； Firefox下，只能使用getAttribute()获取自定义属性。<br>解决方法：统一通过getAttribute()获取自定义属性。</p>
+<p>Chrome中文界面下默认会将小于 12px 的文本强制按照 12px 显示<br>解决方法：可通过加入 CSS 属性 <code>-webkt-text-size-adjust:none;</code>解决</p>
+<p>超链接访问过后 hover 样式就不出现了，被点击访问过的超链接样式不在具有 hover 和 active ；<br>解决方法：改变CSS属性的排列顺序：<code>L-V-H-A: a:link{ }  a:visited{ } a:hover{ } a:active{ }</code></p>
+<h3 id="如何实现浏览器内多个标签页之间的通信？"><a href="#如何实现浏览器内多个标签页之间的通信？" class="headerlink" title="如何实现浏览器内多个标签页之间的通信？"></a>如何实现浏览器内多个标签页之间的通信？</h3><p><a href="https://juejin.im/post/5b0d0a3cf265da092767917f" target="_blank" rel="noopener">掘金 - 浏览器多个标签页之间的通信</a></p>
+<p>websocket通讯 <a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">阮一峰 - websocket</a>；<br>定时器setInterval+cookie；<br>使用localstorage；<br>html5浏览器的新特性SharedWorker。</p>
+<h3 id="webSocket如何兼容低浏览器？"><a href="#webSocket如何兼容低浏览器？" class="headerlink" title="webSocket如何兼容低浏览器？"></a>webSocket如何兼容低浏览器？</h3><p>Adobe Flash Socket 、 ActiveX HTMLFile (IE) 、 基于 multipart 编码发送 XHR 、 基于长轮询的 XHR</p>
+<h3 id="如何让IE支持HTML5新标签"><a href="#如何让IE支持HTML5新标签" class="headerlink" title="如何让IE支持HTML5新标签"></a>如何让IE支持HTML5新标签</h3><p>IE8/IE7/IE6支持通过 <code>document.createElement</code> 方法产生的标签，可以利用这一特性让这些浏览器支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式；</p>
+<p>当然最好的方式是直接使用成熟的框架、使用最多的是 html5shim 框架<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt; </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;script&gt; src="http://html5shim.googlecode.com/svn/trunk/html5.js"&lt;/script&gt; </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="CSS-选择符有哪些？"><a href="#CSS-选择符有哪些？" class="headerlink" title="CSS 选择符有哪些？"></a>CSS 选择符有哪些？</h3><p>id 选择器（#myid）</p>
+<p>类选择器（.myclassname）</p>
+<p>标签选择器（div，h1，p）</p>
+<p>相邻选择器（h1 + p）</p>
+<p>子选择器（ul &gt; li）</p>
+<p>后代选择器（li a）</p>
+<p>通配符选择器（* ）</p>
+<p>属性选择器（ a[rel = “external”]）</p>
+<p>伪类选择器（a: hover, li: nth - child）</p>
+<h3 id="可继承的样式有哪些？"><a href="#可继承的样式有哪些？" class="headerlink" title="可继承的样式有哪些？"></a>可继承的样式有哪些？</h3><p><a href="https://www.jianshu.com/p/34044e3c9317" target="_blank" rel="noopener">参考 - 简书</a><br>所有元素可继承：visibility和cursor。<br>内联元素可继承：line-height、color、font、font-family、font-size、font-style、font-variant、font-weight、text-decoration、text-transform、letter-spacing、word-spacing、white-space、direction。<br>终端块状元素可继承：text-indent和text-align。<br>列表元素可继承：list-style、list-style-type、list-style-position、list-style-image。</p>
+<h3 id="不可继承的样式有哪些？"><a href="#不可继承的样式有哪些？" class="headerlink" title="不可继承的样式有哪些？"></a>不可继承的样式有哪些？</h3><p>border padding margin width height</p>
+<h3 id="CSS3新增伪类举例"><a href="#CSS3新增伪类举例" class="headerlink" title="CSS3新增伪类举例"></a>CSS3新增伪类举例</h3><p><code>p:first-of-type</code>  <code>p:nth-child(2)</code> <code>:enabled</code> <code>:disabled</code> <code>:checked</code></p>
+<h3 id="css3有哪些新特性？"><a href="#css3有哪些新特性？" class="headerlink" title="css3有哪些新特性？"></a>css3有哪些新特性？</h3><p>CSS3 实现圆角（border-radius:8px;）</p>
+<p>阴影（box-shadow:10px）</p>
+<p>对文字加特效（text-shadow）</p>
+<p>线性渐变（gradient）</p>
+<p>旋转（transform）<br>transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg)//旋转，缩放，定位，倾斜</p>
+<p>rgba</p>
+<h3 id="display-inline-block-什么时候会显示间隙？"><a href="#display-inline-block-什么时候会显示间隙？" class="headerlink" title="display:inline-block 什么时候会显示间隙？"></a>display:inline-block 什么时候会显示间隙？</h3><p>移除空格，使用margin 负值、使用 font-size:0、letter-spacing 、word-spacing</p>
+<h3 id="SASS-CSS预处理器"><a href="#SASS-CSS预处理器" class="headerlink" title="SASS - CSS预处理器"></a>SASS - CSS预处理器</h3><p><a href="https://www.w3cschool.cn/sass/sass_interview_questions.html" target="_blank" rel="noopener">W3Cschool - 比较全</a></p>
+<h3 id="简述一下src与href的区别"><a href="#简述一下src与href的区别" class="headerlink" title="简述一下src与href的区别"></a>简述一下src与href的区别</h3><p>href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接，用于超链接。</p>
+<p>src是指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。<br>当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。</p>
+<blockquote id="fn_1">
+<sup>1</sup>. <a href="https://zh.wikipedia.org/wiki/SGML" target="_blank" rel="noopener">【参考Wikipedia】</a>标准通用标记语言,Standard Generalized Markup Language，是现时常用的超文本格式的最高层次标准，是可以定义标记语言的元语言<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. <a href="https://zh.wikipedia.org/wiki/%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89" target="_blank" rel="noopener">【参考Wikipedia】</a>DTD（Document Type Definition）概念缘于SGML，每一份SGML文件，均应有相对应的DTD。XML文件的文档类型定义（Document Type Definition）可以看成一个或者多个XML文件的模板，在这里可以定义XML文件中的元素、元素的属性、元素的排列方式、元素包含的内容等等。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+</div><div class="tags"><a href="/tags/interview/">interview</a><a href="/tags/html5/">html5</a></div><div class="post-nav"><a class="next" href="/2018/09/24/nodejs核心内置类库/">nodejs核心内置类库</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2018/09/24/html5再总结/';
+    this.page.identifier = '2018/09/24/html5再总结/';
+    this.page.title = 'html5再总结';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//zhaofeihao.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zhaofeihao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://zhaofeihao.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/flex/" style="font-size: 15px;">flex</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/TCP-UDP/" style="font-size: 15px;">TCP-UDP</a> <a href="/tags/interview/" style="font-size: 15px;">interview</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/综合/" style="font-size: 15px;">综合</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/浏览器缓存/" style="font-size: 15px;">浏览器缓存</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/html5再总结/">html5再总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/nodejs核心内置类库/">nodejs核心内置类库</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/js常用设计模式简单总结/">js常用设计模式简单总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/22/有诚意的58集团笔试/">有诚意的58集团笔试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/18/DOM树深度和广度遍历js实现/">DOM树深度和广度遍历js实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/17/jquery事件监听on和off的实现/">jquery事件监听on和off的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/扩展阅读-PWA和移动端开发模式/">扩展阅读:PWA和移动端开发模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/14/js函数柯里化/">js函数柯里化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/14/js数组扁平化/">js数组扁平化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/理解虚拟DOM，实现DOM/">理解虚拟DOM，实现DOM</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//zhaofeihao.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">赵斐昊.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
