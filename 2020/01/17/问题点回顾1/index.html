@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>问题点回顾1 | 赵斐昊</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">问题点回顾1</h1><a id="logo" href="/.">赵斐昊</a><p class="description">假程序员假程序员假程序员假程序员假程序员假程序员假程序员假程序员。</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">问题点回顾1</h1><div class="post-meta">Jan 17, 2020<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" data-disqus-identifier="2020/01/17/问题点回顾1/" href="/2020/01/17/问题点回顾1/#disqus_thread"></a><div class="post-content"><h3 id="1-fetch-和-ajax-的区别"><a href="#1-fetch-和-ajax-的区别" class="headerlink" title="1. fetch 和 ajax 的区别"></a>1. fetch 和 ajax 的区别</h3><p><a href="https://www.cnblogs.com/weiqinl/p/11279950.html" target="_blank" rel="noopener">异步请求xhr、ajax、axios与fetch的区别比较</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">MDN fetch</a><br><a href="https://juejin.im/post/5acde23c5188255cb32e7e76#comment" target="_blank" rel="noopener">掘金 - 从ajax到fetch、axios</a></p>
+<h3 id="2-css-实现扇形"><a href="#2-css-实现扇形" class="headerlink" title="2. css 实现扇形"></a>2. css 实现扇形</h3><p>(扇形)[<a href="https://blog.csdn.net/young_Emily/article/details/80091667" target="_blank" rel="noopener">https://blog.csdn.net/young_Emily/article/details/80091667</a>]<br>(扇形)[<a href="https://www.jb51.net/css/649667.html" target="_blank" rel="noopener">https://www.jb51.net/css/649667.html</a>]</p>
+<h3 id="3-PWA的特点"><a href="#3-PWA的特点" class="headerlink" title="3. PWA的特点"></a>3. PWA的特点</h3><p><a href="https://lavas.baidu.com/pwa" target="_blank" rel="noopener">什么是 PWA</a><br><a href="https://juejin.im/post/5e5776f3f265da57127e48a9?utm_source=gold_browser_extension#heading-8" target="_blank" rel="noopener">PWA</a></p>
+<h3 id="4-归并排序"><a href="#4-归并排序" class="headerlink" title="4. 归并排序"></a>4. 归并排序</h3><h3 id="5-JavaScript-实现双向链表，带增删节点功能"><a href="#5-JavaScript-实现双向链表，带增删节点功能" class="headerlink" title="5. JavaScript 实现双向链表，带增删节点功能"></a>5. JavaScript 实现双向链表，带增删节点功能</h3><h3 id="6-VDOM-gt-DOM"><a href="#6-VDOM-gt-DOM" class="headerlink" title="6. VDOM -&gt; DOM"></a>6. VDOM -&gt; DOM</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> el <span class="keyword">from</span> <span class="string">'./element.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> element = el(<span class="string">'ul'</span>, &#123;<span class="attr">id</span>: <span class="string">'abc'</span>&#125;, [</span><br><span class="line">    el(<span class="string">'li'</span>, &#123;<span class="attr">class</span>: <span class="string">'def'</span>&#125;, <span class="string">'item'</span>),</span><br><span class="line">    el(<span class="string">'li'</span>, &#123;<span class="attr">class</span>: <span class="string">'def'</span>&#125;, <span class="string">'item'</span>),</span><br><span class="line">    el(<span class="string">'li'</span>, &#123;<span class="attr">class</span>: <span class="string">'def'</span>&#125;, <span class="string">'item'</span>)</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">element.render();<span class="comment">//调用render方法，即可将上述节点转为 dom 插入到页面中</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h3><ol>
+<li><p>div嵌套div，内部div不固定宽度，让内部div垂直居中<br>flex 如何实现</p>
+</li>
+<li><p>z-index谁在前</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.item1</span> &#123;</span></span><br><span class="line"><span class="undefined">        position: absolute;</span></span><br><span class="line"><span class="undefined">        z-index: 1;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.item2</span> &#123;</span></span><br><span class="line"><span class="undefined">        z-index: 999;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>position的属性</p>
+</li>
+</ol>
+<h3 id="js-部分"><a href="#js-部分" class="headerlink" title="js 部分"></a>js 部分</h3><ol>
+<li><p>实现 Array.prototype.flat ，具备原生功能</p>
+</li>
+<li><p>js 基本数据类型<br>基本类型和引用类型的区别</p>
+</li>
+<li><p>bigInt类型 解决了什么问题</p>
+</li>
+<li><p>js number 类型的缺点<br>对大数的支持是无限大吗？<br>如何在ES5中支持大数操作和存储？<br>如何实现大数的乘法操作？</p>
+</li>
+<li><p>同域的两个tab如何进行通信？</p>
+</li>
+<li><p>cookie<br>cookie的缺点<br>cookie具备的属性<br>httpOnly 的作用</p>
+</li>
+<li><p>事件循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">9999</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i===<span class="number">999</span>)&#123;</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>8.</p>
+<pre><code class="lang-javascript">function a(){this.b = 3}
+a.prototype.b = 9;
+var c = new a();
+var b = 7;
+a();
+
+console.log(this.b);
+console.log(c.b);
+</code></pre>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><ol>
+<li><p>三次握手</p>
+</li>
+<li><p>七层模型<br>http在哪一层，tcp在哪一层</p>
+</li>
+<li><p>CDN 回源<br><a href="https://juejin.im/post/5af46498f265da0b8d41f6a3" target="_blank" rel="noopener">关于 cdn、回源等问题一网打尽</a></p>
+</li>
+<li><p>浏览器缓存相关字段</p>
+</li>
+</ol>
+<p>=========</p>
+<ol>
+<li>项目经验，最有亮点的项目，解决的最大的问题，有何收获。</li>
+<li>在浏览器输入url后发生的事情，越详细越好 深挖问题 -&gt;  dns相关问题 -&gt; 网络七层模型 -&gt; http1.x 2.0 https -&gt; ssl加密流程 -&gt; tcp三次握手四次挥手 -&gt; 重绘与重排 -&gt; 缓存相关问题 -&gt; 状态码相关问题 -&gt; http请求的类型，option的作用 -&gt; get和head的区别（RESTful构架，幂等与非幂等请求）-&gt; tcp和udp的区别。</li>
+<li>使用过的数组方法，map的实现</li>
+<li>instanceOf的实现</li>
+<li>原型链的顶层是什么，typeof null 是什么，为什么会是object（冷知识：这是js的bug，原因是二进制码前三位为0的都会被判断为object，而null则全是0，而实际上null绝非object）。</li>
+<li>继承。</li>
+<li>快排。</li>
+<li>二叉树遍历。</li>
+<li>想问vue被我拒绝。</li>
+<li>js中sort是用了什么算法。</li>
+<li>redux实现原则，以及你对数据流的理解。</li>
+<li>前端优化方法（webpack相关）</li>
+<li>有什么想问我的。</li>
+</ol>
+<p>1.数组扁平化代码实现<br>2.判断是否是数组类型的方法，instanceOf的实现原理（自己写一个函数实现instanceOf）<br>3.const person1 = new Person()<br>    person1.<strong>proto</strong><br>    person1.<strong>proto</strong>.<strong>proto</strong><br>4.1-10十张牌，每个数字的有四张，还有两张大王牌，从中抽取五张牌放入数组中，当数组中的顺序有序，则返回true，大王牌可以充当任何数字<br>例子：[1234王]，返回true<br>请写一个方法判断<br>5.this的指向问题，箭头函数的this指针指向哪里？call，bind，apply的区别，请用apply实现bind<br>6.tcp与udp<br>7.什么是跨域，跨域的实现方法有哪些，webpack中有实现跨域的配置吗？实现原理是什么</p>
+<p>8.vue的双向绑定实现原理，Object.defineProperty()中的set做了什么工作<br>9.node有用过吗<br>10.什么是原型链<br>11.深浅拷贝</p>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2019/12/18/日常积累/">日常积累</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2020/01/17/问题点回顾1/';
+    this.page.identifier = '2020/01/17/问题点回顾1/';
+    this.page.title = '问题点回顾1';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//zhaofeihao.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//zhaofeihao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://zhaofeihao.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/flex/" style="font-size: 15px;">flex</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/express/" style="font-size: 15px;">express</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a> <a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/interview/" style="font-size: 15px;">interview</a> <a href="/tags/TCP-UDP/" style="font-size: 15px;">TCP-UDP</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/综合/" style="font-size: 15px;">综合</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/浏览器缓存/" style="font-size: 15px;">浏览器缓存</a> <a href="/tags/react/" style="font-size: 15px;">react</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/01/17/问题点回顾1/">问题点回顾1</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/18/日常积累/">日常积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/Redux开发实用教程/">Redux开发实用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/24/Qunar前端自学大纲/">Qunar前端自学大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/18/头条二面回顾/">头条二面回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/15/浏览器跳出页面检测/">浏览器跳出页面检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/13/头条again/">头条again</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/08/头条面试回顾/">头条一面回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/03/头条真题回顾/">头条真题回顾</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/正则获取URL中的参数/">正则获取URL中的参数</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//zhaofeihao.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">赵斐昊.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
